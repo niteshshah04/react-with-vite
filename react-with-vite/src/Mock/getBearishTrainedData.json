@@ -1,0 +1,186 @@
+{
+    "ACC": {
+        "active": false,
+        "counter": 1,
+        "times": [
+            {
+                "added_time": "Wed, 05 Feb 2025 09:21:09 GMT",
+                "removed_time": "Wed, 05 Feb 2025 09:23:16 GMT"
+            }
+        ]
+    },
+    "BAJAJFINSV": {
+        "active": true,
+        "counter": 1,
+        "times": [
+            {
+                "added_time": "Wed, 05 Feb 2025 09:49:42 GMT",
+                "removed_time": null
+            }
+        ]
+    },
+    "BHARTIARTL": {
+        "active": false,
+        "counter": 1,
+        "times": [
+            {
+                "added_time": "Wed, 05 Feb 2025 09:20:06 GMT",
+                "removed_time": "Wed, 05 Feb 2025 09:22:13 GMT"
+            }
+        ]
+    },
+    "BRITANNIA": {
+        "active": true,
+        "counter": 3,
+        "times": [
+            {
+                "added_time": "Wed, 05 Feb 2025 09:34:53 GMT",
+                "removed_time": "Wed, 05 Feb 2025 09:35:56 GMT"
+            },
+            {
+                "added_time": "Wed, 05 Feb 2025 09:39:06 GMT",
+                "removed_time": "Wed, 05 Feb 2025 09:49:42 GMT"
+            },
+            {
+                "added_time": "Wed, 05 Feb 2025 09:56:02 GMT",
+                "removed_time": null
+            }
+        ]
+    },
+    "CHOLAFIN": {
+        "active": false,
+        "counter": 1,
+        "times": [
+            {
+                "added_time": "Wed, 05 Feb 2025 09:50:45 GMT",
+                "removed_time": "Wed, 05 Feb 2025 09:52:52 GMT"
+            }
+        ]
+    },
+    "DRREDDY": {
+        "active": false,
+        "counter": 1,
+        "times": [
+            {
+                "added_time": "Wed, 05 Feb 2025 09:20:06 GMT",
+                "removed_time": "Wed, 05 Feb 2025 09:21:09 GMT"
+            }
+        ]
+    },
+    "GODREJPROP": {
+        "active": false,
+        "counter": 1,
+        "times": [
+            {
+                "added_time": "Wed, 05 Feb 2025 09:50:45 GMT",
+                "removed_time": "Wed, 05 Feb 2025 09:51:49 GMT"
+            }
+        ]
+    },
+    "HINDUNILVR": {
+        "active": true,
+        "counter": 3,
+        "times": [
+            {
+                "added_time": "Wed, 05 Feb 2025 09:28:33 GMT",
+                "removed_time": "Wed, 05 Feb 2025 09:34:53 GMT"
+            },
+            {
+                "added_time": "Wed, 05 Feb 2025 09:41:15 GMT",
+                "removed_time": "Wed, 05 Feb 2025 09:43:22 GMT"
+            },
+            {
+                "added_time": "Wed, 05 Feb 2025 09:53:56 GMT",
+                "removed_time": null
+            }
+        ]
+    },
+    "ICICIBANK": {
+        "active": false,
+        "counter": 1,
+        "times": [
+            {
+                "added_time": "Wed, 05 Feb 2025 09:23:16 GMT",
+                "removed_time": "Wed, 05 Feb 2025 09:25:23 GMT"
+            }
+        ]
+    },
+    "LALPATHLAB": {
+        "active": false,
+        "counter": 1,
+        "times": [
+            {
+                "added_time": "Wed, 05 Feb 2025 09:20:06 GMT",
+                "removed_time": "Wed, 05 Feb 2025 09:21:09 GMT"
+            }
+        ]
+    },
+    "MOTHERSON": {
+        "active": false,
+        "counter": 2,
+        "times": [
+            {
+                "added_time": "Wed, 05 Feb 2025 09:20:06 GMT",
+                "removed_time": "Wed, 05 Feb 2025 09:23:16 GMT"
+            },
+            {
+                "added_time": "Wed, 05 Feb 2025 09:25:23 GMT",
+                "removed_time": "Wed, 05 Feb 2025 09:30:39 GMT"
+            }
+        ]
+    },
+    "NESTLEIND": {
+        "active": true,
+        "counter": 2,
+        "times": [
+            {
+                "added_time": "Wed, 05 Feb 2025 09:26:26 GMT",
+                "removed_time": "Wed, 05 Feb 2025 09:29:36 GMT"
+            },
+            {
+                "added_time": "Wed, 05 Feb 2025 09:38:03 GMT",
+                "removed_time": null
+            }
+        ]
+    },
+    "SBIN": {
+        "active": false,
+        "counter": 1,
+        "times": [
+            {
+                "added_time": "Wed, 05 Feb 2025 09:34:53 GMT",
+                "removed_time": "Wed, 05 Feb 2025 09:43:22 GMT"
+            }
+        ]
+    },
+    "SUNPHARMA": {
+        "active": false,
+        "counter": 1,
+        "times": [
+            {
+                "added_time": "Wed, 05 Feb 2025 09:25:23 GMT",
+                "removed_time": "Wed, 05 Feb 2025 09:26:26 GMT"
+            }
+        ]
+    },
+    "TATACONSUM": {
+        "active": false,
+        "counter": 1,
+        "times": [
+            {
+                "added_time": "Wed, 05 Feb 2025 09:23:16 GMT",
+                "removed_time": "Wed, 05 Feb 2025 09:25:23 GMT"
+            }
+        ]
+    },
+    "UBL": {
+        "active": false,
+        "counter": 1,
+        "times": [
+            {
+                "added_time": "Wed, 05 Feb 2025 09:36:59 GMT",
+                "removed_time": "Wed, 05 Feb 2025 09:39:06 GMT"
+            }
+        ]
+    }
+}

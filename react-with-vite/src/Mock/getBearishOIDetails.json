@@ -1,0 +1,34 @@
+{
+    "ASIANPAINT": {
+        "timeAndPrice": [
+            {
+                "CE_ShortBuildup": 75.0,
+                "CE_LongBuildup": 8.333333333333332,
+                "removed": "09:37:30.012",
+                "PE_LongBuildUp": 8.333333333333332,
+                "PE_LongUnwinding": 0.0,
+                "PE_ShortBuildUp": 8.333333333333332,
+                "ltp": 2257.55,
+                "time": "09:22:30.012",
+                "CE_ShortCovering": 0.0,
+                "PE_ShortCovering": 75.0,
+                "CE_LongUnwinding": 16.666666666666664
+            },
+            {
+                "CE_ShortBuildup": 75.0,
+                "CE_LongBuildup": 8.333333333333332,
+                "removed": "09:58:30.012",
+                "PE_LongBuildUp": 25.0,
+                "PE_LongUnwinding": 8.333333333333332,
+                "PE_ShortBuildUp": 8.333333333333332,
+                "ltp": 2252.85,
+                "time": "09:38:00.332",
+                "CE_ShortCovering": 0.0,
+                "PE_ShortCovering": 58.333333333333336,
+                "CE_LongUnwinding": 16.666666666666664
+            }
+        ],
+        "count": 2,
+        "active": false
+    }
+}
