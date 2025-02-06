@@ -17,7 +17,7 @@ interface BullishTrainedOITableProps {
   order: "asc" | "desc";
   orderBy: string;
   handleSort: (col: string) => void;
-  bullishTrainedOIData: IBUllishTrainedOIData;
+  bullishTrainedOIData: IBUllishTrainedOIData[];
   getProcessedData: (data: any) => any[];
   filterData: (data: any) => any[];
   page: number;
