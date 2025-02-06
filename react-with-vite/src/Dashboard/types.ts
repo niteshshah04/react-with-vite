@@ -35,3 +35,26 @@ export type IBullishOIData = {
   };
   
   export type IBullishOIResponse = Record<string, StockInfo>;
+
+  export type IBUllishTrainedOIData = {
+    id: number;
+    stock: string;
+    count: number;
+    active: boolean;
+    added_time: string;
+    removed_time: string | null;
+  }
+
+  type TimeEntry = {
+    added_time: string;
+    removed_time: string | null;
+  };
+  
+  type StockActivity = {
+    active: boolean;
+    counter: number;
+    times: TimeEntry[];
+  };
+  
+  export type IBullishTrainedOIResponse = Record<string, StockActivity>;
+  

@@ -1,29 +1,19 @@
 import { useEffect, useState } from "react";
+import { Tabs, Tab, Box, TextField } from "@mui/material";
+import getBullishOIDEtails from "../Mock/getBullishOIDetails.json";
+import getBullishTrainedData from "../Mock/getBullishTrainedData.json";
+import { IBullishOIData, IBUllishTrainedOIData } from "./types";
+import BullishOITable from "../BullishOIDetails/BullishOITable";
+import BullishTrainedOITable from "../BullishTrainedOI/BullishTrainedOITable";
+import { useBullishTrainedOIData } from "./hooks/useBullishTrainedOITable";
 import {
-  Tabs,
-  Tab,
-  Box,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Paper,
-  Typography,
-  TextField,
-} from "@mui/material";
-import getBullishOIDEtails from '../Mock/getBullishOIDetails.json'
-import { IBullishOIData } from './types';
-import BullishOITable from '../BullishOIDetails/BullishOITable';
-import { useHandleChangeRowsPerPage, useCleanData, useHandleTabChange, useHandleSort } from './hooks/useBullishOITable';
-const productsData = [
-  { id: 101, name: "Laptop", price: "$1000", category: "Electronics" },
-  { id: 102, name: "Phone", price: "$500", category: "Electronics" },
-];
+  useHandleChangeRowsPerPage,
+  useCleanData,
+  useHandleTabChange,
+  useHandleSort,
+} from "./hooks/useBullishOITable";
 
 const DashboardTable = () => {
-
   const [tabIndex, setTabIndex] = useState<number>(0);
   const [searchText, setSearchText] = useState<string>("");
   const [page, setPage] = useState<number>(0);
@@ -31,19 +21,25 @@ const DashboardTable = () => {
   const [order, setOrder] = useState<"asc" | "desc">("asc");
   const [orderBy, setOrderBy] = useState<string>("id");
   const [bullishOIData, setBullishOIData] = useState<IBullishOIData[]>([]);
+  const [bullishTrainedOIData, setBullishTrainedOIData] = useState<IBUllishTrainedOIData[]>([]);
+
+  // custom hooks for Bullish Trained Data
+  const { cleanBullishTrainedOIData } = useBullishTrainedOIData();
+  const bullishTrainedData = cleanBullishTrainedOIData(getBullishTrainedData);
 
   // custom hooks for Clean Data
   const { cleanData } = useCleanData();
-   
   const bullishData = cleanData(getBullishOIDEtails);
+
   useEffect(() => {
     setBullishOIData(bullishData);
-  }, [bullishData])
+    setBullishTrainedOIData(bullishTrainedData);
+  }, [bullishData]);
 
-  // custom hooks for Handle Tab Change 
+  // custom hooks for Handle Tab Change
   const handleTabChange = useHandleTabChange(setTabIndex, setSearchText, setPage);
 
-  // custom hooks for Handle Sorting  
+  // custom hooks for Handle Sorting
   const handleSort = useHandleSort(order, orderBy, setOrder, setOrderBy);
 
   // Sorting Function
@@ -101,7 +97,7 @@ const DashboardTable = () => {
 
       {/* Display Users Table */}
       {tabIndex === 0 && (
-         <BullishOITable
+        <BullishOITable
           order={order}
           orderBy={orderBy}
           handleSort={handleSort}
@@ -111,40 +107,27 @@ const DashboardTable = () => {
           page={page}
           rowsPerPage={rowsPerPage}
           handleChangePage={handleChangePage}
-          handleChangeRowsPerPage={handleChangeRowsPerPage} />
+          handleChangeRowsPerPage={handleChangeRowsPerPage}
+        />
       )}
 
       {/* Display Products Table */}
       {tabIndex === 1 && (
-        <Box p={2}>
-          <Typography variant="h6">Products Data</Typography>
-          <TableContainer component={Paper}>
-            <Table>
-              <TableHead>
-                <TableRow>
-                  <TableCell>ID</TableCell>
-                  <TableCell>Name</TableCell>
-                  <TableCell>Price</TableCell>
-                  <TableCell>Category</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {filterData(productsData).map((product: any) => (
-                  <TableRow key={product.id}>
-                    <TableCell>{product.id}</TableCell>
-                    <TableCell>{product.name}</TableCell>
-                    <TableCell>{product.price}</TableCell>
-                    <TableCell>{product.category}</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        </Box>
+        <BullishTrainedOITable
+          order={order}
+          orderBy={orderBy}
+          handleSort={handleSort}
+          bullishTrainedOIData={bullishTrainedOIData}
+          getProcessedData={getProcessedData}
+          filterData={filterData}
+          page={page}
+          rowsPerPage={rowsPerPage}
+          handleChangePage={handleChangePage}
+          handleChangeRowsPerPage={handleChangeRowsPerPage}
+        />
       )}
     </Box>
   );
 };
 
 export default DashboardTable;
-
