@@ -50,22 +50,22 @@ const BullishOITable: React.FC<BullishOITableProps> = (props) => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {bullishOIData && getProcessedData(bullishOIData).map((user: any) => (
-                  <TableRow key={user.id}>
-                    <TableCell>{user.id}</TableCell>
-                    <TableCell>{user.stock}</TableCell>
-                    <TableCell>{user.ltp}</TableCell>
-                    <TableCell>{user.active.toString()}</TableCell>
-                    <TableCell>{user.count}</TableCell>
-                    <TableCell>{user.time}</TableCell>
-                    <TableCell>{user.CE_LongBuildup}</TableCell>
-                    <TableCell>{user.CE_LongUnwinding}</TableCell>
-                    <TableCell>{user.CE_ShortBuildup}</TableCell>
-                    <TableCell>{user.CE_ShortCovering}</TableCell>
-                    <TableCell>{user.PE_LongBuildUp}</TableCell>
-                    <TableCell>{user.PE_LongUnwinding}</TableCell>
-                    <TableCell>{user.PE_ShortBuildUp}</TableCell>
-                    <TableCell>{user.PE_ShortCovering}</TableCell>
+                {bullishOIData && getProcessedData(bullishOIData).map((data: IBullishOIData) => (
+                  <TableRow key={data.id}>
+                  <TableCell>{data.id}</TableCell>
+                  <TableCell>{data.stock}</TableCell>
+                  <TableCell>{data.ltp}</TableCell>
+                  <TableCell>{data.active.toString()}</TableCell>
+                  <TableCell>{data.count}</TableCell>
+                  <TableCell>{data.time}</TableCell>
+                  <TableCell>{data.CE_LongBuildup}</TableCell>
+                  <TableCell>{data.CE_LongUnwinding}</TableCell>
+                  <TableCell>{data.CE_ShortBuildup}</TableCell>
+                  <TableCell>{data.CE_ShortCovering}</TableCell>
+                  <TableCell>{data.PE_LongBuildUp}</TableCell>
+                  <TableCell>{data.PE_LongUnwinding}</TableCell>
+                  <TableCell>{data.PE_ShortBuildUp}</TableCell>
+                  <TableCell>{data.PE_ShortCovering}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>
