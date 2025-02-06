@@ -14,12 +14,12 @@ import {
   import { IBullishOIData } from '../Dashboard/types';
 
   interface BullishOITableProps {
-    order: string;
+    order: "asc" | "desc";
     orderBy: string;
     handleSort: (col: string) => void;
     bullishOIData: IBullishOIData;
-    getProcessedData: (data: any) => void;
-    filterData: (data: any) => void;
+    getProcessedData: (data: any) => any[];
+    filterData: (data: any) => any[];
     page: number;
     rowsPerPage: number;
     handleChangePage: (event: unknown, newPage: number) => void;

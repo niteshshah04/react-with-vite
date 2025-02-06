@@ -1,5 +1,5 @@
 import React from 'react';
-import MuiTableWithFilter from './MuiTableWithFilter';
+import DashboardTable from './DashboardTable';
 import SentimentBar from '../SentimentProgressBar/SentimentBar';
 
 
@@ -7,7 +7,7 @@ const DashboardView: React.FC = () => {
     return (
         <>
             <SentimentBar />
-            <MuiTableWithFilter />
+            <DashboardTable />
         </>
     )
 }
