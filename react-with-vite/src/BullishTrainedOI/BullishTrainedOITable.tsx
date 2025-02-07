@@ -38,7 +38,7 @@ const { order, orderBy, handleSort, bullishTrainedOIData, getProcessedData, filt
             <TableRow>
               {[
                 "id",
-                "stock name",
+                "stock",
                 "active",
                 "count",
                 "added time",

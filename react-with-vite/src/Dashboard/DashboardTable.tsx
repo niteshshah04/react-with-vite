@@ -12,12 +12,7 @@ import BearishOITable from "../BearishOIDetails/BearishOITable";
 import BearishTrainedOITable from "../BearishTrainedOI/BearishTrainedOITable";
 import StockListTable from "../StockListTable/StockListTable";
 import { useBullishTrainedOIData } from "./hooks/useBullishTrainedOITable";
-import {
-  useHandleChangeRowsPerPage,
-  useCleanData,
-  useHandleTabChange,
-  useHandleSort,
-} from "./hooks/useBullishOITable";
+import { useHandleChangeRowsPerPage, useCleanData, useHandleTabChange, useHandleSort } from "./hooks/useBullishOITable";
 
 const DashboardTable = () => {
   const [tabIndex, setTabIndex] = useState<number>(0);
@@ -58,17 +53,20 @@ const DashboardTable = () => {
   const handleSort = useHandleSort(order, orderBy, setOrder, setOrderBy);
 
   // Sorting Function
-  const sortData = (data: any) => {
+  const sortData = (data: any[], orderBy: string, order: "asc" | "desc") => {
+    if (!orderBy || !order) {
+      return data;
+    }
+  
     return data.sort((a: any, b: any) => {
       if (a[orderBy] < b[orderBy]) return order === "asc" ? -1 : 1;
       if (a[orderBy] > b[orderBy]) return order === "asc" ? 1 : -1;
       return 0;
     });
   };
-
   // Get sorted, filtered, and paginated data
   const getProcessedData = (data: any) => {
-    return sortData(filterData([...data])).slice(
+    return sortData(filterData([...data]), orderBy, order).slice(
       page * rowsPerPage,
       page * rowsPerPage + rowsPerPage
     );
