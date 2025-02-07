@@ -130,6 +130,20 @@ const DashboardTable = () => {
         />
       )}
 
+      {/* Display Bearish OI Table */}
+      {tabIndex === 2 && (
+        <Box display="flex" justifyContent="center" alignItems="center" height="100%">
+          <div style={{ fontWeight: "bold" }}>Coming soon</div>
+        </Box>
+      )}
+
+      {/* Display Bearish Trained OI Table */}
+      {tabIndex === 3 && (
+         <Box display="flex" justifyContent="center" alignItems="center" height="100%">
+         <div style={{ fontWeight: "bold" }}>Coming soon</div>
+       </Box>
+      )}
+
       {/* Display Stock List Table */}
       {tabIndex === 4 && (
         <StockListTable
