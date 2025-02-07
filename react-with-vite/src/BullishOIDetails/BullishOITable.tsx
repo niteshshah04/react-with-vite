@@ -9,8 +9,10 @@ import {
   TableRow,
   Paper,
   TablePagination,
-  TableSortLabel,
+  TableSortLabel
 } from "@mui/material";
+import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
+import ArrowUpward from '@mui/icons-material/ArrowUpward';
 import { IBullishOIData } from "../Dashboard/types";
 
 interface BullishOITableProps {
@@ -71,7 +73,26 @@ const BullishOITable: React.FC<BullishOITableProps> = (props) => {
                     <TableCell>{data.stock}</TableCell>
                     <TableCell>{data.ltp}</TableCell>
                     <TableCell>{data.active.toString()}</TableCell>
-                    <TableCell>{data.count}</TableCell>
+                    <TableCell>
+                      {data.count}{" "}
+                      {data.active ? (
+                        <ArrowUpward
+                          sx={{
+                            fontSize: 24,
+                            color: `green`,
+                            verticalAlign: "middle",
+                          }}
+                        />
+                      ) : (
+                        <ArrowDownwardIcon
+                          sx={{
+                            fontSize: 24,
+                            color: `red`,
+                            verticalAlign: "middle",
+                          }}
+                        />
+                      )}
+                    </TableCell>
                     <TableCell>{data.time}</TableCell>
                     <TableCell>{data.CE_LongBuildup}</TableCell>
                     <TableCell>{data.CE_LongUnwinding}</TableCell>

@@ -12,6 +12,8 @@ import {
   TableSortLabel,
 } from "@mui/material";
 import { IBUllishTrainedOIData } from "../Dashboard/types";
+import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
+import ArrowUpward from '@mui/icons-material/ArrowUpward';
 
 interface BullishTrainedOITableProps {
   order: "asc" | "desc";
@@ -61,7 +63,26 @@ const { order, orderBy, handleSort, bullishTrainedOIData, getProcessedData, filt
                   <TableCell>{data.id}</TableCell>
                   <TableCell>{data.stock}</TableCell>
                   <TableCell>{data.active.toString()}</TableCell>
-                  <TableCell>{data.count}</TableCell>
+                  <TableCell>
+                      {data.count}{" "}
+                      {data.active ? (
+                        <ArrowUpward
+                          sx={{
+                            fontSize: 24,
+                            color: `green`,
+                            verticalAlign: "middle",
+                          }}
+                        />
+                      ) : (
+                        <ArrowDownwardIcon
+                          sx={{
+                            fontSize: 24,
+                            color: `red`,
+                            verticalAlign: "middle",
+                          }}
+                        />
+                      )}
+                    </TableCell>
                   <TableCell>{data.added_time}</TableCell>
                   <TableCell>{data.removed_time}</TableCell>
                 </TableRow>
