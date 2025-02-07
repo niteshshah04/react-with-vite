@@ -95,7 +95,7 @@ const DashboardTable = () => {
         />
       </Box>
 
-      {/* Display Users Table */}
+      {/* Display Bullish OI Table */}
       {tabIndex === 0 && (
         <BullishOITable
           order={order}
@@ -111,7 +111,7 @@ const DashboardTable = () => {
         />
       )}
 
-      {/* Display Products Table */}
+      {/* Display Bullish Trained OI Table */}
       {tabIndex === 1 && (
         <BullishTrainedOITable
           order={order}
