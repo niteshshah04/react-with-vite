@@ -15,7 +15,7 @@
             }
         ],
         "count": 1,
-        "active": true
+        "active": false
     },
     "NMDC": {
         "timeAndPrice": [
@@ -46,7 +46,7 @@
             }
         ],
         "count": 2,
-        "active": true
+        "active": false
     },
     "HCLTECH": {
         "timeAndPrice": [

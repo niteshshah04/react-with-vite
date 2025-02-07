@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Tabs, Tab, Box, TextField } from "@mui/material";
+import { Tabs, Tab, Box, TextField, FormControlLabel, Checkbox } from "@mui/material";
 import getBullishOIDEtails from "../Mock/getBullishOIDetails.json";
 import getBullishTrainedData from "../Mock/getBullishTrainedData.json";
 import stockData from '../Mock/getNiftyDataList.json';
@@ -24,6 +24,8 @@ const DashboardTable = () => {
   const [orderBy, setOrderBy] = useState<string>("id");
   const [bullishOIData, setBullishOIData] = useState<IBullishOIData[]>([]);
   const [bullishTrainedOIData, setBullishTrainedOIData] = useState<IBUllishTrainedOIData[]>([]);
+  const [showActiveOnly, setShowActiveOnly] = useState(false);
+
 
   // custom hooks for Bullish Trained Data
   const { cleanBullishTrainedOIData } = useBullishTrainedOIData();
@@ -36,8 +38,9 @@ const DashboardTable = () => {
   useEffect(() => {
     setBullishOIData(bullishData);
     setBullishTrainedOIData(bullishTrainedData);
-  }, [bullishData]);
-
+    // Ensure dependencies are stable and not causing re-renders
+  }, [cleanData, getBullishOIDEtails, getBullishTrainedData]);
+  
   // custom hooks for Handle Tab Change
   const handleTabChange = useHandleTabChange(setTabIndex, setSearchText, setPage);
 
@@ -61,14 +64,15 @@ const DashboardTable = () => {
     );
   };
 
-  // Filter data based on search text
-  const filterData = (data: any) => {
-    return data.filter((row: any) =>
-      Object.values(row).some((value) =>
-        value?.toString().toLowerCase().includes(searchText.toLowerCase())
-      )
-    );
-  };
+    // Filter data based on search text and active status
+    const filterData = (data: any) => {
+      return data.filter((row: any) =>
+        (showActiveOnly ? row.active === true : true) &&
+        Object.values(row).some((value) =>
+          value?.toString().toLowerCase().includes(searchText.toLowerCase())
+        )
+      );
+    };
 
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
@@ -76,6 +80,10 @@ const DashboardTable = () => {
 
   // custom hooks for Handle Change Rows Per Page
   const handleChangeRowsPerPage = useHandleChangeRowsPerPage(event, setRowsPerPage, setPage);
+
+  const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setShowActiveOnly(event.target.checked);
+  };
 
   return (
     <Box sx={{ width: "100%" }}>
@@ -90,13 +98,26 @@ const DashboardTable = () => {
       </Tabs>
 
       {/* Common Search Bar */}
-      <Box p={2}>
+      <Box p={2} display="flex" alignItems="center">
         <TextField
           label="Search"
           variant="outlined"
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
         />
+        <Box ml={2}>
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={showActiveOnly}
+                onChange={handleCheckboxChange}
+                name="showActiveOnly"
+                color="primary"
+              />
+            }
+            label="Show Active Only"
+          />
+        </Box>
       </Box>
 
       {/* Display Bullish OI Table */}
@@ -133,16 +154,26 @@ const DashboardTable = () => {
 
       {/* Display Bearish OI Table */}
       {tabIndex === 2 && (
-        <Box display="flex" justifyContent="center" alignItems="center" height="100%">
+        <Box
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          height="100%"
+        >
           <div style={{ fontWeight: "bold" }}>Coming soon</div>
         </Box>
       )}
 
       {/* Display Bearish Trained OI Table */}
       {tabIndex === 3 && (
-         <Box display="flex" justifyContent="center" alignItems="center" height="100%">
-         <div style={{ fontWeight: "bold" }}>Coming soon</div>
-       </Box>
+        <Box
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          height="100%"
+        >
+          <div style={{ fontWeight: "bold" }}>Coming soon</div>
+        </Box>
       )}
 
       {/* Display Stock List Table */}
@@ -163,7 +194,12 @@ const DashboardTable = () => {
 
       {/* Display Bullish OI Breakout Table */}
       {tabIndex === 5 && (
-        <Box display="flex" justifyContent="center" alignItems="center" height="100%">
+        <Box
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          height="100%"
+        >
           <div style={{ fontWeight: "bold" }}>Coming soon</div>
         </Box>
       )}
