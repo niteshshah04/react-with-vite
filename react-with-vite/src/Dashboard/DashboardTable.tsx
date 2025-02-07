@@ -86,6 +86,7 @@ const DashboardTable = () => {
         <Tab label="Bearish Data" />
         <Tab label="Bearish Trained Data" />
         <Tab label="F&O Stock List" />
+        <Tab label="Bullish OI Breakout" />
       </Tabs>
 
       {/* Common Search Bar */}
@@ -158,6 +159,13 @@ const DashboardTable = () => {
           handleChangePage={handleChangePage}
           handleChangeRowsPerPage={handleChangeRowsPerPage}
         />
+      )}
+
+      {/* Display Bullish OI Breakout Table */}
+      {tabIndex === 5 && (
+        <Box display="flex" justifyContent="center" alignItems="center" height="100%">
+          <div style={{ fontWeight: "bold" }}>Coming soon</div>
+        </Box>
       )}
     </Box>
   );
