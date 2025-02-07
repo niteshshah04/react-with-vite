@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 import { Tabs, Tab, Box, TextField } from "@mui/material";
 import getBullishOIDEtails from "../Mock/getBullishOIDetails.json";
 import getBullishTrainedData from "../Mock/getBullishTrainedData.json";
-import { IBullishOIData, IBUllishTrainedOIData } from "./types";
+import stockData from '../Mock/getNiftyDataList.json';
+import { IBullishOIData, IBUllishTrainedOIData, INiftyStockList } from "./types";
 import BullishOITable from "../BullishOIDetails/BullishOITable";
 import BullishTrainedOITable from "../BullishTrainedOI/BullishTrainedOITable";
+import StockListTable from "../StockListTable/StockListTable";
 import { useBullishTrainedOIData } from "./hooks/useBullishTrainedOITable";
 import {
   useHandleChangeRowsPerPage,
@@ -83,6 +85,7 @@ const DashboardTable = () => {
         <Tab label="Bullish Trained Data" />
         <Tab label="Bearish Data" />
         <Tab label="Bearish Trained Data" />
+        <Tab label="F&O Stock List" />
       </Tabs>
 
       {/* Common Search Bar */}
@@ -118,6 +121,22 @@ const DashboardTable = () => {
           orderBy={orderBy}
           handleSort={handleSort}
           bullishTrainedOIData={bullishTrainedOIData}
+          getProcessedData={getProcessedData}
+          filterData={filterData}
+          page={page}
+          rowsPerPage={rowsPerPage}
+          handleChangePage={handleChangePage}
+          handleChangeRowsPerPage={handleChangeRowsPerPage}
+        />
+      )}
+
+      {/* Display Stock List Table */}
+      {tabIndex === 4 && (
+        <StockListTable
+          order={order}
+          orderBy={orderBy}
+          handleSort={handleSort}
+          stockData={stockData as unknown as INiftyStockList}
           getProcessedData={getProcessedData}
           filterData={filterData}
           page={page}
