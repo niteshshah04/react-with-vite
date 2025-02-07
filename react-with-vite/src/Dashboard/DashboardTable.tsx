@@ -2,10 +2,14 @@ import { useEffect, useState } from "react";
 import { Tabs, Tab, Box, TextField, FormControlLabel, Checkbox } from "@mui/material";
 import getBullishOIDEtails from "../Mock/getBullishOIDetails.json";
 import getBullishTrainedData from "../Mock/getBullishTrainedData.json";
+import getBearishhOIDEtails from "../Mock/getBearishOIDetails.json";
+import getBearishTrainedData from "../Mock/getBearishTrainedData.json";
 import stockData from '../Mock/getNiftyDataList.json';
 import { IBullishOIData, IBUllishTrainedOIData, INiftyStockList } from "./types";
 import BullishOITable from "../BullishOIDetails/BullishOITable";
 import BullishTrainedOITable from "../BullishTrainedOI/BullishTrainedOITable";
+import BearishOITable from "../BearishOIDetails/BearishOITable";
+import BearishTrainedOITable from "../BearishTrainedOI/BearishTrainedOITable";
 import StockListTable from "../StockListTable/StockListTable";
 import { useBullishTrainedOIData } from "./hooks/useBullishTrainedOITable";
 import {
@@ -24,22 +28,28 @@ const DashboardTable = () => {
   const [orderBy, setOrderBy] = useState<string>("id");
   const [bullishOIData, setBullishOIData] = useState<IBullishOIData[]>([]);
   const [bullishTrainedOIData, setBullishTrainedOIData] = useState<IBUllishTrainedOIData[]>([]);
+  const [bearishOIData, setBearishOIData] = useState<IBullishOIData[]>([]);
+  const [bearishTrainedOIData, setBearishTrainedOIData] = useState<IBUllishTrainedOIData[]>([]);
   const [showActiveOnly, setShowActiveOnly] = useState(false);
 
 
   // custom hooks for Bullish Trained Data
   const { cleanBullishTrainedOIData } = useBullishTrainedOIData();
   const bullishTrainedData = cleanBullishTrainedOIData(getBullishTrainedData);
+  const bearishTrainedData = cleanBullishTrainedOIData(getBearishTrainedData);
 
   // custom hooks for Clean Data
   const { cleanData } = useCleanData();
   const bullishData = cleanData(getBullishOIDEtails);
+  const bearishData = cleanData(getBearishhOIDEtails);
 
   useEffect(() => {
     setBullishOIData(bullishData);
     setBullishTrainedOIData(bullishTrainedData);
+    setBearishOIData(bearishData);
+    setBearishTrainedOIData(bearishTrainedData);
     // Ensure dependencies are stable and not causing re-renders
-  }, [cleanData, getBullishOIDEtails, getBullishTrainedData]);
+  }, [cleanData, getBullishOIDEtails, getBullishTrainedData, getBearishhOIDEtails, getBearishTrainedData ]);
   
   // custom hooks for Handle Tab Change
   const handleTabChange = useHandleTabChange(setTabIndex, setSearchText, setPage);
@@ -154,26 +164,34 @@ const DashboardTable = () => {
 
       {/* Display Bearish OI Table */}
       {tabIndex === 2 && (
-        <Box
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-          height="100%"
-        >
-          <div style={{ fontWeight: "bold" }}>Coming soon</div>
-        </Box>
+        <BearishOITable
+          order={order}
+          orderBy={orderBy}
+          handleSort={handleSort}
+          bearishOIData={bearishOIData}
+          getProcessedData={getProcessedData}
+          filterData={filterData}
+          page={page}
+          rowsPerPage={rowsPerPage}
+          handleChangePage={handleChangePage}
+          handleChangeRowsPerPage={handleChangeRowsPerPage}
+        />
       )}
 
       {/* Display Bearish Trained OI Table */}
       {tabIndex === 3 && (
-        <Box
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-          height="100%"
-        >
-          <div style={{ fontWeight: "bold" }}>Coming soon</div>
-        </Box>
+        <BearishTrainedOITable
+          order={order}
+          orderBy={orderBy}
+          handleSort={handleSort}
+          bearishTrainedOIData={bearishTrainedOIData}
+          getProcessedData={getProcessedData}
+          filterData={filterData}
+          page={page}
+          rowsPerPage={rowsPerPage}
+          handleChangePage={handleChangePage}
+          handleChangeRowsPerPage={handleChangeRowsPerPage}
+        />
       )}
 
       {/* Display Stock List Table */}
