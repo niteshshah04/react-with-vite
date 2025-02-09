@@ -26,10 +26,14 @@ interface BearishOITableProps {
   rowsPerPage: number;
   handleChangePage: (event: unknown, newPage: number) => void;
   handleChangeRowsPerPage: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  callSelecteddata: any;
 }
 
 const BearishOITable: React.FC<BearishOITableProps> = (props) => {
-  const { order, orderBy, handleSort, bearishOIData, getProcessedData, filterData, page, rowsPerPage, handleChangePage, handleChangeRowsPerPage } = props;
+  const { order, orderBy, handleSort, bearishOIData, getProcessedData, filterData, page, rowsPerPage, handleChangePage, handleChangeRowsPerPage, callSelecteddata } = props;
+  const handleRowClick = (row: any) => {
+    callSelecteddata(row);
+  }
   return (
     <div>
       <Box p={2}>
@@ -68,7 +72,7 @@ const BearishOITable: React.FC<BearishOITableProps> = (props) => {
             <TableBody>
               {bearishOIData &&
                 getProcessedData(bearishOIData).map((data: IBullishOIData) => (
-                  <TableRow key={data.id}>
+                  <TableRow key={data.id} hover onClick={() => handleRowClick(data)} style={{ cursor: "pointer" }}>
                     <TableCell>{data.id}</TableCell>
                     <TableCell>{data.stock}</TableCell>
                     <TableCell>{data.ltp}</TableCell>

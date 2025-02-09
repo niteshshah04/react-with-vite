@@ -26,11 +26,15 @@ interface BearishTrainedOITableProps {
   rowsPerPage: number;
   handleChangePage: (event: unknown, newPage: number) => void;
   handleChangeRowsPerPage: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  callSelecteddata: any;
 }
 
 const BearishTrainedOITable: React.FC<BearishTrainedOITableProps> = (props) => {
-const { order, orderBy, handleSort, bearishTrainedOIData, getProcessedData, filterData, page, rowsPerPage, handleChangePage, handleChangeRowsPerPage } = props;
-  return (
+const { order, orderBy, handleSort, bearishTrainedOIData, getProcessedData, filterData, page, rowsPerPage, handleChangePage, handleChangeRowsPerPage, callSelecteddata } = props;
+const handleRowClick = (row: any) => {
+  callSelecteddata(row);
+} 
+return (
     <Box p={2}>
       <TableContainer component={Paper}>
         <Table>
@@ -59,7 +63,7 @@ const { order, orderBy, handleSort, bearishTrainedOIData, getProcessedData, filt
           <TableBody>
             {bearishTrainedOIData &&
               getProcessedData(bearishTrainedOIData).map((data: IBUllishTrainedOIData) => (
-                <TableRow key={data.id}>
+                <TableRow key={data.id} hover onClick={() => handleRowClick(data)} style={{ cursor: "pointer" }}>
                   <TableCell>{data.id}</TableCell>
                   <TableCell>{data.stock}</TableCell>
                   <TableCell>{data.active.toString()}</TableCell>

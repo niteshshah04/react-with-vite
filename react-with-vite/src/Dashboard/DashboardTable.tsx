@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Tabs, Tab, Box, TextField, FormControlLabel, Checkbox } from "@mui/material";
+import { Tabs, Tab, Box, TextField, FormControlLabel, Checkbox, Modal } from "@mui/material";
 import getBullishOIDEtails from "../Mock/getBullishOIDetails.json";
 import getBullishTrainedData from "../Mock/getBullishTrainedData.json";
 import getBearishhOIDEtails from "../Mock/getBearishOIDetails.json";
@@ -13,6 +13,7 @@ import BearishTrainedOITable from "../BearishTrainedOI/BearishTrainedOITable";
 import StockListTable from "../StockListTable/StockListTable";
 import { useBullishTrainedOIData } from "./hooks/useBullishTrainedOITable";
 import { useHandleChangeRowsPerPage, useCleanData, useHandleTabChange, useHandleSort } from "./hooks/useBullishOITable";
+import LineChartModal from '../Graph/LineChartModal';
 
 const DashboardTable = () => {
   const [tabIndex, setTabIndex] = useState<number>(0);
@@ -26,6 +27,8 @@ const DashboardTable = () => {
   const [bearishOIData, setBearishOIData] = useState<IBullishOIData[]>([]);
   const [bearishTrainedOIData, setBearishTrainedOIData] = useState<IBUllishTrainedOIData[]>([]);
   const [showActiveOnly, setShowActiveOnly] = useState(false);
+  const [selectedData, setSelectedData] = useState(null);
+  const [open, setOpen] = useState(false)
 
 
   // custom hooks for Bullish Trained Data
@@ -93,6 +96,15 @@ const DashboardTable = () => {
     setShowActiveOnly(event.target.checked);
   };
 
+  const callSelecteddata = (row: any) => {
+    setSelectedData(row);
+    setOpen(true);
+  }
+
+  const closeModal = () => { 
+    setOpen(false);
+  }
+
   return (
     <Box sx={{ width: "100%" }}>
       {/* Tabs */}
@@ -141,6 +153,7 @@ const DashboardTable = () => {
           rowsPerPage={rowsPerPage}
           handleChangePage={handleChangePage}
           handleChangeRowsPerPage={handleChangeRowsPerPage}
+          callSelecteddata={callSelecteddata}
         />
       )}
 
@@ -157,6 +170,7 @@ const DashboardTable = () => {
           rowsPerPage={rowsPerPage}
           handleChangePage={handleChangePage}
           handleChangeRowsPerPage={handleChangeRowsPerPage}
+          callSelecteddata={callSelecteddata}
         />
       )}
 
@@ -173,6 +187,7 @@ const DashboardTable = () => {
           rowsPerPage={rowsPerPage}
           handleChangePage={handleChangePage}
           handleChangeRowsPerPage={handleChangeRowsPerPage}
+          callSelecteddata={callSelecteddata}
         />
       )}
 
@@ -189,6 +204,7 @@ const DashboardTable = () => {
           rowsPerPage={rowsPerPage}
           handleChangePage={handleChangePage}
           handleChangeRowsPerPage={handleChangeRowsPerPage}
+          callSelecteddata={callSelecteddata}
         />
       )}
 
@@ -205,6 +221,7 @@ const DashboardTable = () => {
           rowsPerPage={rowsPerPage}
           handleChangePage={handleChangePage}
           handleChangeRowsPerPage={handleChangeRowsPerPage}
+          callSelecteddata={callSelecteddata}
         />
       )}
 
@@ -219,6 +236,10 @@ const DashboardTable = () => {
           <div style={{ fontWeight: "bold" }}>Coming soon</div>
         </Box>
       )}
+
+      <Modal open={open} onClose={closeModal}>
+          <LineChartModal closeModal={closeModal} row={selectedData}  /> 
+      </Modal>
     </Box>
   );
 };
