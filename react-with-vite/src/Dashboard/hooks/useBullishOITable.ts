@@ -29,7 +29,7 @@ const useCleanData = () => {
   return { cleanData };
 };
 
-const useHandleChangeRowsPerPage = (event: any, setRowsPerPage: (value: number) => void, setPage: (value: number) => void) => {
+const useHandleChangeRowsPerPage = (_: unknown, setRowsPerPage: (value: number) => void, setPage: (value: number) => void) => {
     return (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setRowsPerPage(parseInt(event.target.value, 10));
         setPage(0);
@@ -37,7 +37,7 @@ const useHandleChangeRowsPerPage = (event: any, setRowsPerPage: (value: number) 
 }
 
 const useHandleTabChange = (setTabIndex: React.Dispatch<React.SetStateAction<number>>, setSearchText: React.Dispatch<React.SetStateAction<string>>, setPage: React.Dispatch<React.SetStateAction<number>>) => {
-  return useCallback((event: any, newIndex: number) => {
+  return useCallback((_: unknown, newIndex: number) => {
     setTabIndex(newIndex);
     setSearchText(""); // Reset search on tab switch
     setPage(0); // Reset pagination when switching tabs

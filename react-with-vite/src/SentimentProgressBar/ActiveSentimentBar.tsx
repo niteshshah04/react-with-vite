@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./SentimentBar.css"; // Import the CSS file
 import { Box, Typography, LinearProgress, Card } from "@mui/material";
 
@@ -12,7 +12,6 @@ const ActiveSentimentBar = () => {
 
   const total = data.advance + data.decline;
   const advancePercentage = total > 0 ? (data.advance / total) * 100 : 0;
-  const declinePercentage = total > 0 ? (data.decline / total) * 100 : 0;
 
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
