@@ -14,6 +14,7 @@ import StockListTable from "../StockListTable/StockListTable";
 import { useBullishTrainedOIData } from "./hooks/useBullishTrainedOITable";
 import { useHandleChangeRowsPerPage, useCleanData, useHandleTabChange, useHandleSort } from "./hooks/useBullishOITable";
 import LineChartModal from '../Graph/LineChartModal';
+import './Dashboard.css';
 
 const DashboardTable = () => {
   const [tabIndex, setTabIndex] = useState<number>(0);
@@ -237,8 +238,12 @@ const DashboardTable = () => {
         </Box>
       )}
 
-      <Modal open={open} onClose={closeModal}>
-          <LineChartModal closeModal={closeModal} row={selectedData}  /> 
+      <Modal
+        open={open}
+        onClose={closeModal}
+        className="custom-modal"
+      >
+        <LineChartModal closeModal={closeModal} row={selectedData} />
       </Modal>
     </Box>
   );
