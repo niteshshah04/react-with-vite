@@ -6,7 +6,8 @@ import { IBullishOIResponse } from '../types'; // Adjust the import path as nece
 const useCleanData = () => {
   const cleanData = useCallback((data: IBullishOIResponse) => {
     return Object.keys(data).map((key, index) => {
-      const lastRecord = data[key].timeAndPrice[data[key].timeAndPrice.length - 1];
+      const lastRecord = data[key].timeAndPrice[data[key]?.timeAndPrice?.length - 1];
+
       return {
         id: index + 1,
         stock: key,

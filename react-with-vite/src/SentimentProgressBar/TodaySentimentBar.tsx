@@ -1,17 +1,17 @@
-import { useEffect, useState } from "react";
 import "./SentimentBar.css"; // Import the CSS file
 import { Box, Typography, LinearProgress, Card } from "@mui/material";
 
-const TodaySentimentBar = () => {
-  // const baseURL = useContext(baseURLContext);
-  const [data, setData] = useState({ advance: 0, decline: 0 });
+interface SentimentDataProps {
+  oiAdvanceDeclineData: {
+    Advance: number;
+    Decline: number;
+  }
+}
 
-  useEffect(() => {
-    setData({ advance: 39, decline: 3 });
-  }, []);
-
-  const total = data.advance + data.decline;
-  const advancePercentage = total > 0 ? (data.advance / total) * 100 : 0;
+const TodaySentimentBar = (props: SentimentDataProps) => {
+  const { Advance, Decline } = props.oiAdvanceDeclineData;
+  const total = Advance + Decline;
+  const advancePercentage = total > 0 ? (Advance / total) * 100 : 0;
 
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
@@ -28,8 +28,8 @@ const TodaySentimentBar = () => {
             sx={{ height: 10, borderRadius: 5, bgcolor: "red" }}
           />
           <Box display="flex" justifyContent="space-between">
-            <Typography color="green">39</Typography>
-            <Typography color="red">3</Typography>
+            <Typography color="green">{Advance}</Typography>
+            <Typography color="red">{Decline}</Typography>
           </Box>
         </Card>
       </Box>
