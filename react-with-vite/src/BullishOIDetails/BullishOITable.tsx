@@ -118,7 +118,7 @@ const BullishOITable: React.FC<BullishOITableProps> = (props) => {
           page={page}
           rowsPerPage={rowsPerPage}
           onPageChange={handleChangePage}
-          rowsPerPageOptions={[3, 5, 10]}
+          rowsPerPageOptions={[5, 10, 20]}
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </Box>
