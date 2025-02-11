@@ -46,7 +46,7 @@ const StockListTable: React.FC<StockListTableProps> = (props) => {
                   "close price",
                   "exchange seg",
                   "nifty50",
-                  "lotsize",
+                  "lot size",
                   "sector",
                   "exchange type",
                   "high",
