@@ -261,7 +261,6 @@ const DashboardTable = () => {
             rowsPerPage={rowsPerPage}
             handleChangePage={handleChangePage}
             handleChangeRowsPerPage={handleChangeRowsPerPage}
-            callSelecteddata={callSelecteddata}
           />
         )}
 

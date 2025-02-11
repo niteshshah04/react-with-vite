@@ -24,15 +24,11 @@ interface StockListTableProps {
     rowsPerPage: number;
     handleChangePage: (event: unknown, newPage: number) => void;
     handleChangeRowsPerPage: (event: React.ChangeEvent<HTMLInputElement>) => void;
-    callSelecteddata: any;
 }
 
 
 const StockListTable: React.FC<StockListTableProps> = (props) => {
-    const { order, orderBy, handleSort, stockData, getProcessedData, filterData, page, rowsPerPage, handleChangePage, handleChangeRowsPerPage, callSelecteddata } = props;
-    const handleRowClick = (row: any) => {
-      callSelecteddata(row);
-    }
+    const { order, orderBy, handleSort, stockData, getProcessedData, filterData, page, rowsPerPage, handleChangePage, handleChangeRowsPerPage } = props;
     return (
         <Box p={2}>
         <TableContainer component={Paper}>
