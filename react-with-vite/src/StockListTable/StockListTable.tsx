@@ -67,7 +67,7 @@ const StockListTable: React.FC<StockListTableProps> = (props) => {
             <TableBody>
               {stockData &&
                 getProcessedData(stockData).map((data: INiftyStockList) => (
-                  <TableRow key={data.id} hover onClick={() => handleRowClick(data)} style={{ cursor: "pointer" }}>
+                  <TableRow key={data.id} hover>
                     <TableCell>{data.id}</TableCell>
                     <TableCell>{data.symbol}</TableCell>
                     <TableCell>{data.name}</TableCell>
