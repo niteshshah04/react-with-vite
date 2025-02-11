@@ -148,7 +148,7 @@ const DashboardTable = () => {
       <Box sx={{ width: "100%" }}>
         {/* Tabs */}
         <Tabs value={tabIndex} onChange={handleTabChange} centered>
-          <Tab label="Bullish" />
+          <Tab label="Bullish Data" />
           <Tab label="Bullish Trained" />
           <Tab label="Bearish" />
           <Tab label="Bearish Trained" />
