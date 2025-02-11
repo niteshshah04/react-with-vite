@@ -148,12 +148,12 @@ const DashboardTable = () => {
       <Box sx={{ width: "100%" }}>
         {/* Tabs */}
         <Tabs value={tabIndex} onChange={handleTabChange} centered>
-          <Tab label="Bullish Data" />
-          <Tab label="Bullish Trained Data" />
-          <Tab label="Bearish Data" />
-          <Tab label="Bearish Trained Data" />
-          <Tab label="F&O Stock List" />
-          <Tab label="Bullish OI Breakout" />
+          <Tab label="Bullish" />
+          <Tab label="Bullish Trained" />
+          <Tab label="Bearish" />
+          <Tab label="Bearish Trained" />
+          <Tab label="F&O Stock" />
+          <Tab label="Notifications" />
         </Tabs>
 
         {/* Common Search Bar */}
@@ -164,7 +164,7 @@ const DashboardTable = () => {
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
           />
-          <Box ml={2}>
+         { tabIndex !== 4 && <Box ml={2}>
             <FormControlLabel
               control={
                 <Checkbox
@@ -177,6 +177,7 @@ const DashboardTable = () => {
               label="Active"
             />
           </Box>
+          }
         </Box>
 
         {/* Display Bullish OI Table */}
