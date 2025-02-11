@@ -1,7 +1,7 @@
 
 // Data Transformation Function
-export const transformData = (dummyData: any) => {
-    return dummyData.ADANIENT.map((item: any) => {
+export const transformData = (dummyData: any, stock: string) => {
+    return dummyData[stock].map((item: any) => {
         const [CE_ShortCovering, CE_ShortBuildup, CE_LongBuildup, CE_LongUnwinding] =
             item.CE.split(",").map(Number);
         const [PE_ShortCovering, PE_ShortBuildup, PE_LongBuildUp, PE_LongUnwinding] =

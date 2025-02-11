@@ -1,11 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { transformData } from "../Utils/helper";
-import getGraphData from "../Mock/getGraphData.json";
+// import getGraphData from "../Mock/getGraphData.json";
 import { Box, Button, Typography, CardContent, Card } from "@mui/material"; 
 import { LineChart, Line, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from "recharts";
 
-// Convert Data
-const data = transformData(getGraphData);
 
 interface ILineChartModalProps {
   closeModal: () => void;
@@ -13,6 +11,28 @@ interface ILineChartModalProps {
 }
 
 const LineChartModal = React.forwardRef<HTMLDivElement, ILineChartModalProps>(({ closeModal, row }, ref) => {
+    
+    const [chartData, setChartData] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const API_URL = import.meta.env.VITE_API_URL;
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                setIsLoading(true);
+                const response = await fetch(`${API_URL}/api/v1/getOIBuildUp?token=${row.stock}`);
+                const data = await response.json();
+                setChartData(transformData(data, row.stock));
+            } catch (error) {
+                console.error('Error fetching graph data:', error);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
+        fetchData();
+    }, [row]);
+    
     // State to manage visibility of each line
     const [hiddenLines, setHiddenLines] = useState({
         CE_ShortCovering: false,
@@ -33,6 +53,14 @@ const LineChartModal = React.forwardRef<HTMLDivElement, ILineChartModalProps>(({
         }));
     };
 
+    if (isLoading) {
+        return (
+            <Box sx={{ width: "80%", margin: "auto", mt: 2, mb: 4, backgroundColor: "white", p: 3, borderRadius: 2, boxShadow: 3 }} tabIndex={0} ref={ref}>
+                <Typography variant="h6" align="center">Loading...</Typography>
+            </Box>
+        );
+    }
+
     return (
         <Box sx={{ width: "80%", margin: "auto", mt: 2, mb: 4, backgroundColor: "white", p: 3, borderRadius: 2, boxShadow: 3 }} tabIndex={0} ref={ref}>
             <Typography id="modal-title" variant="h6" gutterBottom align="center">
@@ -48,7 +76,7 @@ const LineChartModal = React.forwardRef<HTMLDivElement, ILineChartModalProps>(({
                     </Typography>
                     <ResponsiveContainer width="100%" height={300}>
                         <LineChart
-                            data={data}
+                            data={chartData}
                             margin={{ top: 20, right: 30, left: 20, bottom: 10 }}
                         >
                             <XAxis dataKey="time" />
@@ -98,7 +126,7 @@ const LineChartModal = React.forwardRef<HTMLDivElement, ILineChartModalProps>(({
                     </Typography>
                     <ResponsiveContainer width="100%" height={300}>
                         <LineChart
-                            data={data}
+                            data={chartData}
                             margin={{ top: 20, right: 30, left: 20, bottom: 10 }}
                         >
                             <XAxis dataKey="time" />
