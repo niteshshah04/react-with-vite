@@ -1,38 +1,38 @@
 import { useEffect, useState } from "react";
-import { Tabs, Tab, Box, TextField, FormControlLabel, Checkbox, Modal } from "@mui/material";
-// import getBullishOIDEtails from "../Mock/getBullishOIDetails.json";
-// import getBullishTrainedData from "../Mock/getBullishTrainedData.json";
-// import getBearishhOIDEtails from "../Mock/getBearishOIDetails.json";
-// import getBearishTrainedData from "../Mock/getBearishTrainedData.json";
-import stockData from '../Mock/getNiftyDataList.json';
-import { IBullishOIData, IBUllishTrainedOIData, INiftyStockList } from "./types";
-import BullishOITable from "../BullishOIDetails/BullishOITable";
-import BullishTrainedOITable from "../BullishTrainedOI/BullishTrainedOITable";
-import BearishOITable from "../BearishOIDetails/BearishOITable";
-import BearishTrainedOITable from "../BearishTrainedOI/BearishTrainedOITable";
-import StockListTable from "../StockListTable/StockListTable";
-import { useBullishTrainedOIData } from "./hooks/useBullishTrainedOITable";
-import { useHandleChangeRowsPerPage, useCleanData, useHandleTabChange, useHandleSort } from "./hooks/useBullishOITable";
-import LineChartModal from '../Graph/LineChartModal';
 import './Dashboard.css';
+import LineChartModal from '../Graph/LineChartModal';
+import stockData from '../Mock/getNiftyDataList.json';
+import StockListTable from "../StockListTable/StockListTable";
+import BullishOITable from "../BullishOIDetails/BullishOITable";
+import BearishOITable from "../BearishOIDetails/BearishOITable";
+import NotificationTable from "../Notification/NotificationTable";
+import { useBullishTrainedOIData } from "./hooks/useBullishTrainedOITable";
 import TodaySentimentBar from "../SentimentProgressBar/TodaySentimentBar";
 import ActiveSentimentBar from "../SentimentProgressBar/ActiveSentimentBar";
+import BullishTrainedOITable from "../BullishTrainedOI/BullishTrainedOITable";
+import BearishTrainedOITable from "../BearishTrainedOI/BearishTrainedOITable";
+import { IBullishOIData, IBUllishTrainedOIData, INiftyStockList } from "./types";
+import { Tabs, Tab, Box, TextField, FormControlLabel, Checkbox, Modal } from "@mui/material";
+import { useHandleChangeRowsPerPage, useCleanData, useHandleTabChange, useHandleSort } from "./hooks/useBullishOITable";
+
 
 const API_URL = import.meta.env.VITE_API_URL;
 const API_URL_TRAINED = import.meta.env.VITE_API_URL_TRAINED;
+
 const urls = [
   `${API_URL}/api/v1/getBullishOIData`,
   `${API_URL}/api/v1/getBearishOIData`,
   `${API_URL_TRAINED}/bullish`,
   `${API_URL_TRAINED}/bearish`,
-  `${API_URL}/api/v1/getOIAdvanceDecline`
+  `${API_URL}/api/v1/getOIAdvanceDecline`,
+  `${API_URL}/api/v1/getNotification`
 ];
 
 const DashboardTable = () => {
   const [tabIndex, setTabIndex] = useState<number>(0);
   const [searchText, setSearchText] = useState<string>("");
   const [page, setPage] = useState<number>(0);
-  const [rowsPerPage, setRowsPerPage] = useState<number>(5); // Show 3 rows per page
+  const [rowsPerPage, setRowsPerPage] = useState<number>(5);
   const [order, setOrder] = useState<"asc" | "desc">("asc");
   const [orderBy, setOrderBy] = useState<string>("id");
   const [bullishOIData, setBullishOIData] = useState<IBullishOIData[]>([]);
@@ -43,7 +43,7 @@ const DashboardTable = () => {
   const [selectedData, setSelectedData] = useState(null);
   const [open, setOpen] = useState(false)
   const [oiAdvanceDeclineData, setOIAdvanceDeclineData] = useState({ Advance: 0, Decline: 0, AdvanceActive: 0, DeclineActive: 0 });
-
+  const [notificationData, setNotificationData] = useState([]);
 
   // custom hooks for Bullish Trained Data
   const { cleanBullishTrainedOIData } = useBullishTrainedOIData();
@@ -59,7 +59,8 @@ const DashboardTable = () => {
           bearishOIData,
           bullishTrainedData,
           bearishTrainedData,
-          oiAdvanceDeclineData
+          oiAdvanceDeclineData,
+          notificationData
         ]) => {
           setBullishOIData(cleanData(bullishOIData));
           setBearishOIData(cleanData(bearishOIData));
@@ -71,6 +72,7 @@ const DashboardTable = () => {
             AdvanceActive: oiAdvanceDeclineData.AdvanceActive,
             DeclineActive: oiAdvanceDeclineData.DeclineActive
           });
+          setNotificationData(notificationData);
         }
       )
       .catch((error) => console.error("Error fetching data:", error));
@@ -141,9 +143,16 @@ const DashboardTable = () => {
 
   return (
     <>
-      <div style={{ display: "flex", flexDirection: "row", gap: "20px", justifyContent: "center" }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          gap: "20px",
+          justifyContent: "center",
+        }}
+      >
         <TodaySentimentBar oiAdvanceDeclineData={oiAdvanceDeclineData} />
-        <ActiveSentimentBar oiAdvanceDeclineData ={oiAdvanceDeclineData} />
+        <ActiveSentimentBar oiAdvanceDeclineData={oiAdvanceDeclineData} />
       </div>
       <Box sx={{ width: "100%" }}>
         {/* Tabs */}
@@ -164,20 +173,21 @@ const DashboardTable = () => {
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
           />
-         { tabIndex !== 4 && <Box ml={2}>
-            <FormControlLabel
-              control={
-                <Checkbox
-                  checked={showActiveOnly}
-                  onChange={handleCheckboxChange}
-                  name="showActiveOnly"
-                  color="primary"
-                />
-              }
-              label="Active"
-            />
-          </Box>
-          }
+          {tabIndex !== 4 && (
+            <Box ml={2}>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={showActiveOnly}
+                    onChange={handleCheckboxChange}
+                    name="showActiveOnly"
+                    color="primary"
+                  />
+                }
+                label="Active"
+              />
+            </Box>
+          )}
         </Box>
 
         {/* Display Bullish OI Table */}
@@ -264,16 +274,18 @@ const DashboardTable = () => {
           />
         )}
 
-        {/* Display Bullish OI Breakout Table */}
+        {/* Display Notification Table */}
         {tabIndex === 5 && (
-          <Box
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-            height="100%"
-          >
-            <div style={{ fontWeight: "bold" }}>Coming soon</div>
-          </Box>
+          <NotificationTable
+            notificationData={notificationData}
+            orderBy={orderBy}
+            order={order}
+            handleSort={handleSort}
+            page={page}
+            rowsPerPage={rowsPerPage}
+            handleChangePage={handleChangePage}
+            handleChangeRowsPerPage={handleChangeRowsPerPage}
+          />
         )}
 
         <Modal open={open} onClose={closeModal} className="custom-modal">

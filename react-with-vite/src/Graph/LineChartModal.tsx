@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { transformData } from "../Utils/helper";
-// import getGraphData from "../Mock/getGraphData.json";
 import { Box, Button, Typography, CardContent, Card } from "@mui/material"; 
 import { LineChart, Line, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from "recharts";
 
