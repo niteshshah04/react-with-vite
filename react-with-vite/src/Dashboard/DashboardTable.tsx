@@ -174,7 +174,7 @@ const DashboardTable = () => {
                   color="primary"
                 />
               }
-              label="Show Active Only"
+              label="Active"
             />
           </Box>
         </Box>
