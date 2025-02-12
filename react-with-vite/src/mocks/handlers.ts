@@ -3,6 +3,7 @@ import { http, HttpResponse, delay } from 'msw';
 
 const API_URL = import.meta.env.VITE_API_URL;
 const API_URL_TRAINED = import.meta.env.VITE_API_URL_TRAINED;
+const API_URL_NIFTY = import.meta.env.VITE_API_URL_NIFTY;
 const isDevelopment = import.meta.env.MODE === 'development';
 console.log('----------------Handlers----------------',isDevelopment, import.meta.env.MODE);
 
@@ -37,7 +38,7 @@ export const handlers = isDevelopment && import.meta.env.VITE_USE_MSW === "true"
     await delay(1500);
     return HttpResponse.json(data.default);
   }),
-  http.get(`${API_URL}/api/v1/getNiftyDataList`, async () => {
+  http.get(`${API_URL_NIFTY}/api/v1/getNiftyDataList`, async () => {
     const data = await import('../Mock/getNiftyDataList.json')
     await delay(1500);
     return HttpResponse.json(data.default);
