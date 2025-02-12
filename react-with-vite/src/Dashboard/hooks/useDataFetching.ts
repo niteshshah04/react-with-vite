@@ -25,24 +25,45 @@ export const useDataFetching = () => {
   const { cleanData } = useCleanData();
 
   useEffect(() => {
-    const fetchData = () => {
-      Promise.all(urls.map((url) => fetch(url).then((res) => res.json())))
-        .then(([
+    const fetchData = async () => {
+      try {
+        console.log('Attempting to fetch from URLs:', urls);
+        const responses = await Promise.all(
+          urls.map(async (url) => {
+            try {
+              const response = await fetch(url);
+              if (!response.ok) {
+                console.warn(`Failed to fetch from ${url}: ${response.statusText}`);
+                return null;
+              }
+              const data = await response.json();
+              console.log(`Successful response from ${url}:`, data);
+              return data;
+            } catch (error) {
+              console.error(`Error fetching from ${url}:`, error);
+              return null;
+            }
+          })
+        );
+
+        const [
           bullishOIData,
           bearishOIData,
           bullishTrainedData,
           bearishTrainedData,
           oiAdvanceDeclineData,
           notificationData
-        ]) => {
-          setBullishOIData(cleanData(bullishOIData));
-          setBearishOIData(cleanData(bearishOIData));
-          setBullishTrainedOIData(cleanBullishTrainedOIData(bullishTrainedData));
-          setBearishTrainedOIData(cleanBullishTrainedOIData(bearishTrainedData));
-          setOIAdvanceDeclineData(oiAdvanceDeclineData);
-          setNotificationData(notificationData);
-        })
-        .catch((error) => console.error("Error fetching data:", error));
+        ] = responses;
+
+        if (bullishOIData) setBullishOIData(cleanData(bullishOIData));
+        if (bearishOIData) setBearishOIData(cleanData(bearishOIData));
+        if (bullishTrainedData) setBullishTrainedOIData(cleanBullishTrainedOIData(bullishTrainedData));
+        if (bearishTrainedData) setBearishTrainedOIData(cleanBullishTrainedOIData(bearishTrainedData));
+        if (oiAdvanceDeclineData) setOIAdvanceDeclineData(oiAdvanceDeclineData);
+        if (notificationData) setNotificationData(notificationData);
+      } catch (error) {
+        console.error("Error in fetchData:", error);
+      }
     };
 
     fetchData();
