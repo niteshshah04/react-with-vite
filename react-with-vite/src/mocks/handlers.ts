@@ -6,7 +6,7 @@ const API_URL_TRAINED = import.meta.env.VITE_API_URL_TRAINED;
 const isDevelopment = import.meta.env.MODE === 'development';
 console.log('----------------Handlers----------------',isDevelopment, import.meta.env.MODE);
 
-export const handlers = isDevelopment ? [
+export const handlers = isDevelopment && import.meta.env.VITE_USE_MSW === "true" ? [
   http.get(`${API_URL}/api/v1/getBullishOIData`, async () => {
     const data = await import('../Mock/getBullishOIDetails.json')
     await delay(1500);
