@@ -3,8 +3,10 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App'
 
+
+console.log('---------------Main-----------------',import.meta.env.VITE_USE_MSW, import.meta.env.MODE);
 // Dynamically import the worker in development mode
-if (import.meta.env.VITE_USE_MSW === "true") {
+if (import.meta.env.VITE_USE_MSW === "true" && import.meta.env.MODE !== "production") {
   async function startWorker() {
     try {
       const { worker } = await import('../src/mocks/browser');

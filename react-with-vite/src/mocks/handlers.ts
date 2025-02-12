@@ -2,8 +2,11 @@
 import { http, HttpResponse, delay } from 'msw';
 
 const API_URL = import.meta.env.VITE_API_URL;
+const API_URL_TRAINED = import.meta.env.VITE_API_URL_TRAINED;
+const isDevelopment = import.meta.env.MODE === 'development';
+console.log('----------------Handlers----------------',isDevelopment, import.meta.env.MODE);
 
-export const handlers = [
+export const handlers = isDevelopment ? [
   http.get(`${API_URL}/api/v1/getBullishOIData`, async () => {
     const data = await import('../Mock/getBullishOIDetails.json')
     await delay(1500);
@@ -19,12 +22,12 @@ export const handlers = [
     await delay(1500);
     return HttpResponse.json(data.default);
   }),
-  http.get(`${API_URL}/bullish`, async () => {
+  http.get(`${API_URL_TRAINED}/bullish`, async () => {
     const data = await import('../Mock/getBullishTrainedData.json')
     await delay(1500);
     return HttpResponse.json(data.default);
   }),
-  http.get(`${API_URL}/bearish`, async () => {
+  http.get(`${API_URL_TRAINED}/bearish`, async () => {
     const data = await import('../Mock/getBearishTrainedData.json')
     await delay(1500);
     return HttpResponse.json(data.default);
@@ -44,4 +47,4 @@ export const handlers = [
     await delay(1500);
     return HttpResponse.json(data.default);
   })  
-];
+] : [];
