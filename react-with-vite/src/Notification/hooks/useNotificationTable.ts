@@ -2,8 +2,8 @@ import { useMemo } from 'react';
 import { INotificationData } from '../types';
 
 const parseTimeToMs = (timeStr: string) => {
-  const [hours, minutes, secondsMs] = timeStr.split(':');
-  const [seconds, ms] = secondsMs.split('.');
+  const [hours, minutes, secondsMs] = timeStr?.split(':') || ['0', '0', '0'];
+  const [seconds, ms] = secondsMs?.split('.') || ['0', '0'];
   
   return (
     parseInt(hours) * 3600000 +
