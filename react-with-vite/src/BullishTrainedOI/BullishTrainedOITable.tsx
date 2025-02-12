@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import {
   Box,
   Table,
@@ -29,25 +29,67 @@ interface BullishTrainedOITableProps {
   callSelecteddata: any;
 }
 
-const BullishTrainedOITable: React.FC<BullishTrainedOITableProps> = (props) => {
-const { order, orderBy, handleSort, bullishTrainedOIData, getProcessedData, filterData, page, rowsPerPage, handleChangePage, handleChangeRowsPerPage, callSelecteddata } = props;
-const handleRowClick = (row: any) => {
-  callSelecteddata(row);
-} 
-return (
+const TABLE_HEADERS = [
+  "id",
+  "stock",
+  "active",
+  "count",
+  "added time",
+  "removed time",
+] as const;
+
+const DirectionArrow: React.FC<{ active: boolean }> = React.memo(({ active }) => (
+  active ? (
+    <ArrowUpward
+      sx={{
+        fontSize: 24,
+        color: 'green',
+        verticalAlign: "middle",
+      }}
+    />
+  ) : (
+    <ArrowDownwardIcon
+      sx={{
+        fontSize: 24,
+        color: 'red',
+        verticalAlign: "middle",
+      }}
+    />
+  )
+));
+
+const BullishTrainedOITable: React.FC<BullishTrainedOITableProps> = React.memo((props) => {
+  const {
+    order,
+    orderBy,
+    handleSort,
+    bullishTrainedOIData,
+    getProcessedData,
+    filterData,
+    page,
+    rowsPerPage,
+    handleChangePage,
+    handleChangeRowsPerPage,
+    callSelecteddata
+  } = props;
+
+  const processedData = useMemo(
+    () => getProcessedData(bullishTrainedOIData),
+    [bullishTrainedOIData, getProcessedData]
+  );
+
+  const filteredDataLength = useMemo(
+    () => filterData(bullishTrainedOIData).length,
+    [bullishTrainedOIData, filterData]
+  );
+
+  return (
     <Box p={2}>
       <TableContainer component={Paper}>
         <Table>
           <TableHead>
             <TableRow>
-              {[
-                "id",
-                "stock",
-                "active",
-                "count",
-                "added time",
-                "removed time",
-              ].map((col) => (
+              {TABLE_HEADERS.map((col) => (
                 <TableCell key={col}>
                   <TableSortLabel
                     active={orderBy === col}
@@ -61,43 +103,30 @@ return (
             </TableRow>
           </TableHead>
           <TableBody>
-            {bullishTrainedOIData &&
-              getProcessedData(bullishTrainedOIData).map((data: IBUllishTrainedOIData) => (
-                <TableRow key={data.id} hover onClick={() => handleRowClick(data)} style={{ cursor: "pointer" }}>
-                  <TableCell>{data.id}</TableCell>
-                  <TableCell>{data.stock}</TableCell>
-                  <TableCell>{data.active.toString()}</TableCell>
-                  <TableCell>
-                      {data.count}{" "}
-                      {data.active ? (
-                        <ArrowUpward
-                          sx={{
-                            fontSize: 24,
-                            color: `green`,
-                            verticalAlign: "middle",
-                          }}
-                        />
-                      ) : (
-                        <ArrowDownwardIcon
-                          sx={{
-                            fontSize: 24,
-                            color: `red`,
-                            verticalAlign: "middle",
-                          }}
-                        />
-                      )}
-                    </TableCell>
-                  <TableCell>{data.added_time}</TableCell>
-                  <TableCell>{data.removed_time}</TableCell>
-                </TableRow>
-              ))}
+            {processedData.map((data: IBUllishTrainedOIData) => (
+              <TableRow 
+                key={data.id} 
+                hover 
+                onClick={() => callSelecteddata(data)} 
+                style={{ cursor: "pointer" }}
+              >
+                <TableCell>{data.id}</TableCell>
+                <TableCell>{data.stock}</TableCell>
+                <TableCell>{data.active.toString()}</TableCell>
+                <TableCell>
+                  {data.count}{" "}
+                  <DirectionArrow active={data.active} />
+                </TableCell>
+                <TableCell>{data.added_time}</TableCell>
+                <TableCell>{data.removed_time}</TableCell>
+              </TableRow>
+            ))}
           </TableBody>
         </Table>
       </TableContainer>
-      {/* Pagination */}
       <TablePagination
         component="div"
-        count={filterData(bullishTrainedOIData).length}
+        count={filteredDataLength}
         page={page}
         rowsPerPage={rowsPerPage}
         onPageChange={handleChangePage}
@@ -106,6 +135,8 @@ return (
       />
     </Box>
   );
-};
+});
+
+BullishTrainedOITable.displayName = 'BullishTrainedOITable';
 
 export default BullishTrainedOITable;

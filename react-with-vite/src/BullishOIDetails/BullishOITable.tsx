@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import {
   Box,
   Table,
@@ -29,101 +29,129 @@ interface BullishOITableProps {
   callSelecteddata: any;
 }
 
-const BullishOITable: React.FC<BullishOITableProps> = (props) => {
-  const { order, orderBy, handleSort, bullishOIData, getProcessedData, filterData, page, rowsPerPage, handleChangePage, handleChangeRowsPerPage, callSelecteddata } = props;
-  const handleRowClick = (row: any) => {
-    callSelecteddata(row);
-  }
-  return (
-    <div>
-      <Box p={2}>
-        <TableContainer component={Paper}>
-          <Table>
-            <TableHead>
-              <TableRow>
-                {[
-                  "id",
-                  "stock",
-                  "ltp",
-                  "active",
-                  "count",
-                  "time",
-                  "CE_LB",
-                  "CE_LU",
-                  "CE_SB",
-                  "CE_SC",
-                  "PE_LB",
-                  "PE_LU",
-                  "PE_SB",
-                  "PE_SC",
-                ].map((col) => (
-                  <TableCell key={col}>
-                    <TableSortLabel
-                      active={orderBy === col}
-                      direction={orderBy === col ? order : "asc"}
-                      onClick={() => handleSort(col)}
-                    >
-                      {col.toUpperCase()}
-                    </TableSortLabel>
-                  </TableCell>
-                ))}
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {bullishOIData &&
-                getProcessedData(bullishOIData).map((data: IBullishOIData) => (
-                  <TableRow key={data?.id} hover onClick={() => handleRowClick(data)} style={{ cursor: "pointer" }}>
-                    <TableCell>{data?.id}</TableCell>
-                    <TableCell>{data?.stock}</TableCell>
-                    <TableCell>{data?.ltp}</TableCell>
-                    <TableCell>{data?.active.toString()}</TableCell>
-                    <TableCell>
-                      {data?.count}{" "}
-                      {data?.active ? (
-                        <ArrowUpward
-                          sx={{
-                            fontSize: 24,
-                            color: `green`,
-                            verticalAlign: "middle",
-                          }}
-                        />
-                      ) : (
-                        <ArrowDownwardIcon
-                          sx={{
-                            fontSize: 24,
-                            color: `red`,
-                            verticalAlign: "middle",
-                          }}
-                        />
-                      )}
-                    </TableCell>
-                    <TableCell>{data?.time}</TableCell>
-                    <TableCell>{data?.CE_LongBuildup}</TableCell>
-                    <TableCell>{data?.CE_LongUnwinding}</TableCell>
-                    <TableCell>{data?.CE_ShortBuildup}</TableCell>
-                    <TableCell>{data?.CE_ShortCovering}</TableCell>
-                    <TableCell>{data?.PE_LongBuildUp}</TableCell>
-                    <TableCell>{data?.PE_LongUnwinding}</TableCell>
-                    <TableCell>{data?.PE_ShortBuildUp}</TableCell>
-                    <TableCell>{data?.PE_ShortCovering}</TableCell>
-                  </TableRow>
-                ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-        {/* Pagination */}
-        <TablePagination
-          component="div"
-          count={filterData(bullishOIData).length}
-          page={page}
-          rowsPerPage={rowsPerPage}
-          onPageChange={handleChangePage}
-          rowsPerPageOptions={[5, 10, 20]}
-          onRowsPerPageChange={handleChangeRowsPerPage}
+const TABLE_HEADERS = [
+  "id", "stock", "ltp", "active", "count", "time",
+  "CE_LB", "CE_LU", "CE_SB", "CE_SC",
+  "PE_LB", "PE_LU", "PE_SB", "PE_SC",
+] as const;
+
+const TableHeader: React.FC<{
+  order: "asc" | "desc";
+  orderBy: string;
+  handleSort: (col: string) => void;
+}> = React.memo(({ order, orderBy, handleSort }) => (
+  <TableHead>
+    <TableRow>
+      {TABLE_HEADERS.map((col) => (
+        <TableCell key={col}>
+          <TableSortLabel
+            active={orderBy === col}
+            direction={orderBy === col ? order : "asc"}
+            onClick={() => handleSort(col)}
+          >
+            {col.toUpperCase()}
+          </TableSortLabel>
+        </TableCell>
+      ))}
+    </TableRow>
+  </TableHead>
+));
+
+const TableRowComponent: React.FC<{
+  data: IBullishOIData;
+  onRowClick: (data: IBullishOIData) => void;
+}> = React.memo(({ data, onRowClick }) => (
+  <TableRow hover onClick={() => onRowClick(data)} style={{ cursor: "pointer" }}>
+    <TableCell>{data?.id}</TableCell>
+    <TableCell>{data?.stock}</TableCell>
+    <TableCell>{data?.ltp}</TableCell>
+    <TableCell>{data?.active.toString()}</TableCell>
+    <TableCell>
+      {data?.count}{" "}
+      {data?.active ? (
+        <ArrowUpward
+          sx={{
+            fontSize: 24,
+            color: "green",
+            verticalAlign: "middle",
+          }}
         />
-      </Box>
-    </div>
+      ) : (
+        <ArrowDownwardIcon
+          sx={{
+            fontSize: 24,
+            color: "red",
+            verticalAlign: "middle",
+          }}
+        />
+      )}
+    </TableCell>
+    <TableCell>{data?.time}</TableCell>
+    <TableCell>{data?.CE_LongBuildup}</TableCell>
+    <TableCell>{data?.CE_LongUnwinding}</TableCell>
+    <TableCell>{data?.CE_ShortBuildup}</TableCell>
+    <TableCell>{data?.CE_ShortCovering}</TableCell>
+    <TableCell>{data?.PE_LongBuildUp}</TableCell>
+    <TableCell>{data?.PE_LongUnwinding}</TableCell>
+    <TableCell>{data?.PE_ShortBuildUp}</TableCell>
+    <TableCell>{data?.PE_ShortCovering}</TableCell>
+  </TableRow>
+));
+
+const BullishOITable: React.FC<BullishOITableProps> = ({
+  order,
+  orderBy,
+  handleSort,
+  bullishOIData,
+  getProcessedData,
+  filterData,
+  page,
+  rowsPerPage,
+  handleChangePage,
+  handleChangeRowsPerPage,
+  callSelecteddata
+}) => {
+  const processedData = useMemo(
+    () => getProcessedData(bullishOIData),
+    [bullishOIData, getProcessedData]
+  );
+
+  const filteredDataLength = useMemo(
+    () => filterData(bullishOIData).length,
+    [bullishOIData, filterData]
+  );
+
+  return (
+    <Box p={2}>
+      <TableContainer component={Paper}>
+        <Table>
+          <TableHeader
+            order={order}
+            orderBy={orderBy}
+            handleSort={handleSort}
+          />
+          <TableBody>
+            {processedData.map((data: IBullishOIData) => (
+              <TableRowComponent
+                key={data?.id}
+                data={data}
+                onRowClick={callSelecteddata}
+              />
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+      <TablePagination
+        component="div"
+        count={filteredDataLength}
+        page={page}
+        rowsPerPage={rowsPerPage}
+        onPageChange={handleChangePage}
+        rowsPerPageOptions={[5, 10, 20]}
+        onRowsPerPageChange={handleChangeRowsPerPage}
+      />
+    </Box>
   );
 };
 
-export default BullishOITable;
+export default React.memo(BullishOITable);

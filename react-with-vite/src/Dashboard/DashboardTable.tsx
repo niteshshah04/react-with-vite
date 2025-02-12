@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import './Dashboard.css';
+import { urls } from "./api/dashboardApi";
 import LineChartModal from '../Graph/LineChartModal';
 import stockData from '../Mock/getNiftyDataList.json';
+import { useCleanData, } from "./hooks/useBullishOITable";
+import { useDataProcessing } from "./hooks/useDataProcessing";
 import StockListTable from "../StockListTable/StockListTable";
 import BullishOITable from "../BullishOIDetails/BullishOITable";
 import BearishOITable from "../BearishOIDetails/BearishOITable";
@@ -13,33 +16,12 @@ import BullishTrainedOITable from "../BullishTrainedOI/BullishTrainedOITable";
 import BearishTrainedOITable from "../BearishTrainedOI/BearishTrainedOITable";
 import { IBullishOIData, IBUllishTrainedOIData, INiftyStockList } from "./types";
 import { Tabs, Tab, Box, TextField, FormControlLabel, Checkbox, Modal } from "@mui/material";
-import { useHandleChangeRowsPerPage, useCleanData, useHandleTabChange, useHandleSort } from "./hooks/useBullishOITable";
-
-
-const API_URL = import.meta.env.VITE_API_URL;
-const API_URL_TRAINED = import.meta.env.VITE_API_URL_TRAINED;
-
-const urls = [
-  `${API_URL}/api/v1/getBullishOIData`,
-  `${API_URL}/api/v1/getBearishOIData`,
-  `${API_URL_TRAINED}/bullish`,
-  `${API_URL_TRAINED}/bearish`,
-  `${API_URL}/api/v1/getOIAdvanceDecline`,
-  `${API_URL}/api/v1/getNotification`
-];
 
 const DashboardTable = () => {
-  const [tabIndex, setTabIndex] = useState<number>(0);
-  const [searchText, setSearchText] = useState<string>("");
-  const [page, setPage] = useState<number>(0);
-  const [rowsPerPage, setRowsPerPage] = useState<number>(5);
-  const [order, setOrder] = useState<"asc" | "desc">("asc");
-  const [orderBy, setOrderBy] = useState<string>("id");
   const [bullishOIData, setBullishOIData] = useState<IBullishOIData[]>([]);
   const [bullishTrainedOIData, setBullishTrainedOIData] = useState<IBUllishTrainedOIData[]>([]);
   const [bearishOIData, setBearishOIData] = useState<IBullishOIData[]>([]);
   const [bearishTrainedOIData, setBearishTrainedOIData] = useState<IBUllishTrainedOIData[]>([]);
-  const [showActiveOnly, setShowActiveOnly] = useState(false);
   const [selectedData, setSelectedData] = useState(null);
   const [open, setOpen] = useState(false)
   const [oiAdvanceDeclineData, setOIAdvanceDeclineData] = useState({ Advance: 0, Decline: 0, AdvanceActive: 0, DeclineActive: 0 });
@@ -84,53 +66,24 @@ const DashboardTable = () => {
     // Cleanup interval on component unmount
     return () => clearInterval(intervalId);
   }, []);
-  
-  // custom hooks for Handle Tab Change
-  const handleTabChange = useHandleTabChange(setTabIndex, setSearchText, setPage);
 
-  // custom hooks for Handle Sorting
-  const handleSort = useHandleSort(order, orderBy, setOrder, setOrderBy);
-
-  // Sorting Function
-  const sortData = (data: any[], orderBy: string, order: "asc" | "desc") => {
-    if (!orderBy || !order) {
-      return data;
-    }
-  
-    return data.sort((a: any, b: any) => {
-      if (a[orderBy] < b[orderBy]) return order === "asc" ? -1 : 1;
-      if (a[orderBy] > b[orderBy]) return order === "asc" ? 1 : -1;
-      return 0;
-    });
-  };
-  // Get sorted, filtered, and paginated data
-  const getProcessedData = (data: any) => {
-    return sortData(filterData([...data]), orderBy, order).slice(
-      page * rowsPerPage,
-      page * rowsPerPage + rowsPerPage
-    );
-  };
-
-    // Filter data based on search text and active status
-    const filterData = (data: any) => {
-      return data.filter((row: any) =>
-        (showActiveOnly ? row.active === true : true) &&
-        Object.values(row).some((value) =>
-          value?.toString().toLowerCase().includes(searchText.toLowerCase())
-        )
-      );
-    };
-
-  const handleChangePage = (_: unknown, newPage: number) => {
-    setPage(newPage);
-  };
-
-  // custom hooks for Handle Change Rows Per Page
-  const handleChangeRowsPerPage = useHandleChangeRowsPerPage(event, setRowsPerPage, setPage);
-
-  const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setShowActiveOnly(event.target.checked);
-  };
+  const {
+    tabIndex,
+    page,
+    rowsPerPage,
+    order,
+    orderBy,
+    showActiveOnly,
+    searchText,
+    setSearchText,
+    handleSort,
+    handleTabChange,
+    handleChangePage,
+    handleChangeRowsPerPage,
+    handleCheckboxChange,
+    filterData,
+    getProcessedData
+  } = useDataProcessing();
 
   const callSelecteddata = (row: any) => {
     setSelectedData(row);
@@ -167,13 +120,13 @@ const DashboardTable = () => {
 
         {/* Common Search Bar */}
         <Box p={2} display="flex" alignItems="center">
-          <TextField
+          {tabIndex !== 5 && <TextField
             label="Search"
             variant="outlined"
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
-          />
-          {tabIndex !== 4 && (
+          />}
+          {tabIndex !== 4 && tabIndex !== 5 && (
             <Box ml={2}>
               <FormControlLabel
                 control={

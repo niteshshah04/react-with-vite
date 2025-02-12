@@ -1,86 +1,58 @@
 import React from "react";
-import {
-  Box,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Paper,
-  TablePagination,
-  TableSortLabel,
-} from "@mui/material";
+import { Box, Table, TableBody, TableCell, TableContainer, TableRow, Paper, TablePagination } from "@mui/material";
+import { NotificationTableHeader } from './components/NotificationTableHeader';
+import { useNotificationTable } from './hooks/useNotificationTable';
+import { NotificationTableProps } from './types';
+import { ROWS_PER_PAGE_OPTIONS } from './constants/tableConstants';
 
-type NotificationData = {
-    stock: string;
-    message: string;
-    time: string;
-}
+const NotificationTable: React.FC<NotificationTableProps> = React.memo((props) => {
+  const { 
+    notificationData, 
+    orderBy, 
+    order, 
+    handleSort, 
+    page, 
+    rowsPerPage, 
+    handleChangePage, 
+    handleChangeRowsPerPage 
+  } = props;
 
-interface NotificationTableProps {
- notificationData: NotificationData[];
- orderBy: string;
- order: "asc" | "desc";
- handleSort: (col: string) => void;
- page: number;
- rowsPerPage: number;
- handleChangePage: (event: unknown, newPage: number) => void;
- handleChangeRowsPerPage: (event: React.ChangeEvent<HTMLInputElement>) => void;
-}
+  const { sortedData } = useNotificationTable(notificationData, orderBy, order);
 
-const NotificationTable: React.FC<NotificationTableProps> = (props) => {
-const { notificationData, orderBy, order, handleSort, page, rowsPerPage, handleChangePage, handleChangeRowsPerPage } = props;
-
-return (
+  return (
     <Box p={2}>
       <TableContainer component={Paper}>
         <Table>
-          <TableHead>
-            <TableRow>
-              {[
-                "id",
-                "stock",
-                "time",
-                "message"
-              ].map((col) => (
-                <TableCell key={col}>
-                  <TableSortLabel
-                    active={orderBy === col}
-                    direction={orderBy === col ? order : "asc"}
-                    onClick={() => handleSort(col)}
-                  >
-                    {col.toUpperCase()}
-                  </TableSortLabel>
-                </TableCell>
-              ))}
-            </TableRow>
-          </TableHead>
+          <NotificationTableHeader 
+            orderBy={orderBy}
+            order={order}
+            handleSort={handleSort}
+          />
           <TableBody>
-            {notificationData &&
-              notificationData?.map((data: NotificationData, index: number) => (
-                <TableRow key={index} hover>
-                  <TableCell>{index + 1}</TableCell>
-                  <TableCell>{data.stock}</TableCell>
-                  <TableCell>{data.time}</TableCell>
-                  <TableCell>{data.message}</TableCell>
-                </TableRow>
-              ))}
+            {sortedData.map((data, index) => (
+              <TableRow key={`notification-${index}`} hover>
+                <TableCell>{index + 1}</TableCell>
+                <TableCell>{data.stock}</TableCell>
+                <TableCell>{data.time}</TableCell>
+                <TableCell>{data.message}</TableCell>
+              </TableRow>
+            ))}
           </TableBody>
         </Table>
       </TableContainer>
-      {/* Pagination */}
       <TablePagination
         component="div"
-        count={notificationData?.length}
+        count={notificationData.length}
         page={page}
         rowsPerPage={rowsPerPage}
         onPageChange={handleChangePage}
-        rowsPerPageOptions={[5, 10, 20]}
+        rowsPerPageOptions={ROWS_PER_PAGE_OPTIONS}
         onRowsPerPageChange={handleChangeRowsPerPage}
       />
     </Box>
   );
-};
+});
+
+NotificationTable.displayName = 'NotificationTable';
 
 export default NotificationTable;
