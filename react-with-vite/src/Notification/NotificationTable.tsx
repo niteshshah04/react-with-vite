@@ -19,6 +19,11 @@ const NotificationTable: React.FC<NotificationTableProps> = React.memo((props) =
 
   const { sortedData } = useNotificationTable(notificationData, orderBy, order);
 
+  // Calculate the current page's data
+  const startIndex = page * rowsPerPage;
+  const endIndex = startIndex + rowsPerPage;
+  const currentPageData = sortedData.slice(startIndex, endIndex);
+
   return (
     <Box p={2}>
       <TableContainer component={Paper}>
@@ -29,9 +34,9 @@ const NotificationTable: React.FC<NotificationTableProps> = React.memo((props) =
             handleSort={handleSort}
           />
           <TableBody>
-            {sortedData.map((data, index) => (
+            {currentPageData.map((data, index) => (
               <TableRow key={`notification-${index}`} hover>
-                <TableCell>{index + 1}</TableCell>
+                <TableCell>{startIndex + index + 1}</TableCell>
                 <TableCell>{data.stock}</TableCell>
                 <TableCell>{data.time}</TableCell>
                 <TableCell>{data.message}</TableCell>
@@ -42,7 +47,7 @@ const NotificationTable: React.FC<NotificationTableProps> = React.memo((props) =
       </TableContainer>
       <TablePagination
         component="div"
-        count={notificationData.length}
+        count={sortedData.length}
         page={page}
         rowsPerPage={rowsPerPage}
         onPageChange={handleChangePage}

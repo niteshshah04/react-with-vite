@@ -2,15 +2,19 @@ import { useMemo } from 'react';
 import { INotificationData } from '../types';
 
 const parseTimeToMs = (timeStr: string) => {
-  const [hours, minutes, secondsMs] = timeStr?.split(':') || ['0', '0', '0'];
-  const [seconds, ms] = secondsMs?.split('.') || ['0', '0'];
+  // Convert "YYYY-MM-DD HH:mm" to Date object
+  const [datePart, timePart] = timeStr?.split(' ') || ['', ''];
+  const [year, month, day] = datePart?.split('-') || ['', '', ''];
+  const [hours, minutes] = timePart?.split(':') || ['', ''];
   
-  return (
-    parseInt(hours) * 3600000 +
-    parseInt(minutes) * 60000 +
-    parseInt(seconds) * 1000 +
-    parseInt(ms)
-  );
+  // Note: months in Date constructor are 0-based, so we subtract 1 from month
+  return new Date(
+    parseInt(year),
+    parseInt(month) - 1,
+    parseInt(day),
+    parseInt(hours),
+    parseInt(minutes)
+  ).getTime();
 };
 
 export const useNotificationTable = (
