@@ -19,9 +19,9 @@ const LineChartModal = React.forwardRef<HTMLDivElement, ILineChartModalProps>(({
         const fetchData = async () => {
             try {
                 setIsLoading(true);
-                const response = await fetch(`${API_URL}/api/v1/getOIBuildUp?token=${row.stock}`);
+                const response = await fetch(`${API_URL}/api/v1/getOIBuildUp?token=${row.stock ? row.stock : row.name}`);
                 const data = await response.json();
-                setChartData(transformData(data, row.stock));
+                setChartData(transformData(data, row.stock ? row.stock : row.name));
             } catch (error) {
                 console.error('Error fetching graph data:', error);
             } finally {
@@ -64,7 +64,7 @@ const LineChartModal = React.forwardRef<HTMLDivElement, ILineChartModalProps>(({
         <Box sx={{ width: "80%", margin: "auto", mt: 2, mb: 4, backgroundColor: "white", p: 3, borderRadius: 2, boxShadow: 3 }} tabIndex={0} ref={ref}>
             <Typography id="modal-title" variant="h6" gutterBottom align="center">
                 <Button variant="contained" color="error" onClick={closeModal} sx={{ position: "absolute", top: 16, right: 16 }}>Close</Button>
-                {row.stock} - OI Trends
+                {row.stock ? row.stock : row.name} - OI Trends
             </Typography>
 
             {/* CE Chart */}

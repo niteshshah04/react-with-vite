@@ -17,18 +17,19 @@ interface StockListTableProps {
     order: "asc" | "desc";
     orderBy: string;
     handleSort: (col: string) => void;
-    stockData: INiftyStockList;
+    stockData: INiftyStockList[];
     getProcessedData: (data: any) => any[];
     filterData: (data: any) => any[];
     page: number;
     rowsPerPage: number;
     handleChangePage: (event: unknown, newPage: number) => void;
     handleChangeRowsPerPage: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    callSelecteddata: (data: INiftyStockList) => void;
 }
 
 
 const StockListTable: React.FC<StockListTableProps> = (props) => {
-    const { order, orderBy, handleSort, stockData, getProcessedData, filterData, page, rowsPerPage, handleChangePage, handleChangeRowsPerPage } = props;
+    const { order, orderBy, handleSort, stockData, getProcessedData, filterData, page, rowsPerPage, handleChangePage, handleChangeRowsPerPage, callSelecteddata } = props;
     return (
         <Box p={2}>
         <TableContainer component={Paper}>
@@ -63,7 +64,12 @@ const StockListTable: React.FC<StockListTableProps> = (props) => {
             <TableBody>
               {stockData &&
                 getProcessedData(stockData).map((data: INiftyStockList) => (
-                  <TableRow key={data.id} hover>
+                <TableRow 
+                  key={data.id} 
+                  hover 
+                  onClick={() => callSelecteddata(data)} 
+                  className="table-row"
+                >
                     <TableCell>{data.id}</TableCell>
                     <TableCell>{data.symbol}</TableCell>
                     <TableCell>{data.name}</TableCell>

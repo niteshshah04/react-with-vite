@@ -5,7 +5,6 @@ import { useDataFetching } from "./hooks/useDataFetching";
 import { useDataProcessing } from "./hooks/useDataProcessing";
 import TableControls from "./components/TableControls";
 import LineChartModal from '../Graph/LineChartModal';
-import stockData from '../Mock/getNiftyDataList.json';
 import StockListTable from "../StockListTable/StockListTable";
 import BullishOITable from "../BullishOIDetails/BullishOITable";
 import BearishOITable from "../BearishOIDetails/BearishOITable";
@@ -14,7 +13,6 @@ import TodaySentimentBar from "../SentimentProgressBar/TodaySentimentBar";
 import ActiveSentimentBar from "../SentimentProgressBar/ActiveSentimentBar";
 import BullishTrainedOITable from "../BullishTrainedOI/BullishTrainedOITable";
 import BearishTrainedOITable from "../BearishTrainedOI/BearishTrainedOITable";
-import { INiftyStockList } from "./types";
 
 const DashboardTable = () => {
   const [selectedData, setSelectedData] = useState(null);
@@ -26,7 +24,9 @@ const DashboardTable = () => {
     bearishOIData,
     bearishTrainedOIData,
     oiAdvanceDeclineData,
-    notificationData
+    notificationData,
+    niftyStockList,
+    isLoading
   } = useDataFetching();
 
   const {
@@ -69,6 +69,7 @@ const DashboardTable = () => {
 
   return (
     <>
+      {isLoading && <div>Loading...</div>}
       <div className="sentiment-bars-container">
         <TodaySentimentBar oiAdvanceDeclineData={oiAdvanceDeclineData} />
         <ActiveSentimentBar oiAdvanceDeclineData={oiAdvanceDeclineData} />
@@ -96,7 +97,7 @@ const DashboardTable = () => {
         {tabIndex === 1 && <BullishTrainedOITable {...commonTableProps} bullishTrainedOIData={bullishTrainedOIData} />}
         {tabIndex === 2 && <BearishOITable {...commonTableProps} bearishOIData={bearishOIData} />}
         {tabIndex === 3 && <BearishTrainedOITable {...commonTableProps} bearishTrainedOIData={bearishTrainedOIData} />}
-        {tabIndex === 4 && <StockListTable {...commonTableProps} stockData={stockData as unknown as INiftyStockList} />}
+        {tabIndex === 4 && <StockListTable {...commonTableProps} stockData={niftyStockList} />}
         {tabIndex === 5 && (
           <NotificationTable
             notificationData={notificationData}

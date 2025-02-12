@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 import { urls } from "../api/dashboardApi";
 import { useCleanData } from "./useBullishOITable";
 import { useBullishTrainedOIData } from "./useBullishTrainedOITable";
-import { IBullishOIData, IBUllishTrainedOIData } from "../types";
-
+import { IBullishOIData, IBUllishTrainedOIData, INiftyStockList } from "../types";
+import { INotificationData } from '../../Notification/types';
 interface OIAdvanceDeclineData {
   Advance: number;
   Decline: number;
@@ -19,13 +19,16 @@ export const useDataFetching = () => {
   const [oiAdvanceDeclineData, setOIAdvanceDeclineData] = useState<OIAdvanceDeclineData>({ 
     Advance: 0, Decline: 0, AdvanceActive: 0, DeclineActive: 0 
   });
-  const [notificationData, setNotificationData] = useState([]);
+  const [notificationData, setNotificationData] = useState<INotificationData[]>([]);
+  const [niftyStockList, setNiftyStockList] = useState<INiftyStockList[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const { cleanBullishTrainedOIData } = useBullishTrainedOIData();
   const { cleanData } = useCleanData();
 
   useEffect(() => {
     const fetchData = async () => {
+      setIsLoading(true);
       try {
         console.log('Attempting to fetch from URLs:', urls);
         const responses = await Promise.all(
@@ -52,7 +55,8 @@ export const useDataFetching = () => {
           bullishTrainedData,
           bearishTrainedData,
           oiAdvanceDeclineData,
-          notificationData
+          notificationData,
+          niftyStockList
         ] = responses;
 
         if (bullishOIData) setBullishOIData(cleanData(bullishOIData));
@@ -61,8 +65,11 @@ export const useDataFetching = () => {
         if (bearishTrainedData) setBearishTrainedOIData(cleanBullishTrainedOIData(bearishTrainedData));
         if (oiAdvanceDeclineData) setOIAdvanceDeclineData(oiAdvanceDeclineData);
         if (notificationData) setNotificationData(notificationData);
+        if (niftyStockList) setNiftyStockList(niftyStockList);
       } catch (error) {
         console.error("Error in fetchData:", error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -77,6 +84,8 @@ export const useDataFetching = () => {
     bearishOIData,
     bearishTrainedOIData,
     oiAdvanceDeclineData,
-    notificationData
+    notificationData,
+    niftyStockList,
+    isLoading
   };
 };
