@@ -9,7 +9,7 @@ interface ILineChartModalProps {
   row: any;
 }
 
-const LineChartModal = React.forwardRef<HTMLDivElement, ILineChartModalProps>(({ closeModal, row }, ref) => {
+const OITrendChart = React.forwardRef<HTMLDivElement, ILineChartModalProps>(({ closeModal, row }, ref) => {
     
     const [chartData, setChartData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -61,7 +61,7 @@ const LineChartModal = React.forwardRef<HTMLDivElement, ILineChartModalProps>(({
     }
 
     return (
-        <Box sx={{ width: "80%", margin: "auto", mt: 2, mb: 4, backgroundColor: "white", p: 3, borderRadius: 2, boxShadow: 3 }} tabIndex={0} ref={ref}>
+        <>
             <Typography id="modal-title" variant="h6" gutterBottom align="center">
                 <Button variant="contained" color="error" onClick={closeModal} sx={{ position: "absolute", top: 16, right: 16 }}>Close</Button>
                 {row.stock ? row.stock : row.name} - OI Trends
@@ -166,8 +166,8 @@ const LineChartModal = React.forwardRef<HTMLDivElement, ILineChartModalProps>(({
                     </ResponsiveContainer>
                 </CardContent>
             </Card>
-        </Box>
+        </>
     );
 });
 
-export default LineChartModal;
+export default OITrendChart;

@@ -4,7 +4,7 @@ import { Tabs, Tab, Box, Modal } from "@mui/material";
 import { useDataFetching } from "./hooks/useDataFetching";
 import { useDataProcessing } from "./hooks/useDataProcessing";
 import TableControls from "./components/TableControls";
-import LineChartModal from '../Graph/LineChartModal';
+import OITrendChart from '../Graph/OITrendChart';
 import StockListTable from "../StockListTable/StockListTable";
 import BullishOITable from "../BullishOIDetails/BullishOITable";
 import BearishOITable from "../BearishOIDetails/BearishOITable";
@@ -13,10 +13,13 @@ import TodaySentimentBar from "../SentimentProgressBar/TodaySentimentBar";
 import ActiveSentimentBar from "../SentimentProgressBar/ActiveSentimentBar";
 import BullishTrainedOITable from "../BullishTrainedOI/BullishTrainedOITable";
 import BearishTrainedOITable from "../BearishTrainedOI/BearishTrainedOITable";
+import CombinedOptionsTrendChart from "../Graph/CombinedOptionsTrendChart";
+
 
 const DashboardTable = () => {
   const [selectedData, setSelectedData] = useState(null);
   const [open, setOpen] = useState(false);
+  const [modalTabIndex, setModalTabIndex] = useState(0);
 
   const {
     bullishOIData,
@@ -67,6 +70,10 @@ const DashboardTable = () => {
     callSelecteddata
   };
 
+  const handleModalTabChange = (_event: React.SyntheticEvent, newValue: number) => {
+    setModalTabIndex(newValue);
+  };
+
   return (
     <>
       {isLoading && <div>Loading...</div>}
@@ -111,8 +118,22 @@ const DashboardTable = () => {
           />
         )}
 
-        <Modal open={open} onClose={closeModal} className="custom-modal">
-          <LineChartModal closeModal={closeModal} row={selectedData} />
+        <Modal open={open} onClose={closeModal}>
+          <Box sx={{ bgcolor: 'background.paper', p: 2, borderRadius: 2 }}>
+            <Tabs value={modalTabIndex} onChange={handleModalTabChange} centered>
+              <Tab label="Chart" />
+              <Tab label="Details" />
+            </Tabs>
+            
+            {modalTabIndex === 0 && (
+              <OITrendChart closeModal={closeModal} row={selectedData} />
+            )}
+            {modalTabIndex === 1 && (
+              <div style={{ padding: '20px' }}>
+                <CombinedOptionsTrendChart closeModal={closeModal} row={selectedData} />
+              </div>
+            )}
+          </Box>
         </Modal>
       </Box>
     </>
