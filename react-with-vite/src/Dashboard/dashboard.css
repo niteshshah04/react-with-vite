@@ -2,3 +2,20 @@
     height: 100vh;
     overflow: auto;
 }
+
+.sentiment-bars-container {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  justify-content: center;
+}
+
+.table-controls-container {
+  padding: 16px;
+  display: flex;
+  align-items: center;
+}
+
+.checkbox-container {
+  margin-left: 16px;
+}

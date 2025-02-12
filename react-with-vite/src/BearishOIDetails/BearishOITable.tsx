@@ -1,19 +1,9 @@
 import React, { useCallback, useMemo } from "react";
-import {
-  Box,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Paper,
-  TablePagination,
-  TableSortLabel
-} from "@mui/material";
+import { Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TablePagination, TableSortLabel } from "@mui/material";
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import ArrowUpward from '@mui/icons-material/ArrowUpward';
 import { IBullishOIData } from "../Dashboard/types";
+import './BearishOITable.css';
 
 interface BearishOITableProps {
   order: "asc" | "desc";
@@ -104,7 +94,7 @@ const BearishOITable: React.FC<BearishOITableProps> = (props) => {
                 key={data.id} 
                 hover 
                 onClick={() => handleRowClick(data)} 
-                style={{ cursor: "pointer" }}
+                className="table-row"
               >
                 <TableCell>{data.id}</TableCell>
                 <TableCell>{data.stock}</TableCell>
@@ -113,21 +103,9 @@ const BearishOITable: React.FC<BearishOITableProps> = (props) => {
                 <TableCell>
                   {data.count}{" "}
                   {data.active ? (
-                    <ArrowUpward
-                      sx={{
-                        fontSize: 24,
-                        color: "green",
-                        verticalAlign: "middle",
-                      }}
-                    />
+                    <ArrowUpward className="arrow-up-icon" />
                   ) : (
-                    <ArrowDownwardIcon
-                      sx={{
-                        fontSize: 24,
-                        color: "red",
-                        verticalAlign: "middle",
-                      }}
-                    />
+                    <ArrowDownwardIcon className="arrow-down-icon" />
                   )}
                 </TableCell>
                 <TableCell>{data.time}</TableCell>

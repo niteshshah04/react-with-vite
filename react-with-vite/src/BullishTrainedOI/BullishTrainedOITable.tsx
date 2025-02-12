@@ -1,19 +1,9 @@
 import React, { useMemo } from "react";
-import {
-  Box,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Paper,
-  TablePagination,
-  TableSortLabel,
-} from "@mui/material";
+import { Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TablePagination, TableSortLabel } from "@mui/material";
 import { IBUllishTrainedOIData } from "../Dashboard/types";
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import ArrowUpward from '@mui/icons-material/ArrowUpward';
+import './BullishTrainedOITable.css';
 
 interface BullishTrainedOITableProps {
   order: "asc" | "desc";
@@ -41,19 +31,11 @@ const TABLE_HEADERS = [
 const DirectionArrow: React.FC<{ active: boolean }> = React.memo(({ active }) => (
   active ? (
     <ArrowUpward
-      sx={{
-        fontSize: 24,
-        color: 'green',
-        verticalAlign: "middle",
-      }}
+      className="arrow-up"
     />
   ) : (
     <ArrowDownwardIcon
-      sx={{
-        fontSize: 24,
-        color: 'red',
-        verticalAlign: "middle",
-      }}
+      className="arrow-down"
     />
   )
 ));
@@ -108,7 +90,7 @@ const BullishTrainedOITable: React.FC<BullishTrainedOITableProps> = React.memo((
                 key={data.id} 
                 hover 
                 onClick={() => callSelecteddata(data)} 
-                style={{ cursor: "pointer" }}
+                className="table-row"
               >
                 <TableCell>{data.id}</TableCell>
                 <TableCell>{data.stock}</TableCell>

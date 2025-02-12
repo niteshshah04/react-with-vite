@@ -1,0 +1,16 @@
+.table-row {
+  cursor: pointer;
+}
+
+.arrow-icon {
+  font-size: 24px;
+  vertical-align: middle;
+}
+
+.arrow-icon-up {
+  color: green;
+}
+
+.arrow-icon-down {
+  color: red;
+} 

@@ -1,0 +1,19 @@
+.bearish-table-container {
+  padding: 16px;
+}
+
+.table-row {
+  cursor: pointer;
+}
+
+.arrow-icon-up {
+  font-size: 24px;
+  color: green;
+  vertical-align: middle;
+}
+
+.arrow-icon-down {
+  font-size: 24px;
+  color: red;
+  vertical-align: middle;
+} 

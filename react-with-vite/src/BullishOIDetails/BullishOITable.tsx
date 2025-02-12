@@ -1,19 +1,9 @@
 import React, { useMemo } from "react";
-import {
-  Box,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Paper,
-  TablePagination,
-  TableSortLabel
-} from "@mui/material";
+import { Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TablePagination, TableSortLabel } from "@mui/material";
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import ArrowUpward from '@mui/icons-material/ArrowUpward';
 import { IBullishOIData } from "../Dashboard/types";
+import './BullishOITable.css';
 
 interface BullishOITableProps {
   order: "asc" | "desc";
@@ -61,7 +51,7 @@ const TableRowComponent: React.FC<{
   data: IBullishOIData;
   onRowClick: (data: IBullishOIData) => void;
 }> = React.memo(({ data, onRowClick }) => (
-  <TableRow hover onClick={() => onRowClick(data)} style={{ cursor: "pointer" }}>
+  <TableRow hover onClick={() => onRowClick(data)} className="table-row">
     <TableCell>{data?.id}</TableCell>
     <TableCell>{data?.stock}</TableCell>
     <TableCell>{data?.ltp}</TableCell>
@@ -70,19 +60,11 @@ const TableRowComponent: React.FC<{
       {data?.count}{" "}
       {data?.active ? (
         <ArrowUpward
-          sx={{
-            fontSize: 24,
-            color: "green",
-            verticalAlign: "middle",
-          }}
+          className="arrow-icon arrow-icon-up"
         />
       ) : (
         <ArrowDownwardIcon
-          sx={{
-            fontSize: 24,
-            color: "red",
-            verticalAlign: "middle",
-          }}
+          className="arrow-icon arrow-icon-down"
         />
       )}
     </TableCell>

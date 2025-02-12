@@ -1,4 +1,5 @@
 import { TextField, FormControlLabel, Checkbox, Box } from "@mui/material";
+import '../Dashboard.css';
 
 interface TableControlsProps {
   tabIndex: number;
@@ -16,7 +17,7 @@ const TableControls = ({
   handleCheckboxChange 
 }: TableControlsProps) => {
   return (
-    <Box p={2} display="flex" alignItems="center">
+    <Box className="table-controls-container">
       {tabIndex !== 5 && (
         <TextField
           label="Search"
@@ -26,7 +27,7 @@ const TableControls = ({
         />
       )}
       {tabIndex !== 4 && tabIndex !== 5 && (
-        <Box ml={2}>
+        <Box className="checkbox-container">
           <FormControlLabel
             control={
               <Checkbox

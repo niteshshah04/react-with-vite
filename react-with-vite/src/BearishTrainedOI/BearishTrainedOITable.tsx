@@ -1,19 +1,9 @@
 import React, { useMemo } from "react";
-import {
-  Box,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Paper,
-  TablePagination,
-  TableSortLabel,
-} from "@mui/material";
+import { Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TablePagination, TableSortLabel } from "@mui/material";
 import { IBUllishTrainedOIData } from "../Dashboard/types";
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import ArrowUpward from '@mui/icons-material/ArrowUpward';
+import './BearishTrainedOITable.css';
 
 interface BearishTrainedOITableProps {
   order: "asc" | "desc";
@@ -66,24 +56,16 @@ const BearishTrainedOITable: React.FC<BearishTrainedOITableProps> = React.memo((
   const renderArrowIcon = (active: boolean) => 
     active ? (
       <ArrowUpward
-        sx={{
-          fontSize: 24,
-          color: 'green',
-          verticalAlign: "middle",
-        }}
+        className="arrow-icon-up"
       />
     ) : (
       <ArrowDownwardIcon
-        sx={{
-          fontSize: 24,
-          color: 'red',
-          verticalAlign: "middle",
-        }}
+        className="arrow-icon-down"
       />
     );
 
   return (
-    <Box p={2}>
+    <Box className="bearish-table-container">
       <TableContainer component={Paper}>
         <Table>
           <TableHead>
@@ -107,7 +89,7 @@ const BearishTrainedOITable: React.FC<BearishTrainedOITableProps> = React.memo((
                 key={data.id} 
                 hover 
                 onClick={() => callSelecteddata(data)} 
-                style={{ cursor: "pointer" }}
+                className="table-row"
               >
                 <TableCell>{data.id}</TableCell>
                 <TableCell>{data.stock}</TableCell>

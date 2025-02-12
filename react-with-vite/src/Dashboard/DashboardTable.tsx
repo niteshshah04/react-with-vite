@@ -69,12 +69,7 @@ const DashboardTable = () => {
 
   return (
     <>
-      <div style={{
-        display: "flex",
-        flexDirection: "row",
-        gap: "20px",
-        justifyContent: "center",
-      }}>
+      <div className="sentiment-bars-container">
         <TodaySentimentBar oiAdvanceDeclineData={oiAdvanceDeclineData} />
         <ActiveSentimentBar oiAdvanceDeclineData={oiAdvanceDeclineData} />
       </div>
