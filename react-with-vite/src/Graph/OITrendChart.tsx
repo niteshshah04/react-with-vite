@@ -9,29 +9,30 @@ interface ILineChartModalProps {
 }
 
 const CE_LINES = [
-    { key: 'CE_ShortCovering', name: 'CE Short Covering', color: '#FF5733' },
+    
     { key: 'CE_ShortBuildup', name: 'CE Short Buildup', color: '#C70039' },
     { key: 'CE_LongBuildup', name: 'CE Long Build', color: '#900C3F' },
+    { key: 'CE_ShortCovering', name: 'CE Short Covering', color: '#FF5733' },
     { key: 'CE_LongUnwinding', name: 'CE Short Unwinding', color: '#581845' }
 ];
 
 const PE_LINES = [
-    { key: 'PE_ShortCovering', name: 'PE Short Covering', color: '#33FF57' },
     { key: 'PE_ShortBuildup', name: 'PE Short Buildup', color: '#39C7C7' },
     { key: 'PE_LongBuildUp', name: 'PE Long Build', color: '#3F90C7' },
+    { key: 'PE_ShortCovering', name: 'PE Short Covering', color: '#33FF57' },
     { key: 'PE_LongUnwinding', name: 'PE Short Unwinding', color: '#4585C7' }
 ];
 
 const OITrendChart = React.forwardRef<HTMLDivElement, ILineChartModalProps>(({ closeModal, row }, ref) => {
     const { chartData, isLoading } = useChartData(row);
     const [hiddenLines, setHiddenLines] = useState<Record<string, boolean>>({
-        CE_ShortCovering: false,
         CE_ShortBuildup: false,
         CE_LongBuildup: false,
+        CE_ShortCovering: false,
         CE_LongUnwinding: false,
-        PE_ShortCovering: false,
         PE_ShortBuildup: false,
         PE_LongBuildUp: false,
+        PE_ShortCovering: false,
         PE_LongUnwinding: false,
     });
 
