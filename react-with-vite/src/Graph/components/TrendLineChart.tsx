@@ -34,7 +34,7 @@ const TrendLineChart: React.FC<TrendLineChartProps> = ({ chartData, hiddenLines,
                     <XAxis dataKey="time" />
                     <YAxis />
                     <Tooltip />
-                    <Legend onClick={(e) => onLegendClick(e.value)} />
+                    <Legend onClick={(e) => onLegendClick(e.dataKey as string)} />
                     {lineConfigs.map(({ key, color, name }) => (
                         <Line
                             key={key}

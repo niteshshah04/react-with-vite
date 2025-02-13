@@ -1,0 +1,9 @@
+.trend-chart-card {
+  padding: 16px;
+  margin-bottom: 24px;
+}
+
+.trend-chart-container {
+  width: 100%;
+  height: 300px;
+} 
