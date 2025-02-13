@@ -6,9 +6,10 @@ interface TrendLineChartProps {
     chartData: any[];
     hiddenLines: Record<string, boolean>;
     onLegendClick: (dataKey: string) => void;
+    row: any;
 }
 
-const TrendLineChart: React.FC<TrendLineChartProps> = ({ chartData, hiddenLines, onLegendClick }) => {
+const TrendLineChart: React.FC<TrendLineChartProps> = ({ chartData, hiddenLines, onLegendClick, row }) => {
     const lineConfigs = [
         { key: 'CE_ShortCovering', color: '#FF5733', name: 'CE Short Covering' },
         { key: 'CE_ShortBuildup', color: '#C70039', name: 'CE Short Buildup' },
@@ -23,7 +24,7 @@ const TrendLineChart: React.FC<TrendLineChartProps> = ({ chartData, hiddenLines,
     return (
         <CardContent>
             <Typography variant="subtitle1" align="center">
-                CE / PE Trends
+                {row.stock ? row.stock : row.name} - CE / PE Trends
             </Typography>
             <ResponsiveContainer width="100%" height={300}>
                 <LineChart

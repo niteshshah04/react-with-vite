@@ -81,7 +81,7 @@ const DashboardTable = () => {
         <TodaySentimentBar oiAdvanceDeclineData={oiAdvanceDeclineData} />
         <ActiveSentimentBar oiAdvanceDeclineData={oiAdvanceDeclineData} />
       </div>
-      
+
       <Box sx={{ width: "100%" }}>
         <Tabs value={tabIndex} onChange={handleTabChange} centered>
           <Tab label="Bullish" />
@@ -100,11 +100,27 @@ const DashboardTable = () => {
           handleCheckboxChange={handleCheckboxChange}
         />
 
-        {tabIndex === 0 && <BullishOITable {...commonTableProps} bullishOIData={bullishOIData} />}
-        {tabIndex === 1 && <BullishTrainedOITable {...commonTableProps} bullishTrainedOIData={bullishTrainedOIData} />}
-        {tabIndex === 2 && <BearishOITable {...commonTableProps} bearishOIData={bearishOIData} />}
-        {tabIndex === 3 && <BearishTrainedOITable {...commonTableProps} bearishTrainedOIData={bearishTrainedOIData} />}
-        {tabIndex === 4 && <StockListTable {...commonTableProps} stockData={niftyStockList} />}
+        {tabIndex === 0 && (
+          <BullishOITable {...commonTableProps} bullishOIData={bullishOIData} />
+        )}
+        {tabIndex === 1 && (
+          <BullishTrainedOITable
+            {...commonTableProps}
+            bullishTrainedOIData={bullishTrainedOIData}
+          />
+        )}
+        {tabIndex === 2 && (
+          <BearishOITable {...commonTableProps} bearishOIData={bearishOIData} />
+        )}
+        {tabIndex === 3 && (
+          <BearishTrainedOITable
+            {...commonTableProps}
+            bearishTrainedOIData={bearishTrainedOIData}
+          />
+        )}
+        {tabIndex === 4 && (
+          <StockListTable {...commonTableProps} stockData={niftyStockList} />
+        )}
         {tabIndex === 5 && (
           <NotificationTable
             notificationData={notificationData}
@@ -119,20 +135,50 @@ const DashboardTable = () => {
         )}
 
         <Modal open={open} onClose={closeModal}>
-          <Box sx={{ bgcolor: 'background.paper', p: 2, borderRadius: 2 }}>
-            <Tabs value={modalTabIndex} onChange={handleModalTabChange} centered>
-              <Tab label="Chart" />
-              <Tab label="Details" />
-            </Tabs>
-            
-            {modalTabIndex === 0 && (
-              <OITrendChart closeModal={closeModal} row={selectedData} />
-            )}
-            {modalTabIndex === 1 && (
-              <div style={{ padding: '20px' }}>
-                <CombinedOptionsTrendChart closeModal={closeModal} row={selectedData} />
-              </div>
-            )}
+          <Box
+            sx={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              bgcolor: "background.paper",
+              borderRadius: 2,
+              maxHeight: "90vh",
+              width: "90%",
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            <Box
+              sx={{
+                borderBottom: 1,
+                borderColor: "divider",
+                bgcolor: "background.paper",
+              }}
+            >
+              <Tabs
+                value={modalTabIndex}
+                onChange={handleModalTabChange}
+                centered
+              >
+                <Tab label="Chart" />
+                <Tab label="Details" />
+              </Tabs>
+            </Box>
+
+            <Box sx={{ overflow: "auto", p: 2, flexGrow: 1 }}>
+              {modalTabIndex === 0 && (
+                <OITrendChart closeModal={closeModal} row={selectedData} />
+              )}
+              {modalTabIndex === 1 && (
+                <div style={{ padding: "20px" }}>
+                  <CombinedOptionsTrendChart
+                    closeModal={closeModal}
+                    row={selectedData}
+                  />
+                </div>
+              )}
+            </Box>
           </Box>
         </Modal>
       </Box>

@@ -12,6 +12,7 @@ interface TrendChartProps {
     }[];
     hiddenLines: Record<string, boolean>;
     onLegendClick: (key: string) => void;
+    row: any;
 }
 
 export const TrendChart: React.FC<TrendChartProps> = ({
@@ -19,13 +20,14 @@ export const TrendChart: React.FC<TrendChartProps> = ({
     data,
     lines,
     hiddenLines,
-    onLegendClick
+    onLegendClick,
+    row
 }) => {
     return (
         <Card sx={{ padding: 2, boxShadow: 3, mb: 3 }}>
             <CardContent>
                 <Typography variant="subtitle1" align="center">
-                    {title}
+                {row.stock ? row.stock : row.name} - {title}
                 </Typography>
                 <ResponsiveContainer width="100%" height={300}>
                     <LineChart

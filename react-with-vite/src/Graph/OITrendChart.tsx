@@ -54,8 +54,8 @@ const OITrendChart = React.forwardRef<HTMLDivElement, ILineChartModalProps>(({ c
     return (
         <>
             <Typography id="modal-title" variant="h6" gutterBottom align="center">
-                <Button variant="contained" color="error" onClick={closeModal} sx={{ position: "absolute", top: 16, right: 16 }}>Close</Button>
-                {row.stock ? row.stock : row.name} - OI Trends
+                <Button variant="contained" color="error" onClick={closeModal} sx={{ position: "absolute", top: 5, right: 16 }}>Close</Button>
+                {/* {row.stock ? row.stock : row.name} - OI Trends */}
             </Typography>
 
             <TrendChart
@@ -64,6 +64,7 @@ const OITrendChart = React.forwardRef<HTMLDivElement, ILineChartModalProps>(({ c
                 lines={CE_LINES}
                 hiddenLines={hiddenLines}
                 onLegendClick={toggleLineVisibility}
+                row={row}
             />
 
             <TrendChart
@@ -72,6 +73,7 @@ const OITrendChart = React.forwardRef<HTMLDivElement, ILineChartModalProps>(({ c
                 lines={PE_LINES}
                 hiddenLines={hiddenLines}
                 onLegendClick={toggleLineVisibility}
+                row={row}
             />
         </>
     );

@@ -24,8 +24,8 @@ const CombinedOptionsTrendChart = React.forwardRef<HTMLDivElement, ILineChartMod
     return (
         <>
             <Typography id="modal-title" variant="h6" gutterBottom align="center">
-                <Button variant="contained" color="error" onClick={closeModal} sx={{ position: "absolute", top: 16, right: 16 }}>Close</Button>
-                {row.stock ? row.stock : row.name} - OI Trends
+                <Button variant="contained" color="error" onClick={closeModal} sx={{ position: "absolute", top: 5, right: 16 }}>Close</Button>
+                {/* {row.stock ? row.stock : row.name} - OI Trends */}
             </Typography>
 
             <Card sx={{ padding: 2, boxShadow: 3, mb: 3 }}>
@@ -33,6 +33,7 @@ const CombinedOptionsTrendChart = React.forwardRef<HTMLDivElement, ILineChartMod
                     chartData={chartData}
                     hiddenLines={hiddenLines as unknown as Record<string, boolean>}
                     onLegendClick={toggleLineVisibility}
+                    row={row}
                 />
             </Card>
         </>
