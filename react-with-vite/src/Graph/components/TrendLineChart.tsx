@@ -11,14 +11,14 @@ interface TrendLineChartProps {
 
 const TrendLineChart: React.FC<TrendLineChartProps> = ({ chartData, hiddenLines, onLegendClick, row }) => {
     const lineConfigs = [
-        { key: 'CE_ShortCovering', color: '#FF5733', name: 'CE Short Covering' },
-        { key: 'CE_ShortBuildup', color: '#C70039', name: 'CE Short Buildup' },
-        { key: 'CE_LongBuildup', color: '#900C3F', name: 'CE Long Build' },
-        { key: 'CE_LongUnwinding', color: '#581845', name: 'CE Short Unwinding' },
-        { key: 'PE_ShortCovering', color: '#33FF57', name: 'PE Short Covering' },
-        { key: 'PE_ShortBuildup', color: '#39C7C7', name: 'PE Short Buildup' },
-        { key: 'PE_LongBuildUp', color: '#3F90C7', name: 'PE Long Build' },
-        { key: 'PE_LongUnwinding', color: '#4585C7', name: 'PE Short Unwinding' },
+        // { key: 'CE_ShortBuildup', name: 'CE Short Buildup', color: '#C70039' },
+        // { key: 'CE_LongBuildup', name: 'CE Long Build', color: '#900C3F' },
+        { key: 'CE_ShortCovering', name: 'CE Short Covering', color: 'red' },
+        // { key: 'CE_LongUnwinding', name: 'CE Short Unwinding', color: '#581845' },
+        { key: 'PE_ShortBuildup', name: 'PE Short Buildup', color: 'green' },
+        // { key: 'PE_LongBuildUp', name: 'PE Long Build', color: '#3F90C7' },
+        // { key: 'PE_ShortCovering', name: 'PE Short Covering', color: '#33FF57' },
+        // { key: 'PE_LongUnwinding', name: 'PE Short Unwinding', color: '#4585C7' }
     ];
 
     return (

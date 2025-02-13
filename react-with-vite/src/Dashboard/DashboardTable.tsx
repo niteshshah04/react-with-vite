@@ -1,10 +1,10 @@
 import { useState } from "react";
-import './Dashboard.css';
+import "./Dashboard.css";
 import { Tabs, Tab, Box, Modal } from "@mui/material";
 import { useDataFetching } from "./hooks/useDataFetching";
 import { useDataProcessing } from "./hooks/useDataProcessing";
 import TableControls from "./components/TableControls";
-import OITrendChart from '../Graph/OITrendChart';
+import OITrendChart from "../Graph/OITrendChart";
 import StockListTable from "../StockListTable/StockListTable";
 import BullishOITable from "../BullishOIDetails/BullishOITable";
 import BearishOITable from "../BearishOIDetails/BearishOITable";
@@ -14,7 +14,6 @@ import ActiveSentimentBar from "../SentimentProgressBar/ActiveSentimentBar";
 import BullishTrainedOITable from "../BullishTrainedOI/BullishTrainedOITable";
 import BearishTrainedOITable from "../BearishTrainedOI/BearishTrainedOITable";
 import CombinedOptionsTrendChart from "../Graph/CombinedOptionsTrendChart";
-
 
 const DashboardTable = () => {
   const [selectedData, setSelectedData] = useState(null);
@@ -29,7 +28,7 @@ const DashboardTable = () => {
     oiAdvanceDeclineData,
     notificationData,
     niftyStockList,
-    isLoading
+    isLoading,
   } = useDataFetching();
 
   const {
@@ -47,7 +46,7 @@ const DashboardTable = () => {
     handleChangeRowsPerPage,
     handleCheckboxChange,
     filterData,
-    getProcessedData
+    getProcessedData,
   } = useDataProcessing();
 
   const callSelecteddata = (row: any) => {
@@ -67,10 +66,13 @@ const DashboardTable = () => {
     rowsPerPage,
     handleChangePage,
     handleChangeRowsPerPage,
-    callSelecteddata
+    callSelecteddata,
   };
 
-  const handleModalTabChange = (_event: React.SyntheticEvent, newValue: number) => {
+  const handleModalTabChange = (
+    _event: React.SyntheticEvent,
+    newValue: number
+  ) => {
     setModalTabIndex(newValue);
   };
 
@@ -135,27 +137,8 @@ const DashboardTable = () => {
         )}
 
         <Modal open={open} onClose={closeModal}>
-          <Box
-            sx={{
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-              bgcolor: "background.paper",
-              borderRadius: 2,
-              maxHeight: "90vh",
-              width: "90%",
-              display: "flex",
-              flexDirection: "column",
-            }}
-          >
-            <Box
-              sx={{
-                borderBottom: 1,
-                borderColor: "divider",
-                bgcolor: "background.paper",
-              }}
-            >
+          <Box className="modal-content">
+            <Box className="modal-tabs">
               <Tabs
                 value={modalTabIndex}
                 onChange={handleModalTabChange}
@@ -166,12 +149,12 @@ const DashboardTable = () => {
               </Tabs>
             </Box>
 
-            <Box sx={{ overflow: "auto", p: 2, flexGrow: 1 }}>
+            <Box className="modal-body">
               {modalTabIndex === 0 && (
                 <OITrendChart closeModal={closeModal} row={selectedData} />
               )}
               {modalTabIndex === 1 && (
-                <div style={{ padding: "20px" }}>
+                <div className="chart-container">
                   <CombinedOptionsTrendChart
                     closeModal={closeModal}
                     row={selectedData}
