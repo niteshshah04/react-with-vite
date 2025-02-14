@@ -12,14 +12,14 @@ jobs:
     environment: production  # Use the GitHub Environment
 
     steps:
-    # - name: Checkout repository
-    #   uses: actions/checkout@v3
+    - name: Checkout repository
+      uses: actions/checkout@v3
 
-    # - name: Install dependencies and build
-    #   run: |
-    #     cd react-with-vite
-    #     npm install
-    #     npm run build
+    - name: Install dependencies and build
+      run: |
+        cd react-with-vite
+        npm install
+        npm run build
 
     - name: Print GitHub Runner IP
       run: curl ifconfig.me
