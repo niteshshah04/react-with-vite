@@ -21,12 +21,12 @@ jobs:
         npm install
         npm run build
 
-    - name: Verify Build Folder
-      run: |
-        ls -la react-with-vite/dist  # Check if `dist/` exists
+    # - name: Verify Build Folder
+    #   run: |
+    #     ls -la react-with-vite/dist  # Check if `dist/` exists
 
-    - name: Print GitHub Runner IP
-      run: curl ifconfig.me
+    # - name: Print GitHub Runner IP
+    #   run: curl ifconfig.me
 
     - name: Setup SSH Key
       run: |
@@ -44,6 +44,8 @@ jobs:
       run: |
         ssh -i ~/.ssh/id_rsa ec2-user@${{ vars.EC2_HOST }} << 'EOF'
           cd ${{ vars.EC2_TARGET_DIR }}
+          echo "Stopping any existing process on port 3000..."
+          fuser -k 3000/tcp || true
           npx serve -s dist -l 3000 > /dev/null 2>&1 &
           echo "React app deployed successfully!"
         EOF
