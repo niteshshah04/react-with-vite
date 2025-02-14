@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./dashboard.css";
+import "./Dashboard.css";
 import { Tabs, Tab, Box, Modal } from "@mui/material";
 import { useDataFetching } from "./hooks/useDataFetching";
 import { useDataProcessing } from "./hooks/useDataProcessing";
