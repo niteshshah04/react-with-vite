@@ -1,0 +1,278 @@
+{
+    "FMCG_0.49125": [
+      "HINDUNILVR : 0.01",
+      "NESTLEIND : 1.12",
+      "TATACONSUM : 0.4",
+      "BRITANNIA INDUSTRIES LTD : 0.64",
+      "COLGATE PALMOLIVE LTD. : 0.46",
+      "DABUR INDIA LTD : 0.05",
+      "GODREJ CONSUMER PRODUCTS : 0.98",
+      "MARICO LIMITED : 0.27"
+    ],
+    "Tobacco - Alcohol_-0.27666666666666667": [
+      "ITC : -0.12",
+      "UNITED SPIRITS LIMITED : -1.45",
+      "UNITED BREWERIES LTD : 0.74"
+    ],
+    "Engineering - Construction_-0.63": [
+      "LT : -0.63"
+    ],
+    "Food_-0.6799999999999999": [
+      "JUBILANT FOODWORKS LTD : -0.53",
+      "ZOMATO : -0.83"
+    ],
+    "Diamond  -  Jewellery_-0.87": [
+      "TITAN : -0.87"
+    ],
+    "Finance - Investment_-0.9566666666666667": [
+      "BAJAJFINSV : -0.55",
+      "MAX FINANCIAL SERV LTD : -1.84",
+      "HDFC AMC LIMITED : -0.48"
+    ],
+    "Hospital - Healthcare Services_-1.1": [
+      "APOLLOHOSP : -1.76",
+      "METROPOLIS HEALTHCARE LTD : -1.58",
+      "DR. LAL PATH LABS LTD. : 0.04"
+    ],
+    "Insurance_-1.14": [
+      "HDFCLIFE : -0.66",
+      "SBILIFE : -0.99",
+      "ICICI LOMBARD GIC LIMITED : -2.03",
+      "ICICI PRU LIFE INS CO LTD : -0.88"
+    ],
+    "Paints - Pigments_-1.225": [
+      "ASIANPAINT : -0.74",
+      "BERGER PAINTS (I) LTD : -1.71"
+    ],
+    "Digital India_-1.3933333333333333": [
+      "BHARTIARTL : 0.3",
+      "HCLTECH : 0.33",
+      "LTIM : -1.66",
+      "INFY : 0.3",
+      "TCS : 0.06",
+      "TECHM : -0.9",
+      "WIPRO : -0.94",
+      "BIRLASOFT LIMITED : -3.46",
+      "COFORGE LIMITED : -1.25",
+      "INDIAN RAIL TOUR CORP LTD : -1.6",
+      "L&T TECHNOLOGY SER. LTD. : -0.76",
+      "INFO EDGE (I) LTD : -1.35",
+      "INDIAMART INTERMESH LTD : -3.32",
+      "TATA COMMUNICATIONS LTD : -1.55",
+      "VODAFONE IDEA LIMITED : -5.1"
+    ],
+    "IT - Software_-1.5414285714285716": [
+      "ORACLE FIN SERV SOFT LTD. : -0.12",
+      "PERSISTENT SYSTEMS LTD : -1.81",
+      "BOSCH LIMITED : -0.85",
+      "MPHASIS LIMITED : -1.9",
+      "KPITTECH : -1.79",
+      "PAYTM : -4.67",
+      "TATAELXSI : 0.35"
+    ],
+    "Tyres_-1.57": [
+      "APOLLO TYRES LTD : -1.57"
+    ],
+    "Footwear_-1.57": [
+      "BATA INDIA LTD : -1.57"
+    ],
+    "Cable_-1.66": [
+      "POLYCAB INDIA LIMITED : -1.66"
+    ],
+    "Auto_-1.8969999999999998": [
+      "EICHERMOT : -2.03",
+      "HEROMOTOCO : -1.82",
+      "MARUTI : -0.41",
+      "TATAMOTORS : -1.11",
+      "ASHOK LEYLAND LTD : -0.87",
+      "ESCORTS KUBOTA LIMITED : -2.82",
+      "BAJAJ AUTO LIMITED : -1.93",
+      "SAMVRDHNA MTHRSN INTL LTD : -3.07",
+      "TVS MOTOR COMPANY  LTD : -2.97",
+      "MAHINDRA & MAHINDRA LTD : -1.94"
+    ],
+    "Cement_-2.04875": [
+      "GRASIM : -2.16",
+      "SHREECEM : 0.83",
+      "ULTRACEMCO : -2.14",
+      "ACC LIMITED : -2.17",
+      "AMBUJA CEMENTS LTD : -3.17",
+      "DALMIA BHARAT LIMITED : -1.44",
+      "JK CEMENT LIMITED : -3.84",
+      "THE RAMCO CEMENTS LIMITED : -2.3"
+    ],
+    "Banks_-2.07": [
+      "AXISBANK : -1.83",
+      "HDFCBANK : -0.75",
+      "ICICIBANK : 0.4",
+      "INDUSINDBK : -2.35",
+      "KOTAKBANK : -1.31",
+      "SBIN : -0.89",
+      "BANDHAN BANK LIMITED : -3.24",
+      "AU SMALL FINANCE BANK LTD : -3.17",
+      "CITY UNION BANK LTD : -2.54",
+      "FEDERAL BANK LTD : -0.77",
+      "IDFC FIRST BANK LIMITED : -2.28",
+      "BANK OF BARODA : -2.66",
+      "RBL BANK LIMITED : -3.95",
+      "PUNJAB NATIONAL BANK : -2.46",
+      "CANARA BANK : -3.25"
+    ],
+    "Infrastructure_-2.106923076923077": [
+      "ADANIPORTS : -3.67",
+      "BPCL : -2.04",
+      "IOC : -2.31",
+      "NTPC : -1.94",
+      "ONGC : -2.85",
+      "POWERGRID : -0.52",
+      "RELIANCE : -0.55",
+      "BALKRISHNA IND. LTD : -0.7",
+      "GAIL (INDIA) LTD : 0.02",
+      "TATA POWER CO LTD : -3.09",
+      "HINDUSTAN PETROLEUM CORP : -3.04",
+      "PETRONET LNG LIMITED : -4.04",
+      "CONTAINER CORP OF IND LTD : -2.66"
+    ],
+    "Batteries_-2.17": [
+      "EXIDE INDUSTRIES LTD : -2.17"
+    ],
+    "Electric Equipments_-2.2333333333333334": [
+      "ABB INDIA LIMITED : -3.15",
+      "HAVELLS INDIA LIMITED : -1.3",
+      "SIEMENS LTD : -2.25"
+    ],
+    "Mining_-2.545": [
+      "COALINDIA : -2.39",
+      "NMDC LTD. : -2.7"
+    ],
+    "Construction_-2.5500000000000003": [
+      "DLF LIMITED : -1.26",
+      "GODREJ PROPERTIES LTD : -3.02",
+      "OBEROI REALTY LIMITED : -3.37"
+    ],
+    "Manufacturing_-2.5582352941176474": [
+      "DIVISLAB : -2.95",
+      "DRREDDY : -2.42",
+      "HINDALCO : -1.13",
+      "JSWSTEEL : -0.71",
+      "SUNPHARMA : -2.94",
+      "TATASTEEL : -1.63",
+      "CIPLA : -0.81",
+      "ASTRAL LIMITED : -3.09",
+      "AUROBINDO PHARMA LTD : -3.6",
+      "HINDUSTAN COPPER LTD : -4.69",
+      "JINDAL STEEL & POWER LTD : -2.4",
+      "MRF LTD : -0.41",
+      "PAGE INDUSTRIES LTD : -2.38",
+      "ZYDUS LIFESCIENCES LTD : -3.92",
+      "LUPIN LIMITED : -5.29",
+      "VEDANTA LIMITED : -2.67",
+      "TORRENT PHARMACEUTICALS L : -2.45"
+    ],
+    "Defence_-2.813333333333333": [
+      "BHARAT ELECTRONICS LTD : -3.94",
+      "BHARAT FORGE LTD : -0.63",
+      "HINDUSTAN AERONAUTICS LTD : -3.87"
+    ],
+    "Finance - Stock Broking_-2.84": [
+      "MULTI COMMODITY EXCHANGE : -3.26",
+      "ANGELONE : -3.83",
+      "BSE : -2.49",
+      "JIOFIN : -2.94",
+      "CDSL : -1.68"
+    ],
+    "Engineering_-2.9": [
+      "CUMMINS INDIA LTD : -2.9"
+    ],
+    "Fertilizers - Pesticides_-2.928": [
+      "UPL : -2.35",
+      "COROMANDEL INTERNTL. LTD : -4.62",
+      "GUJ NAR VAL FER & CHEM L : -4.34",
+      "PI INDUSTRIES LTD : -1.62",
+      "CHAMBAL FERTILIZERS LTD : -1.71"
+    ],
+    "Bank_-2.965": [
+      "UNIONBANK : -3.2",
+      "BANKINDIA : -2.73"
+    ],
+    "Media_-3.03": [
+      "PVR INOX LIMITED : -4.1",
+      "SUN TV NETWORK LIMITED : -1.96"
+    ],
+    "Airlines - Airport Services_-3.035": [
+      "INTERGLOBE AVIATION LTD : -2.82",
+      "GMR AIRPORTS INFRA LTD : -3.25"
+    ],
+    "Finance_-3.06": [
+      "L&T FINANCE  LTD : -3.06"
+    ],
+    "Retail_-3.11": [
+      "ADITYA BIRLA FASHION & RT : -4.02",
+      "TRENT LTD : -2.2"
+    ],
+    "Power_-3.13": [
+      "INDIAN ENERGY EXC LTD : -3.13"
+    ],
+    "Metals - Steel - Iron Products_-3.16": [
+      "STEEL AUTHORITY OF INDIA : -3.16"
+    ],
+    "Finance - Housing - NBFC_-3.3053846153846154": [
+      "BAJFINANCE : -1.15",
+      "ADITYA BIRLA CAPITAL LTD. : -3.53",
+      "CHOLAMANDALAM IN & FIN CO : -1.97",
+      "LIC HOUSING FINANCE LTD : -2.91",
+      "CAN FIN HOMES LTD : -1.28",
+      "SBI CARDS & PAY SER LTD : -0.48",
+      "MANAPPURAM FINANCE LTD : -10.56",
+      "SHRIRAM FINANCE LIMITED : -3.02",
+      "MUTHOOT FINANCE LIMITED : -2.59",
+      "REC LIMITED : -4.2",
+      "M&M FIN. SERVICES LTD : -4.08",
+      "PIRAMAL ENTERPRISES LTD : -4.66",
+      "POWER FIN CORP LTD. : -2.54"
+    ],
+    "Trading_-3.33": [
+      "ADANIENT : -3.33"
+    ],
+    "Oil - Gas_-3.4533333333333336": [
+      "GUJARAT GAS LIMITED : -2.47",
+      "MAHANAGAR GAS LTD. : -4.92",
+      "INDRAPRASTHA GAS LTD : -2.97"
+    ],
+    "Pharma_-3.5700000000000003": [
+      "ABBOTT INDIA LIMITED : -1.58",
+      "ALKEM LABORATORIES LTD. : -1.91",
+      "GLENMARK PHARMACEUTICALS : -4.54",
+      "BIOCON LIMITED. : -2.88",
+      "GRANULES INDIA LIMITED : -5.45",
+      "IPCA LABORATORIES LTD : -1.55",
+      "SYNGENE INTERNATIONAL LTD : -1.58",
+      "LAURUS LABS LIMITED : -9.07"
+    ],
+    "Consumer Durables_-3.5966666666666662": [
+      "CROMPT GREA CON ELEC LTD : -3.25",
+      "DIXON TECHNO (INDIA) LTD : -4.95",
+      "VOLTAS LTD : -2.59"
+    ],
+    "Hotels_-3.68": [
+      "THE INDIAN HOTELS CO. LTD : -3.68"
+    ],
+    "Engineering - Industrial Equipments_-4.17": [
+      "BHEL : -4.17"
+    ],
+    "Chemicals_-4.301428571428572": [
+      "AARTI INDUSTRIES LTD : -4.49",
+      "ATUL LTD : -1.79",
+      "PIDILITE INDUSTRIES LTD : -0.88",
+      "SRF LTD : -3.66",
+      "TATA CHEMICALS LTD : -2.62",
+      "DEEPAK NITRITE LTD : -14.22",
+      "NAVIN FLUORINE INT. LTD : -2.45"
+    ],
+    "Telecommunication_-4.46": [
+      "INDUS TOWERS LIMITED : -4.46"
+    ],
+    "Metals_-6.13": [
+      "NATIONAL ALUMINIUM CO LTD : -6.13"
+    ]
+  }
