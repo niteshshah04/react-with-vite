@@ -17,25 +17,35 @@ jobs:
 
     - name: Install dependencies and build
       run: |
-        cd react-with-vite
+        cd react-with-vite  # Make sure this is the correct path
         npm install
         npm run build
+
+    # - name: Verify Build Folder
+    #   run: |
+    #     ls -la react-with-vite/dist  # Check if `dist/` exists
+
+    # - name: Print GitHub Runner IP
+    #   run: curl ifconfig.me
 
     - name: Setup SSH Key
       run: |
         mkdir -p ~/.ssh
-        echo "${{ secrets.EC2_SSH_KEY }}" > ~/.ssh/id_rsa
+        echo "${{ secrets.EC2_SSH_KEY }}" | tr -d '\r' > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
         ssh-keyscan -H ${{ vars.EC2_HOST }} >> ~/.ssh/known_hosts
+      shell: bash
 
     - name: Upload build folder to EC2
       run: |
-        scp -r -i ~/.ssh/id_rsa build ec2-user@${{ vars.EC2_HOST }}:${{ vars.EC2_TARGET_DIR }}
+        scp -r -i ~/.ssh/id_rsa react-with-vite/dist ec2-user@${{ vars.EC2_HOST }}:${{ vars.EC2_TARGET_DIR }}
 
     - name: Restart React App
       run: |
         ssh -i ~/.ssh/id_rsa ec2-user@${{ vars.EC2_HOST }} << 'EOF'
           cd ${{ vars.EC2_TARGET_DIR }}
-          npx serve -s build -l 3000 > /dev/null 2>&1 &
+          echo "Stopping any existing process on port 3000..."
+          fuser -k 3000/tcp || true
+          npx serve -s dist -l 3000 > /dev/null 2>&1 &
           echo "React app deployed successfully!"
         EOF
