@@ -1,0 +1,40 @@
+name: Deploy React App to EC2
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:  # Allows manual deployment
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production  # Use the GitHub Environment
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Install dependencies and build
+      run: |
+        npm install
+        npm run build
+
+    - name: Setup SSH Key
+      run: |
+        mkdir -p ~/.ssh
+        echo "${{ secrets.EC2_SSH_KEY }}" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan -H ${{ vars.EC2_HOST }} >> ~/.ssh/known_hosts
+
+    - name: Upload build folder to EC2
+      run: |
+        scp -r -i ~/.ssh/id_rsa build ec2-user@${{ vars.EC2_HOST }}:${{ vars.EC2_TARGET_DIR }}
+
+    - name: Restart React App
+      run: |
+        ssh -i ~/.ssh/id_rsa ec2-user@${{ vars.EC2_HOST }} << 'EOF'
+          cd ${{ vars.EC2_TARGET_DIR }}
+          npx serve -s build -l 3000 > /dev/null 2>&1 &
+          echo "React app deployed successfully!"
+        EOF
