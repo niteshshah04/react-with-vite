@@ -37,7 +37,7 @@ export const TrendChart: React.FC<TrendChartProps> = ({
                             margin={{ top: 20, right: 30, left: 20, bottom: 10 }}
                         >
                             <XAxis dataKey="time" />
-                            <YAxis />
+                            <YAxis type="number" domain={[0, 100]}/>
                             <Tooltip />
                             <Legend onClick={(e) => onLegendClick(e.dataKey as string)} />
                             {lines.map(({ key, name, color }) => (

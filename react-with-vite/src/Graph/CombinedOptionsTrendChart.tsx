@@ -34,6 +34,16 @@ const CombinedOptionsTrendChart = React.forwardRef<HTMLDivElement, ILineChartMod
                     hiddenLines={hiddenLines as unknown as Record<string, boolean>}
                     onLegendClick={toggleLineVisibility}
                     row={row}
+                    type='bullish'
+                />
+            </Card>
+            <Card sx={{ padding: 2, boxShadow: 3, mb: 3 }}>
+                <TrendLineChart
+                    chartData={chartData}
+                    hiddenLines={hiddenLines as unknown as Record<string, boolean>}
+                    onLegendClick={toggleLineVisibility}
+                    row={row}
+                    type='bearish'
                 />
             </Card>
         </>

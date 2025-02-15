@@ -716,7 +716,7 @@
     {
       "id": 53,
       "symbol": "ASTRAL-EQ",
-      "name": "ASTRAL LIMITED",
+      "name": "ASTRAL",
       "token": "14418",
       "closePrice": 1480.7,
       "exchangeSeg": "NSE",
@@ -744,7 +744,7 @@
     {
       "id": 55,
       "symbol": "ACC-EQ",
-      "name": "ACC LIMITED",
+      "name": "ACC",
       "token": "22",
       "closePrice": 1997.95,
       "exchangeSeg": "NSE",
@@ -758,7 +758,7 @@
     {
       "id": 56,
       "symbol": "AARTIIND-EQ",
-      "name": "AARTI INDUSTRIES LTD",
+      "name": "AARTIIND",
       "token": "7",
       "closePrice": 469.05,
       "exchangeSeg": "NSE",
@@ -856,7 +856,7 @@
     {
       "id": 63,
       "symbol": "AUROPHARMA-EQ",
-      "name": "AUROBINDO PHARMA LTD",
+      "name": "AUROBINDO",
       "token": "275",
       "closePrice": 1191.9,
       "exchangeSeg": "NSE",
@@ -898,7 +898,7 @@
     {
       "id": 66,
       "symbol": "BEL-EQ",
-      "name": "BHARAT ELECTRONICS LTD",
+      "name": "BEL",
       "token": "383",
       "closePrice": 280,
       "exchangeSeg": "NSE",
@@ -1108,7 +1108,7 @@
     {
       "id": 81,
       "symbol": "DABUR-EQ",
-      "name": "DABUR INDIA LTD",
+      "name": "DABUR",
       "token": "772",
       "closePrice": 526.75,
       "exchangeSeg": "NSE",
@@ -1150,7 +1150,7 @@
     {
       "id": 85,
       "symbol": "DLF-EQ",
-      "name": "DLF LIMITED",
+      "name": "DLF",
       "token": "14732",
       "closePrice": 765.5,
       "exchangeSeg": "NSE",
@@ -1164,7 +1164,7 @@
     {
       "id": 86,
       "symbol": "ESCORTS-EQ",
-      "name": "ESCORTS KUBOTA LIMITED",
+      "name": "ESCORTS",
       "token": "958",
       "closePrice": 3281,
       "exchangeSeg": "NSE",
@@ -1178,7 +1178,7 @@
     {
       "id": 87,
       "symbol": "EXIDEIND-EQ",
-      "name": "EXIDE INDUSTRIES LTD",
+      "name": "EXIDEIND",
       "token": "676",
       "closePrice": 378.95,
       "exchangeSeg": "NSE",
@@ -1220,7 +1220,7 @@
     {
       "id": 90,
       "symbol": "GLENMARK-EQ",
-      "name": "GLENMARK PHARMACEUTICALS",
+      "name": "GLENMARK",
       "token": "7406",
       "closePrice": 1496,
       "exchangeSeg": "NSE",
@@ -1864,7 +1864,7 @@
     {
       "id": 139,
       "symbol": "DEEPAKNTR-EQ",
-      "name": "DEEPAK NITRITE LTD",
+      "name": "DEEPAKNTR",
       "token": "19943",
       "closePrice": 2380,
       "exchangeSeg": "NSE",
@@ -1948,7 +1948,7 @@
     {
       "id": 145,
       "symbol": "BIOCON-EQ",
-      "name": "BIOCON LIMITED.",
+      "name": "BIOCON",
       "token": "11373",
       "closePrice": 398.15,
       "exchangeSeg": "NSE",
@@ -2340,7 +2340,7 @@
     {
       "id": 176,
       "symbol": "CANBK-EQ",
-      "name": "CANARA BANK",
+      "name": "CANARA",
       "token": "10794",
       "closePrice": 95,
       "exchangeSeg": "NSE",
