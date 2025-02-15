@@ -3,7 +3,7 @@ name: Deploy React App to EC2
 on:
   push:
     branches:
-      - DeployCode
+      - main
   workflow_dispatch:  # Allows manual deployment
 
 jobs:
