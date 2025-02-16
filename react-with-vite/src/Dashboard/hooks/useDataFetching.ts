@@ -28,6 +28,9 @@ export const useDataFetching = () => {
 
   useEffect(() => {
     const fetchData = async () => {
+      if (import.meta.env.VITE_USE_MSW === "true" && import.meta.env.MODE !== "production") {
+        await new Promise((resolve) => setTimeout(resolve, 100)); // Small delay
+      }
       setIsLoading(true);
       try {
         console.log('Attempting to fetch from URLs:', urls);
