@@ -11,9 +11,15 @@ interface TrendLineChartProps {
 }
 
 const TrendLineChart: React.FC<TrendLineChartProps> = ({ chartData, hiddenLines, onLegendClick, row , type}) => {
-    let lineConfigs: any;
+    interface LineConfig {
+        key: string;
+        name: string;
+        color: string;
+    }
 
-    if(type ==='bullish'){
+    let lineConfigs: LineConfig[];
+
+    if(type ==='Bullish'){
         lineConfigs = [
             // { key: 'CE_ShortBuildup', name: 'CE Short Buildup', color: '#C70039' },
             // { key: 'CE_LongBuildup', name: 'CE Long Build', color: '#900C3F' },
@@ -41,7 +47,7 @@ const TrendLineChart: React.FC<TrendLineChartProps> = ({ chartData, hiddenLines,
     return (
         <CardContent>
             <Typography variant="subtitle1" align="center">
-                {row.stock ? row.stock : row.name} - CE / PE Trends
+                {row.stock ? row.stock : row.name} - {type}
             </Typography>
             <ResponsiveContainer width="100%" height={300}>
                 <LineChart
