@@ -18,7 +18,7 @@ const TableControls = ({
 }: TableControlsProps) => {
   return (
     <Box className="table-controls-container">
-      {tabIndex !== 5 && (
+      {tabIndex !== 5 && tabIndex !== 6 && tabIndex !== 7 && tabIndex !== 8 && tabIndex !== 9 && (
         <TextField
           label="Search"
           variant="outlined"
@@ -26,7 +26,7 @@ const TableControls = ({
           onChange={(e) => setSearchText(e.target.value)}
         />
       )}
-      {tabIndex !== 4 && tabIndex !== 5 && (
+      {tabIndex !== 4 && tabIndex !== 5 && tabIndex !== 6 && tabIndex !== 7 && tabIndex !== 8 && tabIndex !== 9 && (
         <Box className="checkbox-container">
           <FormControlLabel
             control={

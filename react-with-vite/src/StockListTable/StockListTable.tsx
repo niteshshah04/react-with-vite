@@ -27,6 +27,19 @@ interface StockListTableProps {
     callSelecteddata: (data: INiftyStockList) => void;
 }
 
+const TABLE_HEADERS = [
+  "id",
+  "symbol",
+  "name",
+  "close price",
+  "exchange seg",
+  "nifty50",
+  "lot size",
+  "sector",
+  "exchange type",
+  "high",
+  "ath"
+] as const;
 
 const StockListTable: React.FC<StockListTableProps> = (props) => {
     const { order, orderBy, handleSort, stockData, getProcessedData, filterData, page, rowsPerPage, handleChangePage, handleChangeRowsPerPage, callSelecteddata } = props;
@@ -36,19 +49,7 @@ const StockListTable: React.FC<StockListTableProps> = (props) => {
           <Table>
             <TableHead>
               <TableRow>
-                {[
-                  "id",
-                  "symbol",
-                  "name",
-                  "close price",
-                  "exchange seg",
-                  "nifty50",
-                  "lot size",
-                  "sector",
-                  "exchange type",
-                  "high",
-                  "ath"
-                ].map((col) => (
+                {TABLE_HEADERS.map((col) => (
                   <TableCell key={col}>
                     <TableSortLabel
                       active={orderBy === col}
@@ -63,6 +64,7 @@ const StockListTable: React.FC<StockListTableProps> = (props) => {
             </TableHead>
             <TableBody>
               {stockData &&
+                getProcessedData(stockData).length > 0 ?
                 getProcessedData(stockData).map((data: INiftyStockList) => (
                 <TableRow 
                   key={data.id} 
@@ -82,7 +84,14 @@ const StockListTable: React.FC<StockListTableProps> = (props) => {
                     <TableCell>{data.high}</TableCell>
                     <TableCell>{data.ath}</TableCell>
                   </TableRow>
-                ))}
+                ))
+                 : (
+                  <TableRow>
+                    <TableCell colSpan={TABLE_HEADERS.length} align="center">
+                      No data available
+                    </TableCell>
+                  </TableRow>
+                )}
             </TableBody>
           </Table>
         </TableContainer>

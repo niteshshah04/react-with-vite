@@ -10,7 +10,10 @@ export const API_ENDPOINTS = {
   BEARISH_TRAINED: `${API_URL_TRAINED}/bearish`,
   OI_ADVANCE_DECLINE: `${API_URL}/api/v1/getOIAdvanceDecline`,
   NOTIFICATIONS: `${API_URL}/api/v1/getNotification`,
-  NIFTY_STOCK_LIST: `${API_URL_NIFTY}/api/v1/getNiftyDataList`
+  NIFTY_STOCK_LIST: `${API_URL_NIFTY}/api/v1/getNiftyDataList`,
+  SECTOR_INFO: `${API_URL_NIFTY}/api/v1/getSectorInfo`,
+  SECTOR_INDEX: `${API_URL_NIFTY}/api/v1/getIndexInfo`,
+  NEWS: `${API_URL}/api/v1/getNews`
 };
 
 export const urls = Object.values(API_ENDPOINTS);

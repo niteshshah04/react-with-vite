@@ -85,16 +85,17 @@ const BearishOITable: React.FC<BearishOITableProps> = (props) => {
 
   return (
     <Box p={2}>
-      <TableContainer component={Paper}>
+      <TableContainer component={Paper} sx={{ width: "100%", boxShadow: 3 }}>
         <Table>
           {TableHeaders}
           <TableBody>
-            {processedData.map((data: IBullishOIData) => (
-              <TableRow 
-                key={data.id} 
-                hover 
-                onClick={() => handleRowClick(data)} 
-                className="table-row"
+            {processedData.length > 0 ? (
+              processedData.map((data: IBullishOIData) => (
+                <TableRow 
+                  key={data.id} 
+                  hover 
+                  onClick={() => handleRowClick(data)} 
+                  className="table-row"
               >
                 <TableCell>{data.id}</TableCell>
                 <TableCell>{data.stock}</TableCell>
@@ -118,7 +119,14 @@ const BearishOITable: React.FC<BearishOITableProps> = (props) => {
                 <TableCell>{data.PE_ShortBuildUp}</TableCell>
                 <TableCell>{data.PE_ShortCovering}</TableCell>
               </TableRow>
-            ))}
+            ))
+            ) : (
+              <TableRow>
+                <TableCell colSpan={TABLE_COLUMNS.length} align="center">
+                  No data available
+                </TableCell>
+              </TableRow>
+            )}
           </TableBody>
         </Table>
       </TableContainer>

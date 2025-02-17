@@ -66,7 +66,7 @@ const BearishTrainedOITable: React.FC<BearishTrainedOITableProps> = React.memo((
 
   return (
     <Box className="bearish-table-container">
-      <TableContainer component={Paper}>
+      <TableContainer component={Paper} sx={{ width: "100%", boxShadow: 3 }}>
         <Table>
           <TableHead>
             <TableRow>
@@ -84,12 +84,13 @@ const BearishTrainedOITable: React.FC<BearishTrainedOITableProps> = React.memo((
             </TableRow>
           </TableHead>
           <TableBody>
-            {processedData.map((data: IBUllishTrainedOIData) => (
-              <TableRow 
-                key={data.id} 
-                hover 
-                onClick={() => callSelecteddata(data)} 
-                className="table-row"
+            {processedData.length > 0 ? (
+              processedData.map((data: IBUllishTrainedOIData) => (
+                <TableRow 
+                  key={data.id} 
+                  hover 
+                  onClick={() => callSelecteddata(data)} 
+                  className="table-row"
               >
                 <TableCell>{data.id}</TableCell>
                 <TableCell>{data.stock}</TableCell>
@@ -100,7 +101,14 @@ const BearishTrainedOITable: React.FC<BearishTrainedOITableProps> = React.memo((
                 <TableCell>{data.added_time}</TableCell>
                 <TableCell>{data.removed_time}</TableCell>
               </TableRow>
-            ))}
+            ))
+            ) : (
+              <TableRow>
+                <TableCell colSpan={TABLE_HEADERS.length} align="center">
+                  No data available
+                </TableCell>
+              </TableRow>
+            )}
           </TableBody>
         </Table>
       </TableContainer>

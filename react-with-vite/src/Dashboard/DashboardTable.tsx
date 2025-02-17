@@ -14,6 +14,10 @@ import ActiveSentimentBar from "../SentimentProgressBar/ActiveSentimentBar";
 import BullishTrainedOITable from "../BullishTrainedOI/BullishTrainedOITable";
 import BearishTrainedOITable from "../BearishTrainedOI/BearishTrainedOITable";
 import CombinedOptionsTrendChart from "../Graph/CombinedOptionsTrendChart";
+import HeatMap from "../HeatMap/HeatMap";
+import MUITable from "../SectorInfo/SectorInfo";
+import SectorIndexTable from "../SectorIndex/SectorIndexTable";
+import NewsCard from "../News/NewsCard";
 
 const DashboardTable = () => {
   const [selectedData, setSelectedData] = useState(null);
@@ -29,6 +33,9 @@ const DashboardTable = () => {
     notificationData,
     niftyStockList,
     isLoading,
+    sectorInfo,
+    sectorIndex,
+    news
   } = useDataFetching();
 
   const {
@@ -92,6 +99,10 @@ const DashboardTable = () => {
           <Tab label="Bearish Trained" />
           <Tab label="F&O Stock" />
           <Tab label="Notifications" />
+          <Tab label="Sector Info" />
+          <Tab label="Sector Index" />
+          <Tab label="News" />
+          <Tab label="Heat Map" />
         </Tabs>
 
         <TableControls
@@ -165,6 +176,18 @@ const DashboardTable = () => {
           </Box>
         </Modal>
       </Box>
+      {tabIndex === 6 && (
+        <MUITable sectorInfo={sectorInfo} />
+      )}
+      {tabIndex === 7 && (
+        <SectorIndexTable sectorIndex={sectorIndex} />
+      )}
+      {tabIndex === 8 && (
+        <NewsCard news={news} />
+      )}
+      {tabIndex === 9 && (
+        <HeatMap />
+      )}
     </>
   );
 };

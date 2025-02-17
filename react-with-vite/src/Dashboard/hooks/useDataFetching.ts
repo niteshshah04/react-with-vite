@@ -22,6 +22,9 @@ export const useDataFetching = () => {
   const [notificationData, setNotificationData] = useState<INotificationData[]>([]);
   const [niftyStockList, setNiftyStockList] = useState<INiftyStockList[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [sectorInfo, setSectorInfo] = useState<any[]>([]);
+  const [sectorIndex, setSectorIndex] = useState<any[]>([]);
+  const [news, setNews] = useState<any[]>([]);
 
   const { cleanBullishTrainedOIData } = useBullishTrainedOIData();
   const { cleanData } = useCleanData();
@@ -59,7 +62,10 @@ export const useDataFetching = () => {
           bearishTrainedData,
           oiAdvanceDeclineData,
           notificationData,
-          niftyStockList
+          niftyStockList,
+          sectorInfo,
+          sectorIndex,
+          news
         ] = responses;
 
         if (bullishOIData) setBullishOIData(cleanData(bullishOIData));
@@ -69,6 +75,9 @@ export const useDataFetching = () => {
         if (oiAdvanceDeclineData) setOIAdvanceDeclineData(oiAdvanceDeclineData);
         if (notificationData) setNotificationData(notificationData);
         if (niftyStockList) setNiftyStockList(niftyStockList);
+        if (sectorInfo) setSectorInfo(sectorInfo);
+        if (sectorIndex) setSectorIndex(sectorIndex);
+        if (news) setNews(news);
       } catch (error) {
         console.error("Error in fetchData:", error);
       } finally {
@@ -89,6 +98,9 @@ export const useDataFetching = () => {
     oiAdvanceDeclineData,
     notificationData,
     niftyStockList,
-    isLoading
+    isLoading,
+    sectorInfo,
+    sectorIndex,
+    news
   };
 };

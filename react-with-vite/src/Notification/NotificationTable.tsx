@@ -26,7 +26,7 @@ const NotificationTable: React.FC<NotificationTableProps> = React.memo((props) =
 
   return (
     <Box p={2}>
-      <TableContainer component={Paper}>
+      <TableContainer component={Paper} sx={{ width: "100%", boxShadow: 3 }}>
         <Table>
           <NotificationTableHeader 
             orderBy={orderBy}
@@ -34,14 +34,22 @@ const NotificationTable: React.FC<NotificationTableProps> = React.memo((props) =
             handleSort={handleSort}
           />
           <TableBody>
-            {currentPageData.map((data, index) => (
-              <TableRow key={`notification-${index}`} hover>
-                <TableCell>{startIndex + index + 1}</TableCell>
-                <TableCell>{data.stock}</TableCell>
-                <TableCell>{data.time}</TableCell>
-                <TableCell>{data.message}</TableCell>
+            {currentPageData.length > 0 ? (
+              currentPageData.map((data, index) => (
+                <TableRow key={`notification-${index}`} hover>
+                  <TableCell>{startIndex + index + 1}</TableCell>
+                  <TableCell>{data.stock}</TableCell>
+                  <TableCell>{data.time}</TableCell>
+                  <TableCell>{data.message}</TableCell>
+                </TableRow>
+              ))
+            ) : (
+              <TableRow>
+                <TableCell colSpan={4} align="center">
+                  No data available
+                </TableCell>
               </TableRow>
-            ))}
+            )}
           </TableBody>
         </Table>
       </TableContainer>

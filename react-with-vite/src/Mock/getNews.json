@@ -1,8 +1,10 @@
-{
-    "news": [
-        {
-            "title": "News 1",
-            "description": "Description 1"
-        }
-    ]
-}
+[
+    { "title": "BPCL", "description": "5 rs dividend declared", "link": "https://www.google.com/", "pubDate": "22/Jan/2025" },
+    { "title": "Reliance", "description": "Quarterly results announced", "link": "https://www.google.com/", "pubDate": "23/Jan/2025" },
+    { "title": "BPCL", "description": "5 rs dividend declared", "link": "https://www.google.com/", "pubDate": "22/Jan/2025" },
+    { "title": "Reliance", "description": "Quarterly results announced", "link": "https://www.google.com/", "pubDate": "23/Jan/2025" },
+    { "title": "BPCL", "description": "5 rs dividend declared", "link": "https://www.google.com/", "pubDate": "22/Jan/2025" },
+    { "title": "Reliance", "description": "Quarterly results announced", "link": "https://www.google.com/", "pubDate": "23/Jan/2025" },
+    { "title": "BPCL", "description": "5 rs dividend declared", "link": "https://www.google.com/", "pubDate": "22/Jan/2025" },
+    { "title": "Reliance", "description": "Quarterly results announced", "link": "https://www.google.com/", "pubDate": "23/Jan/2025" }
+]

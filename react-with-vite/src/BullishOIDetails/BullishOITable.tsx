@@ -105,7 +105,7 @@ const BullishOITable: React.FC<BullishOITableProps> = ({
 
   return (
     <Box p={2}>
-      <TableContainer component={Paper}>
+      <TableContainer component={Paper} sx={{ width: "100%", boxShadow: 3 }}>
         <Table>
           <TableHeader
             order={order}
@@ -113,13 +113,21 @@ const BullishOITable: React.FC<BullishOITableProps> = ({
             handleSort={handleSort}
           />
           <TableBody>
-            {processedData.map((data: IBullishOIData) => (
-              <TableRowComponent
-                key={data?.id}
-                data={data}
-                onRowClick={callSelecteddata}
-              />
-            ))}
+            {processedData.length > 0 ? (
+              processedData.map((data: IBullishOIData) => (
+                <TableRowComponent
+                  key={data?.id}
+                  data={data}
+                  onRowClick={callSelecteddata}
+                />
+              ))
+            ) : (
+              <TableRow>
+                <TableCell colSpan={TABLE_HEADERS.length} align="center">
+                  No data available
+                </TableCell>
+              </TableRow>
+            )}
           </TableBody>
         </Table>
       </TableContainer>

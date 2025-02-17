@@ -47,5 +47,25 @@ export const handlers = isDevelopment && import.meta.env.VITE_USE_MSW === "true"
     const data = await import('../Mock/getGraphData.json')
     await delay(1500);
     return HttpResponse.json(data.default);
-  })  
+  }),  
+  http.get(`${API_URL}/api/v1/getHeatMapData`, async () => {
+    const data = await import('../Mock/getHeatMapData.json')
+    await delay(1500);
+    return HttpResponse.json(data.default);
+  }),
+  http.get(`${API_URL_NIFTY}/api/v1/getSectorInfo`, async () => {
+    const data = await import('../Mock/getSectorInfo.json')
+    await delay(1500);
+    return HttpResponse.json(data.default);
+  }),
+  http.get(`${API_URL_NIFTY}/api/v1/getIndexInfo`, async () => {
+    const data = await import('../Mock/getSectorIndex.json')
+    await delay(1500);
+    return HttpResponse.json(data.default);
+  }),
+  http.get(`${API_URL}/api/v1/getNews`, async () => { 
+    const data = await import('../Mock/getNews.json')
+    await delay(1500);
+    return HttpResponse.json(data.default);
+  })
 ] : [];
