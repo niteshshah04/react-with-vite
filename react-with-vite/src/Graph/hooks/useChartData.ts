@@ -10,7 +10,7 @@ export const useChartData = (row: any) => {
         const fetchData = async () => {
             try {
                 setIsLoading(true);
-                const token = row.stock ? row.stock : row.name;
+                const token = row.stock ? row.stock : row.symbol.replace("-EQ","");
                 const response = await fetch(`${API_URL}/api/v1/getOIBuildUp?token=${token}`);
                 const data = await response.json();
                 setChartData(transformData(data, token));

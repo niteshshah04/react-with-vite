@@ -67,7 +67,7 @@ const OIBuildupChart = React.forwardRef<HTMLDivElement, ILineChartModalProps>(({
             </thead>
             <tbody>
               <tr className="table-row">
-                <td className="table-cell">Put</td>
+                <td className="table-cell">PE</td>
                 {strikePrices.map((strikePrice, index) => (
                   <td
                     key={index}
@@ -81,7 +81,7 @@ const OIBuildupChart = React.forwardRef<HTMLDivElement, ILineChartModalProps>(({
                 ))}
               </tr>
               <tr className="table-row">
-                <td className="table-cell">Call</td>
+                <td className="table-cell">CE</td>
                 {strikePrices.map((strikePrice, index) => (
                   <td
                     key={index}
