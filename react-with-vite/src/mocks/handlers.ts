@@ -1,4 +1,4 @@
-// src/mocks/handlers.ts
+// await delay(1500);// src/mocks/handlers.ts
 import { http, HttpResponse, delay } from 'msw';
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -10,62 +10,67 @@ console.log('----------------Handlers----------------',isDevelopment, import.met
 export const handlers = isDevelopment && import.meta.env.VITE_USE_MSW === "true" ? [
   http.get(`${API_URL}/api/v1/getBullishOIData`, async () => {
     const data = await import('../Mock/getBullishOIDetails.json')
-    await delay(1500);
+    // await delay(1500);
     return HttpResponse.json(data.default);
   }),
   http.get(`${API_URL}/api/v1/getBearishOIData`, async () => {
     const data = await import('../Mock/getBearishOIDetails.json')
-    await delay(1500);
+    // await delay(1500);
     return HttpResponse.json(data.default);
   }),
   http.get(`${API_URL}/api/v1/getNotification`, async () => {
     const data = await import('../Mock/getNotifications.json')
-    await delay(1500);
+    // await delay(1500);
     return HttpResponse.json(data.default);
   }),
   http.get(`${API_URL_TRAINED}/bullish`, async () => {
     const data = await import('../Mock/getBullishTrainedData.json')
-    await delay(1500);
+    // await delay(1500);
     return HttpResponse.json(data.default);
   }),
   http.get(`${API_URL_TRAINED}/bearish`, async () => {
     const data = await import('../Mock/getBearishTrainedData.json')
-    await delay(1500);
+    // await delay(1500);
     return HttpResponse.json(data.default);
   }),
   http.get(`${API_URL}/api/v1/getOIAdvanceDecline`, async () => {
     const data = await import('../Mock/getAdvanceOIDecline.json')
-    await delay(1500);
+    // await delay(1500);
     return HttpResponse.json(data.default);
   }),
   http.get(`${API_URL_NIFTY}/api/v1/getNiftyDataList`, async () => {
     const data = await import('../Mock/getNiftyDataList.json')
-    await delay(1500);
+    // await delay(1500);
     return HttpResponse.json(data.default);
   }),
   http.get(`${API_URL}/api/v1/getOIBuildUp?token=ADANIENT`, async () => {
     const data = await import('../Mock/getGraphData.json')
-    await delay(1500);
+    // await delay(1500);
     return HttpResponse.json(data.default);
   }),  
   http.get(`${API_URL}/api/v1/getHeatMapData`, async () => {
     const data = await import('../Mock/getHeatMapData.json')
-    await delay(1500);
+    // await delay(1500);
     return HttpResponse.json(data.default);
   }),
   http.get(`${API_URL_NIFTY}/api/v1/getSectorInfo`, async () => {
     const data = await import('../Mock/getSectorInfo.json')
-    await delay(1500);
+    // await delay(1500);
     return HttpResponse.json(data.default);
   }),
   http.get(`${API_URL_NIFTY}/api/v1/getIndexInfo`, async () => {
     const data = await import('../Mock/getSectorIndex.json')
-    await delay(1500);
+    // await delay(1500);
     return HttpResponse.json(data.default);
   }),
   http.get(`${API_URL}/api/v1/getNews`, async () => { 
     const data = await import('../Mock/getNews.json')
-    await delay(1500);
+    // await delay(1500);
+    return HttpResponse.json(data.default);
+  }),
+  http.get(`${API_URL}/api/v1/getOIData`, async () => { 
+    const data = await import('../Mock/getOIBuildUpData.json')
+    // await delay(1500);
     return HttpResponse.json(data.default);
   })
 ] : [];

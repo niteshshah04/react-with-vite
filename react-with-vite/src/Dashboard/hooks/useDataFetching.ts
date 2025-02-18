@@ -46,7 +46,7 @@ export const useDataFetching = () => {
                 return null;
               }
               const data = await response.json();
-              console.log(`Successful response from ${url}:`, data);
+              // console.log(`Successful response from ${url}:`, data);
               return data;
             } catch (error) {
               console.error(`Error fetching from ${url}:`, error);

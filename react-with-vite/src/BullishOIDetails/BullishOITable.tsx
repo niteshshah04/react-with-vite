@@ -1,9 +1,10 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import { Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TablePagination, TableSortLabel } from "@mui/material";
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import ArrowUpward from '@mui/icons-material/ArrowUpward';
 import { IBullishOIData } from "../Dashboard/types";
 import './BullishOITable.css';
+import { IoCopyOutline } from "react-icons/io5";
 
 interface BullishOITableProps {
   order: "asc" | "desc";
@@ -50,35 +51,59 @@ const TableHeader: React.FC<{
 const TableRowComponent: React.FC<{
   data: IBullishOIData;
   onRowClick: (data: IBullishOIData) => void;
-}> = React.memo(({ data, onRowClick }) => (
-  <TableRow hover onClick={() => onRowClick(data)} className="table-row">
-    <TableCell>{data?.id}</TableCell>
-    <TableCell>{data?.stock}</TableCell>
-    <TableCell>{data?.ltp}</TableCell>
-    <TableCell>{data?.active.toString()}</TableCell>
-    <TableCell>
-      {data?.count}{" "}
-      {data?.active ? (
-        <ArrowUpward
-          className="arrow-icon arrow-icon-up"
-        />
-      ) : (
-        <ArrowDownwardIcon
-          className="arrow-icon arrow-icon-down"
-        />
-      )}
-    </TableCell>
-    <TableCell>{data?.time}</TableCell>
-    <TableCell>{data?.CE_LongBuildup}</TableCell>
-    <TableCell>{data?.CE_LongUnwinding}</TableCell>
-    <TableCell>{data?.CE_ShortBuildup}</TableCell>
-    <TableCell>{data?.CE_ShortCovering}</TableCell>
-    <TableCell>{data?.PE_LongBuildUp}</TableCell>
-    <TableCell>{data?.PE_LongUnwinding}</TableCell>
-    <TableCell>{data?.PE_ShortBuildUp}</TableCell>
-    <TableCell>{data?.PE_ShortCovering}</TableCell>
-  </TableRow>
-));
+}> = React.memo(({ data, onRowClick }) => {
+  const [copiedText, setCopiedText] = useState("");
+
+  const copyToClipboard = (text: string) => {
+    navigator.clipboard.writeText(text).then(() => {
+      setCopiedText(text);
+      setTimeout(() => setCopiedText(""), 5000); // Reset copied state after 5s
+    });
+  };
+
+  return (
+    <TableRow hover onClick={() => onRowClick(data)} className="table-row">
+      <TableCell>{data?.id}</TableCell>
+      <TableCell>
+        <div className="flex items-center space-x-1">
+          <span>{data?.stock}</span>
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              copyToClipboard(data?.stock);
+            }}
+            className="copy-button"
+          >
+            <IoCopyOutline />
+          </button>
+        </div>
+      </TableCell>
+      <TableCell>{data?.ltp}</TableCell>
+      <TableCell>{data?.active.toString()}</TableCell>
+      <TableCell>
+        {data?.count}{" "}
+        {data?.active ? (
+          <ArrowUpward
+            className="arrow-icon arrow-icon-up"
+          />
+        ) : (
+          <ArrowDownwardIcon
+            className="arrow-icon arrow-icon-down"
+          />
+        )}
+      </TableCell>
+      <TableCell>{data?.time}</TableCell>
+      <TableCell>{data?.CE_LongBuildup}</TableCell>
+      <TableCell>{data?.CE_LongUnwinding}</TableCell>
+      <TableCell>{data?.CE_ShortBuildup}</TableCell>
+      <TableCell>{data?.CE_ShortCovering}</TableCell>
+      <TableCell>{data?.PE_LongBuildUp}</TableCell>
+      <TableCell>{data?.PE_LongUnwinding}</TableCell>
+      <TableCell>{data?.PE_ShortBuildUp}</TableCell>
+      <TableCell>{data?.PE_ShortCovering}</TableCell>
+    </TableRow>
+  );
+});
 
 const BullishOITable: React.FC<BullishOITableProps> = ({
   order,
