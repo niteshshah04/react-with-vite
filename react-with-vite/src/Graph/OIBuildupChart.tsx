@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Box, Button, Typography } from "@mui/material";
+import React from "react";
+import { Box, Typography } from "@mui/material";
 import "./OIBuildupChart.css";
 import { useOIBuildUpData } from "./hooks/useOIBuildUpData";
 
@@ -15,6 +15,20 @@ const buildUpColors: any = {
   "Long Unwinding": "#FFA500", // Orange
   Unchanged: "#D3D3D3", // Gray
 };
+
+
+interface OIBuildUpData {
+  [strikePrice: number]: {
+    PE?: {
+      buildUp: string;
+      openInterest: number;
+    };
+    CE?: {
+      buildUp: string;
+      openInterest: number;
+    };
+  };
+}
 
 const OIBuildupChart = React.forwardRef<HTMLDivElement, ILineChartModalProps>(({ closeModal, row }, ref) => {
   const { oiBuildUpData, isLoading } = useOIBuildUpData(row);
@@ -52,6 +66,7 @@ const OIBuildupChart = React.forwardRef<HTMLDivElement, ILineChartModalProps>(({
   const strikePrices = Object.keys(oiBuildUpData);
 
   return (
+    
     <div className="container">
       <h2>{row.stock} OI Buildup</h2>
       <div className="table-container">
@@ -82,7 +97,7 @@ const OIBuildupChart = React.forwardRef<HTMLDivElement, ILineChartModalProps>(({
               </tr>
               <tr className="table-row">
                 <td className="table-cell">CE</td>
-                {strikePrices.map((strikePrice, index) => (
+                {strikePrices.map((strikePrice:any, index) => (
                   <td
                     key={index}
                     className={`table-cell color-cell ${getClassName(
@@ -96,7 +111,7 @@ const OIBuildupChart = React.forwardRef<HTMLDivElement, ILineChartModalProps>(({
               </tr>
               <tr className="table-row">
                 <td className="table-cell">PCR</td>
-                {strikePrices.map((strikePrice, index) => (
+                {strikePrices.map((strikePrice:any, index) => (
                   <td key={index}>
                     {oiBuildUpData[strikePrice]?.PE && oiBuildUpData[strikePrice]?.CE
                       ? (oiBuildUpData[strikePrice].PE.openInterest / oiBuildUpData[strikePrice].CE.openInterest).toFixed(2)

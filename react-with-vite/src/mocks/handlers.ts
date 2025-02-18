@@ -1,5 +1,5 @@
 // await delay(1500);// src/mocks/handlers.ts
-import { http, HttpResponse, delay } from 'msw';
+import { http, HttpResponse } from 'msw';
 
 const API_URL = import.meta.env.VITE_API_URL;
 const API_URL_TRAINED = import.meta.env.VITE_API_URL_TRAINED;

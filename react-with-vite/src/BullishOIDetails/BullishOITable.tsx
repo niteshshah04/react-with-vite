@@ -1,10 +1,9 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo } from "react";
 import { Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TablePagination, TableSortLabel } from "@mui/material";
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import ArrowUpward from '@mui/icons-material/ArrowUpward';
 import { IBullishOIData } from "../Dashboard/types";
 import './BullishOITable.css';
-import { IoCopyOutline } from "react-icons/io5";
 
 interface BullishOITableProps {
   order: "asc" | "desc";
@@ -52,14 +51,6 @@ const TableRowComponent: React.FC<{
   data: IBullishOIData;
   onRowClick: (data: IBullishOIData) => void;
 }> = React.memo(({ data, onRowClick }) => {
-  const [copiedText, setCopiedText] = useState("");
-
-  const copyToClipboard = (text: string) => {
-    navigator.clipboard.writeText(text).then(() => {
-      setCopiedText(text);
-      setTimeout(() => setCopiedText(""), 5000); // Reset copied state after 5s
-    });
-  };
 
   return (
     <TableRow hover onClick={() => onRowClick(data)} className="table-row">
@@ -67,15 +58,6 @@ const TableRowComponent: React.FC<{
       <TableCell>
         <div className="flex items-center space-x-1">
           <span>{data?.stock}</span>
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              copyToClipboard(data?.stock);
-            }}
-            className="copy-button"
-          >
-            <IoCopyOutline />
-          </button>
         </div>
       </TableCell>
       <TableCell>{data?.ltp}</TableCell>

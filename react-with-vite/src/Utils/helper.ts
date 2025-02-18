@@ -39,21 +39,18 @@ export const transformDataWithStrikePice = (dummyData: any, stock: string) => {
             return acc;
         }, {});
     } else {
-        groupedData = Object.keys(dummyData).reduce((acc: any, stock: string) => {
-            acc[stock] = dummyData[stock].reduce((stockAcc: any, item: any) => {
-                const strikePrice = item.strikePrice;
-                if (!stockAcc[strikePrice]) {
-                    stockAcc[strikePrice] = [];
-                }
-                const symbolType = item.symbol.includes("CE") ? "CE" : "PE";
-                if (!acc[strikePrice][symbolType]) {
-                    acc[strikePrice][symbolType] = [];
-                }
-                acc[strikePrice][symbolType].push(item);
-                return stockAcc;
-            }, {});
+        groupedData = dummyData[stock].reduce((acc: any, item: any) => {
+            const strikePrice = item.strikePrice;
+            if (!acc[strikePrice]) {
+                acc[strikePrice] = [];
+            }
+            const symbolType = item.symbol.includes("CE") ? "CE" : "PE";
+            if (!acc[strikePrice][symbolType]) {
+                acc[strikePrice][symbolType] = [];
+            }
+            acc[strikePrice][symbolType] = item;
             return acc;
-        }, {});
+            }, {});
     }
 
     return groupedData;
