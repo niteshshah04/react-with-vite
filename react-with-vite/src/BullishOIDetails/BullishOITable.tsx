@@ -50,35 +50,42 @@ const TableHeader: React.FC<{
 const TableRowComponent: React.FC<{
   data: IBullishOIData;
   onRowClick: (data: IBullishOIData) => void;
-}> = React.memo(({ data, onRowClick }) => (
-  <TableRow hover onClick={() => onRowClick(data)} className="table-row">
-    <TableCell>{data?.id}</TableCell>
-    <TableCell>{data?.stock}</TableCell>
-    <TableCell>{data?.ltp}</TableCell>
-    <TableCell>{data?.active.toString()}</TableCell>
-    <TableCell>
-      {data?.count}{" "}
-      {data?.active ? (
-        <ArrowUpward
-          className="arrow-icon arrow-icon-up"
-        />
-      ) : (
-        <ArrowDownwardIcon
-          className="arrow-icon arrow-icon-down"
-        />
-      )}
-    </TableCell>
-    <TableCell>{data?.time}</TableCell>
-    <TableCell>{data?.CE_LongBuildup}</TableCell>
-    <TableCell>{data?.CE_LongUnwinding}</TableCell>
-    <TableCell>{data?.CE_ShortBuildup}</TableCell>
-    <TableCell>{data?.CE_ShortCovering}</TableCell>
-    <TableCell>{data?.PE_LongBuildUp}</TableCell>
-    <TableCell>{data?.PE_LongUnwinding}</TableCell>
-    <TableCell>{data?.PE_ShortBuildUp}</TableCell>
-    <TableCell>{data?.PE_ShortCovering}</TableCell>
-  </TableRow>
-));
+}> = React.memo(({ data, onRowClick }) => {
+
+  return (
+    <TableRow hover onClick={() => onRowClick(data)} className="table-row">
+      <TableCell>{data?.id}</TableCell>
+      <TableCell>
+        <div className="flex items-center space-x-1">
+          <span>{data?.stock}</span>
+        </div>
+      </TableCell>
+      <TableCell>{data?.ltp}</TableCell>
+      <TableCell>{data?.active.toString()}</TableCell>
+      <TableCell>
+        {data?.count}{" "}
+        {data?.active ? (
+          <ArrowUpward
+            className="arrow-icon arrow-icon-up"
+          />
+        ) : (
+          <ArrowDownwardIcon
+            className="arrow-icon arrow-icon-down"
+          />
+        )}
+      </TableCell>
+      <TableCell>{data?.time}</TableCell>
+      <TableCell>{data?.CE_LongBuildup}</TableCell>
+      <TableCell>{data?.CE_LongUnwinding}</TableCell>
+      <TableCell>{data?.CE_ShortBuildup}</TableCell>
+      <TableCell>{data?.CE_ShortCovering}</TableCell>
+      <TableCell>{data?.PE_LongBuildUp}</TableCell>
+      <TableCell>{data?.PE_LongUnwinding}</TableCell>
+      <TableCell>{data?.PE_ShortBuildUp}</TableCell>
+      <TableCell>{data?.PE_ShortCovering}</TableCell>
+    </TableRow>
+  );
+});
 
 const BullishOITable: React.FC<BullishOITableProps> = ({
   order,

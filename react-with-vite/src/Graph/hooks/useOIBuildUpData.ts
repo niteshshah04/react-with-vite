@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import { transformData } from "../../Utils/helper";
+import { transformDataWithStrikePice } from "../../Utils/helper";
 
-export const useChartData = (row: any) => {
-    const [chartData, setChartData] = useState([]);
+export const useOIBuildUpData = (row: any) => {
+    const [oiBuildUpData, setOIBuildUpData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const API_URL = import.meta.env.VITE_API_URL;
 
@@ -10,10 +10,10 @@ export const useChartData = (row: any) => {
         const fetchData = async () => {
             try {
                 setIsLoading(true);
-                const token = row.stock ? row.stock : row.symbol.replace("-EQ","");
-                const response = await fetch(`${API_URL}/api/v1/getOIBuildUp?token=${token}`);
+                const token = row.stock ? row.stock : row.name;
+                const response = await fetch(`${API_URL}/api/v1/getOIData?sybmol=${token}`);
                 const data = await response.json();
-                setChartData(transformData(data, token));
+                setOIBuildUpData(transformDataWithStrikePice(data, token));
             } catch (error) {
                 console.error('Error fetching graph data:', error);
             } finally {
@@ -24,5 +24,5 @@ export const useChartData = (row: any) => {
         fetchData();
     }, [row]);
 
-    return { chartData, isLoading };
+    return { oiBuildUpData, isLoading };
 }; 

@@ -20,3 +20,38 @@ export const transformData = (dummyData: any, stock: string) => {
         };
     });
 }
+
+
+export const transformDataWithStrikePice = (dummyData: any, stock: string) => {
+    let groupedData: any;
+
+    if (Array.isArray(dummyData)) {
+        groupedData = dummyData.reduce((acc: any, item: any) => {
+            const strikePrice = item.strikePrice;
+            if (!acc[strikePrice]) {
+                acc[strikePrice] = [];
+            }
+            const symbolType = item.symbol.includes("CE") ? "CE" : "PE";
+            if (!acc[strikePrice][symbolType]) {
+                acc[strikePrice][symbolType] = [];
+            }
+            acc[strikePrice][symbolType] = item;
+            return acc;
+        }, {});
+    } else {
+        groupedData = dummyData[stock].reduce((acc: any, item: any) => {
+            const strikePrice = item.strikePrice;
+            if (!acc[strikePrice]) {
+                acc[strikePrice] = [];
+            }
+            const symbolType = item.symbol.includes("CE") ? "CE" : "PE";
+            if (!acc[strikePrice][symbolType]) {
+                acc[strikePrice][symbolType] = [];
+            }
+            acc[strikePrice][symbolType] = item;
+            return acc;
+            }, {});
+    }
+
+    return groupedData;
+}

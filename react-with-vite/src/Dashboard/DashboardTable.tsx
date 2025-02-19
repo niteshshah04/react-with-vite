@@ -18,6 +18,8 @@ import HeatMap from "../HeatMap/HeatMap";
 import MUITable from "../SectorInfo/SectorInfo";
 import SectorIndexTable from "../SectorIndex/SectorIndexTable";
 import NewsCard from "../News/NewsCard";
+import OIBuildupChart from "../Graph/OIBuildupChart"; 
+
 
 const DashboardTable = () => {
   const [selectedData, setSelectedData] = useState(null);
@@ -157,6 +159,7 @@ const DashboardTable = () => {
               >
                 <Tab label="Chart" />
                 <Tab label="Details" />
+                <Tab label="OI BuildUp" />
               </Tabs>
             </Box>
 
@@ -171,6 +174,9 @@ const DashboardTable = () => {
                     row={selectedData}
                   />
                 </div>
+              )}
+              {modalTabIndex === 2 && (
+                <OIBuildupChart closeModal={closeModal} row={selectedData}/>
               )}
             </Box>
           </Box>
