@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import "./OIBuildupChart.css";
 import { useOIBuildUpData } from "./hooks/useOIBuildUpData";
 
@@ -16,9 +16,8 @@ const buildUpColors: any = {
   Unchanged: "#D3D3D3", // Gray
 };
 
-
 interface OIBuildUpData {
-  [strikePrice: number]: {
+  [strikePrice: string]: {
     PE?: {
       buildUp: string;
       openInterest: number;
@@ -31,7 +30,7 @@ interface OIBuildUpData {
 }
 
 const OIBuildupChart = React.forwardRef<HTMLDivElement, ILineChartModalProps>(({ closeModal, row }, ref) => {
-  const { oiBuildUpData, isLoading } = useOIBuildUpData(row);
+  const { oiBuildUpData, isLoading } = useOIBuildUpData(row) as unknown as { oiBuildUpData: OIBuildUpData; isLoading: boolean };
   const getClassName = (value: string) => {
     switch (value) {
       case "Call Buying":
@@ -66,7 +65,11 @@ const OIBuildupChart = React.forwardRef<HTMLDivElement, ILineChartModalProps>(({
   const strikePrices = Object.keys(oiBuildUpData);
 
   return (
-    
+    <>
+    <Typography id="modal-title" variant="h6" gutterBottom align="center">
+                <Button variant="contained" color="error" onClick={closeModal} sx={{ position: "absolute", top: 5, right: 16 }}>Close</Button>
+        
+            </Typography>
     <div className="container">
       <h2>{row.stock} OI Buildup</h2>
       <div className="table-container">
@@ -83,14 +86,14 @@ const OIBuildupChart = React.forwardRef<HTMLDivElement, ILineChartModalProps>(({
             <tbody>
               <tr className="table-row">
                 <td className="table-cell">PE</td>
-                {strikePrices.map((strikePrice, index) => (
+                {strikePrices.map((strikePrice:any, index) => (
                   <td
                     key={index}
                     className={`table-cell color-cell ${getClassName(
                       oiBuildUpData[strikePrice]?.PE?.buildUp || ""
                     )}`}
                     style={{
-                      backgroundColor: buildUpColors[oiBuildUpData[strikePrice]?.PE?.buildUp] || "transparent",
+                      backgroundColor: buildUpColors[oiBuildUpData[strikePrice]?.PE?.buildUp as keyof typeof buildUpColors] || "transparent",
                     }}
                   ></td>
                 ))}
@@ -104,7 +107,7 @@ const OIBuildupChart = React.forwardRef<HTMLDivElement, ILineChartModalProps>(({
                       oiBuildUpData[strikePrice]?.CE?.buildUp || ""
                     )}`}
                     style={{
-                      backgroundColor: buildUpColors[oiBuildUpData[strikePrice]?.CE?.buildUp] || "transparent",
+                      backgroundColor: buildUpColors[oiBuildUpData[strikePrice]?.CE?.buildUp as keyof typeof buildUpColors] || "transparent",
                     }}
                   ></td>
                 ))}
@@ -136,6 +139,7 @@ const OIBuildupChart = React.forwardRef<HTMLDivElement, ILineChartModalProps>(({
         </div>
       </div>
     </div>
+    </>
   );
 });
 

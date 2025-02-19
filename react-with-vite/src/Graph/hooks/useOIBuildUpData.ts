@@ -11,7 +11,7 @@ export const useOIBuildUpData = (row: any) => {
             try {
                 setIsLoading(true);
                 const token = row.stock ? row.stock : row.name;
-                const response = await fetch(`${API_URL}/api/v1/getOIData?sybmol=${token}`);
+                const response = await fetch(`${API_URL}/api/v1/getOIData?symbol=${token}`);
                 const data = await response.json();
                 setOIBuildUpData(transformDataWithStrikePice(data, token));
             } catch (error) {
