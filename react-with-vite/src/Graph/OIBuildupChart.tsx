@@ -117,7 +117,7 @@ const OIBuildupChart = React.forwardRef<HTMLDivElement, ILineChartModalProps>(({
                 {strikePrices.map((strikePrice:any, index) => (
                   <td key={index}>
                     {oiBuildUpData[strikePrice]?.PE && oiBuildUpData[strikePrice]?.CE
-                      ? (oiBuildUpData[strikePrice].PE.openInterest / oiBuildUpData[strikePrice].CE.openInterest).toFixed(2)
+                      ? (oiBuildUpData[strikePrice].PE.openInterest / oiBuildUpData[strikePrice].CE.openInterest)?.toFixed(2)
                       : "N/A"}
                   </td>
                 ))}
