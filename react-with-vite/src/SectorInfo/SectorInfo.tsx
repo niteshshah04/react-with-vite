@@ -70,7 +70,7 @@ const MUITable = ({ sectorInfo }: SectorInfoProps) => {
   const exportToCSV = () => {
     const csvContent = [
       ["Sector", "Sector Value", "Company", "Company Value"],
-      ...filteredRows.map((row) => [row.sector, row.value.toFixed(2), row.name, row.compValue.toFixed(2)])
+      ...filteredRows.map((row) => [row.sector, row.value?.toFixed(2), row.name, row.compValue?.toFixed(2)])
     ]
       .map((e) => e.join(","))
       .join("\n");
@@ -131,9 +131,9 @@ const MUITable = ({ sectorInfo }: SectorInfoProps) => {
             {filteredRows.length > 0 && filteredRows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row, index) => (
               <TableRow key={index}>
                 {visibleColumns.sector && <TableCell>{row.sector}</TableCell>}
-                {visibleColumns.value && <TableCell sx={{ color: row.value < 0 ? "red" : "green" }}>{row.value.toFixed(2)}</TableCell>}
+                {visibleColumns.value && <TableCell sx={{ color: row.value < 0 ? "red" : "green" }}>{row.value?.toFixed(2)}</TableCell>}
                 {visibleColumns.name && <TableCell>{row.name}</TableCell>}
-                {visibleColumns.compValue && <TableCell sx={{ color: row.compValue < 0 ? "red" : "green" }}>{row.compValue.toFixed(2)}</TableCell>}
+                {visibleColumns.compValue && <TableCell sx={{ color: row.compValue < 0 ? "red" : "green" }}>{row.compValue?.toFixed(2)}</TableCell>}
               </TableRow>
             ))}
           </TableBody>
