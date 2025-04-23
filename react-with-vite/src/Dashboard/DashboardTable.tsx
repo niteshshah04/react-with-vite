@@ -19,9 +19,7 @@ import MUITable from "../SectorInfo/SectorInfo";
 import SectorIndexTable from "../SectorIndex/SectorIndexTable";
 import NewsCard from "../News/NewsCard";
 import OIBuildupChart from "../Graph/OIBuildupChart"; 
-import DetailsModal from "../Graph/DetailsModal"
-import { Details } from "@mui/icons-material";
-
+import DetailsModal from "../Graph/DetailsModal";
 
 const DashboardTable = () => {
   const [selectedData, setSelectedData] = useState(null);

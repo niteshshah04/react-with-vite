@@ -70,8 +70,10 @@ export const useDataFetching = () => {
           news
         ] = responses;
 
-        if (bullishOIData) setBullishOIData(cleanData(bullishOIData));
-        if (bearishOIData) setBearishOIData(cleanData(bearishOIData));
+        const bullishCleanedData : any = cleanData(bullishOIData);
+        if (bullishOIData) setBullishOIData(bullishCleanedData);
+        const bearishCleanedData : any = cleanData(bearishOIData);
+        if (bearishOIData) setBearishOIData(bearishCleanedData);
         if (bullishTrainedData) setBullishTrainedOIData(cleanBullishTrainedOIData(bullishTrainedData));
         if (bearishTrainedData) setBearishTrainedOIData(cleanBullishTrainedOIData(bearishTrainedData));
         if (oiAdvanceDeclineData) setOIAdvanceDeclineData(oiAdvanceDeclineData);

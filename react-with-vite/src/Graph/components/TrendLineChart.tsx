@@ -17,10 +17,11 @@ const TrendLineChart: React.FC<TrendLineChartProps> = ({ chartData, hiddenLines,
         color: string;
     }
 
-    let lineConfigs: LineConfig[];
+    // Ensure lineConfigs is initialized before use
+    const lineConfigs: LineConfig[] = []; // Initialize with an empty array or appropriate default value
 
     if(type ==='Bullish'){
-        lineConfigs = [
+        lineConfigs.push(
             // { key: 'CE_ShortBuildup', name: 'CE Short Buildup', color: '#C70039' },
             // { key: 'CE_LongBuildup', name: 'CE Long Build', color: '#900C3F' },
             { key: 'CE_ShortCovering', name: 'CE Short Covering', color: 'red' },
@@ -30,9 +31,9 @@ const TrendLineChart: React.FC<TrendLineChartProps> = ({ chartData, hiddenLines,
             // { key: 'PE_ShortCovering', name: 'PE Short Covering', color: '#33FF57' },
             // { key: 'PE_LongUnwinding', name: 'PE Short Unwinding', color: '#4585C7' }
             { key: 'Average_Bullish', name: 'Average Bullish', color: 'gold' }
-        ];
+        );
     }else if(type ==='Bearish'){
-        lineConfigs = [
+        lineConfigs.push(
             { key: 'CE_ShortBuildup', name: 'CE Short Buildup', color: 'red' },
             // { key: 'CE_LongBuildup', name: 'CE Long Build', color: '#900C3F' },
             // { key: 'CE_ShortCovering', name: 'CE Short Covering', color: 'red' },
@@ -42,7 +43,7 @@ const TrendLineChart: React.FC<TrendLineChartProps> = ({ chartData, hiddenLines,
             { key: 'PE_ShortCovering', name: 'PE Short Covering', color: 'green' },
             // { key: 'PE_LongUnwinding', name: 'PE Short Unwinding', color: '#4585C7' }
             { key: 'Average_Bearish', name: 'Average Bearish', color: 'gold' }
-        ];
+        );
     }
 
     const processedData = chartData.map(data => {
