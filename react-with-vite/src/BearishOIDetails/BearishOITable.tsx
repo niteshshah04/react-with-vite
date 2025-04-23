@@ -90,36 +90,39 @@ const BearishOITable: React.FC<BearishOITableProps> = (props) => {
           {TableHeaders}
           <TableBody>
             {processedData.length > 0 ? (
-              processedData.map((data: IBullishOIData) => (
-                <TableRow 
-                  key={data.id} 
-                  hover 
-                  onClick={() => handleRowClick(data)} 
-                  className="table-row"
-              >
-                <TableCell>{data.id}</TableCell>
-                <TableCell>{data.stock}</TableCell>
-                <TableCell>{data.ltp}</TableCell>
-                <TableCell>{data.active.toString()}</TableCell>
-                <TableCell>
-                  {data.count}{" "}
-                  {data.active ? (
-                    <ArrowUpward className="arrow-up-icon" />
-                  ) : (
-                    <ArrowDownwardIcon className="arrow-down-icon" />
-                  )}
-                </TableCell>
-                <TableCell>{data.time}</TableCell>
-                <TableCell>{data.CE_LongBuildup}</TableCell>
-                <TableCell>{data.CE_LongUnwinding}</TableCell>
-                <TableCell>{data.CE_ShortBuildup}</TableCell>
-                <TableCell>{data.CE_ShortCovering}</TableCell>
-                <TableCell>{data.PE_LongBuildUp}</TableCell>
-                <TableCell>{data.PE_LongUnwinding}</TableCell>
-                <TableCell>{data.PE_ShortBuildUp}</TableCell>
-                <TableCell>{data.PE_ShortCovering}</TableCell>
-              </TableRow>
-            ))
+              processedData.map((data: IBullishOIData) => {
+                const highlightClass = Number(data?.CE_ShortBuildup) > 80 ? "highlight-row" : "";
+                return (
+                  <TableRow 
+                    key={data.id} 
+                    hover 
+                    onClick={() => handleRowClick(data)} 
+                    className={`table-row ${highlightClass}`}
+                  >
+                    <TableCell>{data.id}</TableCell>
+                    <TableCell>{data.stock}</TableCell>
+                    <TableCell>{data.ltp}</TableCell>
+                    <TableCell>{data.active.toString()}</TableCell>
+                    <TableCell>
+                      {data.count}{" "}
+                      {data.active ? (
+                        <ArrowUpward className="arrow-up-icon" />
+                      ) : (
+                        <ArrowDownwardIcon className="arrow-down-icon" />
+                      )}
+                    </TableCell>
+                    <TableCell>{data.time}</TableCell>
+                    <TableCell>{data.CE_LongBuildup}</TableCell>
+                    <TableCell>{data.CE_LongUnwinding}</TableCell>
+                    <TableCell>{data.CE_ShortBuildup}</TableCell>
+                    <TableCell>{data.CE_ShortCovering}</TableCell>
+                    <TableCell>{data.PE_LongBuildUp}</TableCell>
+                    <TableCell>{data.PE_LongUnwinding}</TableCell>
+                    <TableCell>{data.PE_ShortBuildUp}</TableCell>
+                    <TableCell>{data.PE_ShortCovering}</TableCell>
+                  </TableRow>
+                );
+              })
             ) : (
               <TableRow>
                 <TableCell colSpan={TABLE_COLUMNS.length} align="center">

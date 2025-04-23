@@ -4,6 +4,7 @@ import { useCleanData } from "./useBullishOITable";
 import { useBullishTrainedOIData } from "./useBullishTrainedOITable";
 import { IBullishOIData, IBUllishTrainedOIData, INiftyStockList } from "../types";
 import { INotificationData } from '../../Notification/types';
+
 interface OIAdvanceDeclineData {
   Advance: number;
   Decline: number;
@@ -25,6 +26,7 @@ export const useDataFetching = () => {
   const [sectorInfo, setSectorInfo] = useState<any[]>([]);
   const [sectorIndex, setSectorIndex] = useState<any[]>([]);
   const [news, setNews] = useState<any[]>([]);
+  const [combinedOIData, setCombinedOIData] = useState<IBullishOIData[]>([]);
 
   const { cleanBullishTrainedOIData } = useBullishTrainedOIData();
   const { cleanData } = useCleanData();
@@ -78,6 +80,11 @@ export const useDataFetching = () => {
         if (sectorInfo) setSectorInfo(sectorInfo);
         if (sectorIndex) setSectorIndex(sectorIndex);
         if (news) setNews(news);
+
+        // Combine bullishOIData and bearishOIData
+        if (bullishOIData && bearishOIData) {
+          setCombinedOIData([bullishOIData, bearishOIData]);
+        }
       } catch (error) {
         console.error("Error in fetchData:", error);
       } finally {
@@ -101,6 +108,7 @@ export const useDataFetching = () => {
     isLoading,
     sectorInfo,
     sectorIndex,
-    news
+    news,
+    combinedOIData
   };
 };

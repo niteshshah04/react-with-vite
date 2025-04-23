@@ -51,9 +51,10 @@ const TableRowComponent: React.FC<{
   data: IBullishOIData;
   onRowClick: (data: IBullishOIData) => void;
 }> = React.memo(({ data, onRowClick }) => {
+  const highlightClass = Number(data?.PE_ShortBuildUp) > 80 ? "bullish-highlight-row" : "";
 
   return (
-    <TableRow hover onClick={() => onRowClick(data)} className="table-row">
+    <TableRow hover onClick={() => onRowClick(data)} className={`table-row ${highlightClass}`}>
       <TableCell>{data?.id}</TableCell>
       <TableCell>
         <div className="flex items-center space-x-1">

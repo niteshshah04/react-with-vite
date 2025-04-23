@@ -19,6 +19,8 @@ import MUITable from "../SectorInfo/SectorInfo";
 import SectorIndexTable from "../SectorIndex/SectorIndexTable";
 import NewsCard from "../News/NewsCard";
 import OIBuildupChart from "../Graph/OIBuildupChart"; 
+import DetailsModal from "../Graph/DetailsModal"
+import { Details } from "@mui/icons-material";
 
 
 const DashboardTable = () => {
@@ -37,7 +39,8 @@ const DashboardTable = () => {
     isLoading,
     sectorInfo,
     sectorIndex,
-    news
+    news,
+    combinedOIData
   } = useDataFetching();
 
   const {
@@ -157,9 +160,10 @@ const DashboardTable = () => {
                 onChange={handleModalTabChange}
                 centered
               >
-                <Tab label="Chart" />
-                <Tab label="Details" />
+                <Tab label="CE/PE Trends" />
+                <Tab label="Sentiment" />
                 <Tab label="OI BuildUp" />
+                <Tab label="Details" />
               </Tabs>
             </Box>
 
@@ -177,6 +181,9 @@ const DashboardTable = () => {
               )}
               {modalTabIndex === 2 && (
                 <OIBuildupChart closeModal={closeModal} row={selectedData}/>
+              )}
+               {modalTabIndex === 3 && (
+                <DetailsModal closeModal={closeModal} row={selectedData} oiData={combinedOIData}/>
               )}
             </Box>
           </Box>

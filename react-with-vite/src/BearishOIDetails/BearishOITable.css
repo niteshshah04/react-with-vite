@@ -12,4 +12,15 @@
   font-size: 24px;
   color: red;
   vertical-align: middle;
-} 
+}
+
+/* Add animation for highlighting bearish rows */
+@keyframes blink-red {
+  0% { background-color: #f8d7da; }
+  50% { background-color: #f5c6cb; }
+  100% { background-color: #f8d7da; }
+}
+
+.highlight-row {
+  animation: blink-red 5s infinite;
+}

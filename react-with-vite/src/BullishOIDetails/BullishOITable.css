@@ -13,4 +13,17 @@
 
 .arrow-icon-down {
   color: red;
-} 
+}
+
+/* Add animation for highlighting rows */
+@keyframes blink-green {
+  0% { background-color: #d4edda; }
+  25% { background-color: #c3e6cb; }
+  50% { background-color: #c3e6cb; }
+  75% { background-color: #c3e6cb; }
+  100% { background-color: #d4edda; }
+}
+
+.bullish-highlight-row {
+  animation: blink-green 5s infinite;
+}
