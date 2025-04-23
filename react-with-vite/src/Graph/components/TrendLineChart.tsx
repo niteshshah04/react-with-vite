@@ -29,8 +29,9 @@ const TrendLineChart: React.FC<TrendLineChartProps> = ({ chartData, hiddenLines,
             // { key: 'PE_LongBuildUp', name: 'PE Long Build', color: '#3F90C7' },
             // { key: 'PE_ShortCovering', name: 'PE Short Covering', color: '#33FF57' },
             // { key: 'PE_LongUnwinding', name: 'PE Short Unwinding', color: '#4585C7' }
+            { key: 'Average_Bullish', name: 'Average Bullish', color: 'gold' }
         ];
-    }else {
+    }else if(type ==='Bearish'){
         lineConfigs = [
             { key: 'CE_ShortBuildup', name: 'CE Short Buildup', color: 'red' },
             // { key: 'CE_LongBuildup', name: 'CE Long Build', color: '#900C3F' },
@@ -40,9 +41,19 @@ const TrendLineChart: React.FC<TrendLineChartProps> = ({ chartData, hiddenLines,
             // { key: 'PE_LongBuildUp', name: 'PE Long Build', color: '#3F90C7' },
             { key: 'PE_ShortCovering', name: 'PE Short Covering', color: 'green' },
             // { key: 'PE_LongUnwinding', name: 'PE Short Unwinding', color: '#4585C7' }
+            { key: 'Average_Bearish', name: 'Average Bearish', color: 'gold' }
         ];
     }
-     
+
+    const processedData = chartData.map(data => {
+        const averageBullish = (data.CE_ShortCovering + data.PE_ShortBuildup) / 2;
+        const averageBearish = (data.CE_ShortBuildup + data.PE_ShortCovering) / 2;
+        return {
+            ...data,
+            Average_Bullish: averageBullish,
+            Average_Bearish: averageBearish
+        };
+    });
 
     return (
         <CardContent>
@@ -51,7 +62,7 @@ const TrendLineChart: React.FC<TrendLineChartProps> = ({ chartData, hiddenLines,
             </Typography>
             <ResponsiveContainer width="100%" height={300}>
                 <LineChart
-                    data={chartData}
+                    data={processedData}
                     margin={{ top: 20, right: 30, left: 20, bottom: 10 }}
                 >
                     <XAxis dataKey="time" />
@@ -74,4 +85,4 @@ const TrendLineChart: React.FC<TrendLineChartProps> = ({ chartData, hiddenLines,
     );
 };
 
-export default TrendLineChart; 
+export default TrendLineChart;

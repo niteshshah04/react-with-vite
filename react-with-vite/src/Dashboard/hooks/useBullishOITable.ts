@@ -15,14 +15,14 @@ const useCleanData = () => {
         active: data[key].active,
         ltp: lastRecord.ltp,
         time: lastRecord.time,
-        CE_ShortBuildup: lastRecord.CE_ShortBuildup?.toFixed(2),
-        CE_LongBuildup: lastRecord.CE_LongBuildup?.toFixed(2),
-        PE_LongBuildUp: lastRecord.PE_LongBuildUp?.toFixed(2),
-        PE_LongUnwinding: lastRecord.PE_LongUnwinding?.toFixed(2),
-        PE_ShortBuildUp: lastRecord.PE_ShortBuildUp?.toFixed(2),
-        CE_ShortCovering: lastRecord.CE_ShortCovering?.toFixed(2),
-        PE_ShortCovering: lastRecord.PE_ShortCovering?.toFixed(2),
-        CE_LongUnwinding: lastRecord.CE_LongUnwinding?.toFixed(2)
+        CE_ShortBuildup: lastRecord.CE_ShortBuildup.toFixed(2),
+        CE_LongBuildup: lastRecord.CE_LongBuildup.toFixed(2),
+        PE_LongBuildUp: 0,
+        PE_LongUnwinding: lastRecord.PE_LongUnwinding.toFixed(2),
+        PE_ShortBuildUp: lastRecord.PE_ShortBuildUp.toFixed(2),
+        CE_ShortCovering: lastRecord.CE_ShortCovering.toFixed(2),
+        PE_ShortCovering: lastRecord.PE_ShortCovering.toFixed(2),
+        CE_LongUnwinding: 0
       };
     });
   }, []);
