@@ -12,14 +12,14 @@ describe('BearishOITable', () => {
       active: true,
       count: 5,
       time: '10:00',
-      CE_LongBuildup: '100',
-      CE_LongUnwinding: '50',
-      CE_ShortBuildup: '30',
-      CE_ShortCovering: '20',
-      PE_LongBuildUp: '80',
-      PE_LongUnwinding: '40',
-      PE_ShortBuildUp: '25',
-      PE_ShortCovering: '15'
+      CE_LB: 100,
+      CE_LU: 50,
+      CE_SB: 30,
+      CE_SC: 20,
+      PE_LB: 80,
+      PE_LU: 40,
+      PE_SB: 25,
+      PE_SC: 15
     }
   ];
 

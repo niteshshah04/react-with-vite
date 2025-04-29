@@ -5,19 +5,21 @@ export type IBullishOIData = {
   active: boolean;
   ltp: number;
   time: string;
-  CE_ShortBuildup: string;
-  CE_LongBuildup: string;
-  PE_LongBuildUp: string;
-  PE_LongUnwinding: string;
-  PE_ShortBuildUp: string;
-  CE_ShortCovering: string;
-  PE_ShortCovering: string;
-  CE_LongUnwinding: string;
+  CE_SB: number;
+  CE_LB: number;
+  PE_LB: number;
+  PE_LU: number;
+  PE_SB: number;
+  CE_SC: number;
+  PE_SC: number;
+  CE_LU: number;
 };
 
 type TimeAndPrice = {
   CE_ShortBuildup: number;
+  CE_ShortBuildUp: number;
   CE_LongBuildup: number;
+  CE_LongBuildUp: number;
   PE_LongBuildUp: number;
   PE_LongUnwinding: number;
   PE_ShortBuildUp: number;
