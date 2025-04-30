@@ -26,12 +26,12 @@ const TABLE_COLUMNS = [
   "active",
   "count",
   "time",
-  // "CE_LB",
-  // "CE_LU",
+  "CE_LB",
+  "CE_LU",
   "CE_SB",
   "CE_SC",
-  // "PE_LB",
-  // "PE_LU",
+  "PE_LB",
+  "PE_LU",
   "PE_SB",
   "PE_SC",
 ] as const;
@@ -91,7 +91,7 @@ const BearishOITable: React.FC<BearishOITableProps> = (props) => {
           <TableBody>
             {processedData.length > 0 ? (
               processedData.map((data: IBullishOIData) => {
-                const highlightClass = Number(data?.CE_ShortBuildup) > 80 ? "highlight-row" : "";
+                const highlightClass = Number(data?.CE_SB) > 80 ? "highlight-row" : "";
                 return (
                   <TableRow 
                     key={data.id} 
@@ -112,14 +112,14 @@ const BearishOITable: React.FC<BearishOITableProps> = (props) => {
                       )}
                     </TableCell>
                     <TableCell>{data.time}</TableCell>
-                    <TableCell>{data.CE_LongBuildup}</TableCell>
-                    <TableCell>{data.CE_LongUnwinding}</TableCell>
-                    <TableCell>{data.CE_ShortBuildup}</TableCell>
-                    <TableCell>{data.CE_ShortCovering}</TableCell>
-                    <TableCell>{data.PE_LongBuildUp}</TableCell>
-                    <TableCell>{data.PE_LongUnwinding}</TableCell>
-                    <TableCell>{data.PE_ShortBuildUp}</TableCell>
-                    <TableCell>{data.PE_ShortCovering}</TableCell>
+                    <TableCell>{data?.CE_LB}</TableCell>
+                    <TableCell>{data?.CE_LU}</TableCell>
+                    <TableCell>{data?.CE_SB}</TableCell>
+                    <TableCell>{data?.CE_SC}</TableCell>
+                    <TableCell>{data?.PE_LB}</TableCell>
+                    <TableCell>{data?.PE_LU}</TableCell>
+                    <TableCell>{data?.PE_SB}</TableCell>
+                    <TableCell>{data?.PE_SC}</TableCell>
                   </TableRow>
                 );
               })

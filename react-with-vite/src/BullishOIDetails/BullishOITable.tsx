@@ -22,9 +22,9 @@ interface BullishOITableProps {
 const TABLE_HEADERS = [
   "id",
   "stock", "ltp", "active", "count", "time",
-  // "CE_LB", "CE_LU",
+  "CE_LB", "CE_LU",
   "CE_SB", "CE_SC",
-  // "PE_LB", "PE_LU",
+  "PE_LB", "PE_LU",
   "PE_SB", "PE_SC",
 ] as const;
 
@@ -54,7 +54,7 @@ const TableRowComponent: React.FC<{
   data: IBullishOIData;
   onRowClick: (data: IBullishOIData) => void;
 }> = React.memo(({ data, onRowClick }) => {
-  const highlightClass = Number(data?.PE_ShortBuildUp) > 80 ? "bullish-highlight-row" : "";
+  const highlightClass = Number(data?.PE_SB) > 80 ? "bullish-highlight-row" : "";
 
   return (
     <TableRow hover onClick={() => onRowClick(data)} className={`table-row ${highlightClass}`}>
@@ -79,14 +79,14 @@ const TableRowComponent: React.FC<{
         )}
       </TableCell>
       <TableCell>{data?.time}</TableCell>
-      {/* <TableCell>{data?.CE_LongBuildup}</TableCell> */}
-      {/* <TableCell>{data?.CE_LongUnwinding}</TableCell> */}
-      <TableCell>{data?.CE_ShortBuildup}</TableCell>
-      <TableCell>{data?.CE_ShortCovering}</TableCell>
-      {/* <TableCell>{data?.PE_LongBuildUp}</TableCell> */}
-      {/* <TableCell>{data?.PE_LongUnwinding}</TableCell> */}
-      <TableCell>{data?.PE_ShortBuildUp}</TableCell>
-      <TableCell>{data?.PE_ShortCovering}</TableCell>
+      <TableCell>{data?.CE_LB}</TableCell>
+      <TableCell>{data?.CE_LU}</TableCell>
+      <TableCell>{data?.CE_SB}</TableCell>
+      <TableCell>{data?.CE_SC}</TableCell>
+      <TableCell>{data?.PE_LB}</TableCell>
+      <TableCell>{data?.PE_LU}</TableCell>
+      <TableCell>{data?.PE_SB}</TableCell>
+      <TableCell>{data?.PE_SC}</TableCell>
     </TableRow>
   );
 });
