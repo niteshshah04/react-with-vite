@@ -25,11 +25,11 @@ const TrendLineChart: React.FC<TrendLineChartProps> = ({ chartData, hiddenLines,
             // { key: 'CE_ShortBuildup', name: 'CE Short Buildup', color: '#C70039' },
             // { key: 'CE_LongBuildup', name: 'CE Long Build', color: '#900C3F' },
             { key: 'CE_ShortCovering', name: 'CE Short Covering', color: 'red' },
-            // { key: 'CE_LongUnwinding', name: 'CE Short Unwinding', color: '#581845' },
+            // { key: 'CE_LongUnwinding', name: 'CE Long Unwinding', color: '#581845' },
             { key: 'PE_ShortBuildup', name: 'PE Short Buildup', color: 'green' },
             // { key: 'PE_LongBuildUp', name: 'PE Long Build', color: '#3F90C7' },
             // { key: 'PE_ShortCovering', name: 'PE Short Covering', color: '#33FF57' },
-            // { key: 'PE_LongUnwinding', name: 'PE Short Unwinding', color: '#4585C7' }
+            // { key: 'PE_LongUnwinding', name: 'PE Long Unwinding', color: '#4585C7' }
             { key: 'Average_Bullish', name: 'Average Bullish', color: 'gold' }
         );
     }else if(type ==='Bearish'){
@@ -37,11 +37,11 @@ const TrendLineChart: React.FC<TrendLineChartProps> = ({ chartData, hiddenLines,
             { key: 'CE_ShortBuildup', name: 'CE Short Buildup', color: 'red' },
             // { key: 'CE_LongBuildup', name: 'CE Long Build', color: '#900C3F' },
             // { key: 'CE_ShortCovering', name: 'CE Short Covering', color: 'red' },
-            // { key: 'CE_LongUnwinding', name: 'CE Short Unwinding', color: '#581845' },
+            // { key: 'CE_LongUnwinding', name: 'CE Long Unwinding', color: '#581845' },
             // { key: 'PE_ShortBuildup', name: 'PE Short Buildup', color: 'green' },
             // { key: 'PE_LongBuildUp', name: 'PE Long Build', color: '#3F90C7' },
             { key: 'PE_ShortCovering', name: 'PE Short Covering', color: 'green' },
-            // { key: 'PE_LongUnwinding', name: 'PE Short Unwinding', color: '#4585C7' }
+            // { key: 'PE_LongUnwinding', name: 'PE Long Unwinding', color: '#4585C7' }
             { key: 'Average_Bearish', name: 'Average Bearish', color: 'gold' }
         );
     }
