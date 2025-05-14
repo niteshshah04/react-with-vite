@@ -15,6 +15,20 @@
   color: red;
 }
 
+
+/* Add animation for yellow highlighting rows */
+@keyframes blink-yellow {
+  0% { background-color: #fff3cd; }
+  25% { background-color: #ffeeba; }
+  50% { background-color: #ffeeba; }
+  75% { background-color: #ffeeba; }
+  100% { background-color: #fff3cd; }
+}
+
+.result-stock {
+  animation: blink-yellow 5s infinite;
+}
+
 /* Add animation for highlighting rows */
 @keyframes blink-green {
   0% { background-color: #d4edda; }

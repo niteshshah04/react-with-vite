@@ -1,7 +1,6 @@
 import React, { useMemo } from "react";
 import { Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TablePagination, TableSortLabel } from "@mui/material";
-import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
-import ArrowUpward from '@mui/icons-material/ArrowUpward';
+import InsertChartOutlinedOutlinedIcon from '@mui/icons-material/InsertChartOutlinedOutlined';
 import { IBullishOIData } from "../Dashboard/types";
 import './BullishOITable.css';
 
@@ -21,7 +20,7 @@ interface BullishOITableProps {
 
 const TABLE_HEADERS = [
   "id",
-  "stock", "ltp", "active", "count", "time",
+  "stock", "ltp", "active", "time",
   "CE_LB", "CE_LU",
   "CE_SB", "CE_SC",
   "PE_LB", "PE_LU",
@@ -55,18 +54,26 @@ const TableRowComponent: React.FC<{
   onRowClick: (data: IBullishOIData) => void;
 }> = React.memo(({ data, onRowClick }) => {
   const highlightClass = Number(data?.PE_SB) > 80 ? "bullish-highlight-row" : "";
+  const resultStockClass = data?.resultToday ? "result-stock" : "";
 
   return (
-    <TableRow hover onClick={() => onRowClick(data)} className={`table-row ${highlightClass}`}>
+    <TableRow hover onClick={() => onRowClick(data)} className={`table-row  ${resultStockClass} ${highlightClass}`}>
       <TableCell>{data?.id}</TableCell>
       <TableCell>
         <div className="flex items-center space-x-1">
           <span>{data?.stock}</span>
+          {data?.resultToday && (
+            <InsertChartOutlinedOutlinedIcon
+              className="result-icon "
+              style={{ color: "green" }}
+            />
+          )}
         </div>
       </TableCell>
       <TableCell>{data?.ltp}</TableCell>
       <TableCell>{data?.active.toString()}</TableCell>
-      <TableCell>
+      {/* <TableCell>{data?.resultToday?.toString()}</TableCell> */}
+      {/* <TableCell>
         {data?.count}{" "}
         {data?.active ? (
           <ArrowUpward
@@ -77,7 +84,7 @@ const TableRowComponent: React.FC<{
             className="arrow-icon arrow-icon-down"
           />
         )}
-      </TableCell>
+      </TableCell> */}
       <TableCell>{data?.time}</TableCell>
       <TableCell>{data?.CE_LB}</TableCell>
       <TableCell>{data?.CE_LU}</TableCell>

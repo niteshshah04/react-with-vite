@@ -11,6 +11,7 @@ describe('BearishOITable', () => {
       ltp: 150.5,
       active: true,
       count: 5,
+      resultToday: true,
       time: '10:00',
       CE_LB: 100,
       CE_LU: 50,
