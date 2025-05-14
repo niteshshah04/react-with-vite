@@ -3,6 +3,7 @@ export type IBullishOIData = {
   stock: string;
   count: number;
   active: boolean;
+  resultToday: boolean;
   ltp: number;
   time: string;
   CE_SB: number;
@@ -34,6 +35,7 @@ type StockInfo = {
   timeAndPrice: TimeAndPrice[];
   count: number;
   active: boolean;
+  resultToday: boolean;
 };
 
 export type IBullishOIResponse = Record<string, StockInfo>;

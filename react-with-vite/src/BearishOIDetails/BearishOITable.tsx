@@ -1,7 +1,6 @@
 import React, { useCallback, useMemo } from "react";
 import { Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TablePagination, TableSortLabel } from "@mui/material";
-import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
-import ArrowUpward from '@mui/icons-material/ArrowUpward';
+import InsertChartOutlinedOutlinedIcon from '@mui/icons-material/InsertChartOutlinedOutlined';
 import { IBullishOIData } from "../Dashboard/types";
 import './BearishOITable.css';
 
@@ -24,7 +23,7 @@ const TABLE_COLUMNS = [
   "stock",
   "ltp",
   "active",
-  "count",
+  // "count",
   "time",
   "CE_LB",
   "CE_LU",
@@ -92,25 +91,33 @@ const BearishOITable: React.FC<BearishOITableProps> = (props) => {
             {processedData.length > 0 ? (
               processedData.map((data: IBullishOIData) => {
                 const highlightClass = Number(data?.CE_SB) > 80 ? "highlight-row" : "";
+                const resultStockClass = data?.resultToday ? "result-stock-bearish" : "";
                 return (
                   <TableRow 
                     key={data.id} 
                     hover 
                     onClick={() => handleRowClick(data)} 
-                    className={`table-row ${highlightClass}`}
+                    className={`table-row ${highlightClass} ${resultStockClass}`}
                   >
                     <TableCell>{data.id}</TableCell>
-                    <TableCell>{data.stock}</TableCell>
+                    <TableCell>{data.stock}
+                      {data?.resultToday && (
+                        <InsertChartOutlinedOutlinedIcon
+                          className="result-icon "
+                          style={{ color: "green" }}
+                        />
+                      )}
+                    </TableCell>
                     <TableCell>{data.ltp}</TableCell>
                     <TableCell>{data.active.toString()}</TableCell>
-                    <TableCell>
+                    {/* <TableCell>
                       {data.count}{" "}
                       {data.active ? (
                         <ArrowUpward className="arrow-up-icon" />
                       ) : (
                         <ArrowDownwardIcon className="arrow-down-icon" />
                       )}
-                    </TableCell>
+                    </TableCell> */}
                     <TableCell>{data.time}</TableCell>
                     <TableCell>{data?.CE_LB}</TableCell>
                     <TableCell>{data?.CE_LU}</TableCell>

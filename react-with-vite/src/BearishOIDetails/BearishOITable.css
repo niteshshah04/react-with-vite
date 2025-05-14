@@ -14,6 +14,19 @@
   vertical-align: middle;
 }
 
+
+/* Add animation for yellow highlighting rows */
+@keyframes blink-yellow {
+  0% { background-color: #fff3cd; }
+  25% { background-color: #ffeeba; }
+  50% { background-color: #ffeeba; }
+  75% { background-color: #ffeeba; }
+  100% { background-color: #fff3cd; }
+}
+
+.result-stock-bearish {
+  animation: blink-yellow 5s infinite;
+}
 /* Add animation for highlighting bearish rows */
 @keyframes blink-red {
   0% { background-color: #f8d7da; }
