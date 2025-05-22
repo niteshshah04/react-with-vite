@@ -16,6 +16,7 @@ const DetailsModal = React.forwardRef<HTMLDivElement, ILineChartModalProps>(({ c
   if (!data) {
     return null;
   }
+  const url = `https://www.screener.in/company/${row.stock}/consolidated/`;
 
   return (
     <Box sx={{ width: "80%", margin: "auto", mt: 2, mb: 4, backgroundColor: "white", p: 3, borderRadius: 2, boxShadow: 3 }} tabIndex={0} ref={ref}>
@@ -58,6 +59,11 @@ const DetailsModal = React.forwardRef<HTMLDivElement, ILineChartModalProps>(({ c
             </table>
           )}
         </div>
+      </div>
+      <div className="link-container">
+        <a href={url} target="_blank" rel="noopener noreferrer" className="link">
+          View on Screener.in for more details
+        </a>
       </div>
     </Box>
   );

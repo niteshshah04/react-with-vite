@@ -1,6 +1,7 @@
 import React, { useMemo } from "react";
 import { Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TablePagination, TableSortLabel } from "@mui/material";
 import InsertChartOutlinedOutlinedIcon from '@mui/icons-material/InsertChartOutlinedOutlined';
+import ArrowUpward from '@mui/icons-material/ArrowUpward';
 import { IBullishOIData } from "../Dashboard/types";
 import './BullishOITable.css';
 
@@ -21,10 +22,14 @@ interface BullishOITableProps {
 const TABLE_HEADERS = [
   "id",
   "stock", "ltp", "active", "time",
-  "CE_LB", "CE_LU",
-  "CE_SB", "CE_SC",
-  "PE_LB", "PE_LU",
-  "PE_SB", "PE_SC",
+  "PE_SB",
+  "CE_SC",
+  "CE_LB", 
+  "CE_LU",
+  "CE_SB",
+  "PE_LB",
+  "PE_LU",
+  "PE_SC"
 ] as const;
 
 const TableHeader: React.FC<{
@@ -86,13 +91,19 @@ const TableRowComponent: React.FC<{
         )}
       </TableCell> */}
       <TableCell>{data?.time}</TableCell>
+      <TableCell>{data?.PE_SB} 
+        {data?.PE_SB > data?.CE_SC ? (
+          <ArrowUpward
+            className="arrow-icon arrow-icon-up"
+          />
+        ) : null}
+      </TableCell>      
+      <TableCell>{data?.CE_SC}</TableCell>
       <TableCell>{data?.CE_LB}</TableCell>
       <TableCell>{data?.CE_LU}</TableCell>
       <TableCell>{data?.CE_SB}</TableCell>
-      <TableCell>{data?.CE_SC}</TableCell>
       <TableCell>{data?.PE_LB}</TableCell>
       <TableCell>{data?.PE_LU}</TableCell>
-      <TableCell>{data?.PE_SB}</TableCell>
       <TableCell>{data?.PE_SC}</TableCell>
     </TableRow>
   );
