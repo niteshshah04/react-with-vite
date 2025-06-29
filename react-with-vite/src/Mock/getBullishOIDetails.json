@@ -28,7 +28,10 @@
     ],
     "count": 2,
     "active": false,
-    "resultToday" : true
+    "resultToday" : true,
+    "trendReversal": true,
+    "nearTrendReversal": false
+
   },
   "TATACHEM": {
     "timeAndPrice": [
@@ -46,7 +49,9 @@
     ],
     "count": 1,
     "active": true,
-    "resultToday" : false
+    "resultToday" : false,
+    "trendReversal": false,
+    "nearTrendReversal": true
   },
   "AUBANK": {
     "timeAndPrice": [

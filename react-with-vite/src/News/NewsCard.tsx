@@ -11,7 +11,7 @@ const NewsTable = ({ newsItems }: { newsItems: any }) => {
         <TableHead>
           <TableRow sx={{ backgroundColor: "#f5f5f5" }}>
             <TableCell><b>Title</b></TableCell>
-            <TableCell><b>Description</b></TableCell>
+            {/* <TableCell><b>Description</b></TableCell> */}
             <TableCell><b>Date</b></TableCell>
             <TableCell><b>Link</b></TableCell>
           </TableRow>
@@ -20,7 +20,7 @@ const NewsTable = ({ newsItems }: { newsItems: any }) => {
           {newsItems.length > 0 ? newsItems.map((news: any, index: number) => (
             <TableRow key={index}>
               <TableCell>{news.title}</TableCell>
-              <TableCell>{news.description}</TableCell>
+              {/* <TableCell>{news.description}</TableCell> */}
               <TableCell>{news.pubDate}</TableCell>
               <TableCell>
                 <Link href={news.link} target="_blank" rel="noopener noreferrer" color="primary">

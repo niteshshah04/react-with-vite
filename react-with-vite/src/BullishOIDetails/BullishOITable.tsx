@@ -2,8 +2,12 @@ import React, { useMemo } from "react";
 import { Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TablePagination, TableSortLabel } from "@mui/material";
 import InsertChartOutlinedOutlinedIcon from '@mui/icons-material/InsertChartOutlinedOutlined';
 import ArrowUpward from '@mui/icons-material/ArrowUpward';
+import TrendingUpIcon from '@mui/icons-material/TrendingUp';
+import MovingIcon from '@mui/icons-material/Moving';
 import { IBullishOIData } from "../Dashboard/types";
 import './BullishOITable.css';
+// import '@n8n/chat/style.css';
+// import { createChat } from '@n8n/chat';
 
 interface BullishOITableProps {
   order: "asc" | "desc";
@@ -65,14 +69,30 @@ const TableRowComponent: React.FC<{
     <TableRow hover onClick={() => onRowClick(data)} className={`table-row  ${resultStockClass} ${highlightClass}`}>
       <TableCell>{data?.id}</TableCell>
       <TableCell>
-        <div className="flex items-center space-x-1">
+        <div className="flex items-center space-x-2">
           <span>{data?.stock}</span>
           {data?.resultToday && (
             <InsertChartOutlinedOutlinedIcon
-              className="result-icon "
+              className="result-icon"
               style={{ color: "green" }}
+              titleAccess="Result Today"
             />
           )}
+          {data?.trendReversal && (
+            <TrendingUpIcon
+              className="result-icon"
+              style={{ color: "green" }}
+              titleAccess="Indicates a bullish trend reversal."
+            />
+          )}
+          {data?.nearTrendReversal && (
+            <MovingIcon
+              className="result-icon"
+              style={{ color: "orange" }}
+              titleAccess="Close to a bullish trend reversal."
+            />
+          )}
+
         </div>
       </TableCell>
       <TableCell>{data?.ltp}</TableCell>
@@ -132,8 +152,26 @@ const BullishOITable: React.FC<BullishOITableProps> = ({
     [bullishOIData, filterData]
   );
 
+  // useEffect(() => {
+  //   // Only create the chat widget once
+  //   createChat({
+  //     webhookUrl: 'http://127.0.0.1:5678/webhook/4d9b0cf9-027a-4769-bac9-555fdba05a2a/chat',
+  //     target: '#n8n-chat',
+  //     mode: 'popup',
+  //     chatInputKey: 'chatInput',
+  //     chatSessionKey: 'sessionId',
+  //     metadata: {},
+  //     showWelcomeScreen: false,
+  //     defaultLanguage: 'en',
+  //     initialMessages: [
+  //       'Welcome to the chat! How can I assist you today?'
+  //     ]
+  //   });
+  // }, []);
+
   return (
     <Box p={2}>
+      {/* n8n chat widget will be injected globally by createChat */}
       <TableContainer component={Paper} sx={{ width: "100%", boxShadow: 3 }}>
         <Table>
           <TableHeader
