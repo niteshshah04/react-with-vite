@@ -25,13 +25,13 @@ const TABLE_COLUMNS = [
   "active",
   // "count",
   "time",
+  "PE_SB",
+  "CE_SC",
   "CE_LB",
   "CE_LU",
   "CE_SB",
-  "CE_SC",
   "PE_LB",
   "PE_LU",
-  "PE_SB",
   "PE_SC",
 ] as const;
 
@@ -112,20 +112,22 @@ const BearishOITable: React.FC<BearishOITableProps> = (props) => {
                     <TableCell>{data.active.toString()}</TableCell>
                     {/* <TableCell>
                       {data.count}{" "}
-                      {data.active ? (
+                     {data.active ? (
                         <ArrowUpward className="arrow-up-icon" />
                       ) : (
                         <ArrowDownwardIcon className="arrow-down-icon" />
                       )}
-                    </TableCell> */}
+                    </TableCell> */} 
+                    
                     <TableCell>{data.time}</TableCell>
+                    <TableCell>{data?.PE_SB}</TableCell>
+                    <TableCell>{data?.CE_SC}</TableCell>
                     <TableCell>{data?.CE_LB}</TableCell>
                     <TableCell>{data?.CE_LU}</TableCell>
                     <TableCell>{data?.CE_SB}</TableCell>
-                    <TableCell>{data?.CE_SC}</TableCell>
                     <TableCell>{data?.PE_LB}</TableCell>
                     <TableCell>{data?.PE_LU}</TableCell>
-                    <TableCell>{data?.PE_SB}</TableCell>
+                    
                     <TableCell>{data?.PE_SC}</TableCell>
                   </TableRow>
                 );

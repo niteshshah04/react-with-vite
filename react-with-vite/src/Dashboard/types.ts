@@ -4,6 +4,8 @@ export type IBullishOIData = {
   count: number;
   active: boolean;
   resultToday: boolean;
+  trendReversal?: boolean;
+  nearTrendReversal?: boolean;
   ltp: number;
   time: string;
   CE_SB: number;
@@ -36,6 +38,8 @@ type StockInfo = {
   count: number;
   active: boolean;
   resultToday: boolean;
+  trendReversal?: boolean;
+  nearTrendReversal?: boolean;
 };
 
 export type IBullishOIResponse = Record<string, StockInfo>;

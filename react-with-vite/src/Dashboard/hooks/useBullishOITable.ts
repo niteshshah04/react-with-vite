@@ -14,6 +14,8 @@ const useCleanData = () => {
         count: data[key].count,
         active: data[key].active,
         resultToday: data[key].resultToday,
+        trendReversal: data[key].trendReversal,
+        nearTrendReversal: data[key].nearTrendReversal,
         ltp: lastRecord.ltp,
         time: lastRecord.time,
         CE_SB: lastRecord.CE_ShortBuildup?.toFixed(2) ? lastRecord.CE_ShortBuildup?.toFixed(2) : lastRecord.CE_ShortBuildUp.toFixed(2),
