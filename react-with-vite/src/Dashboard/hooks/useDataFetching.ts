@@ -71,14 +71,6 @@ export const useDataFetching = () => {
         ] = responses;
 
         const bullishCleanedData : any = cleanData(bullishOIData);
-        // Add one more data in bullishCleanData for nifty stock list
-        if (bullishCleanedData && niftyStockList) {
-          bullishCleanedData.push({
-            id: 0,
-            stock: 'NIFTY',
-            active: true
-          });
-        }
         if (bullishOIData) setBullishOIData(bullishCleanedData);
         const bearishCleanedData : any = cleanData(bearishOIData);
         if (bearishOIData) setBearishOIData(bearishCleanedData);
